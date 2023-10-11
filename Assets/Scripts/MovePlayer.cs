@@ -7,6 +7,6 @@ public class MovePlayer : MonoBehaviour
     public float speed;
     void Update()
     {
-        transform.position += new Vector3(speed * Input.GetAxis("Horizontal"), 0, 0);
+        transform.position += new Vector3(speed * 1, 0, 0);
     }
 }
