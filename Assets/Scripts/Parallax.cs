@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -22,7 +20,7 @@ public class Parallax : MonoBehaviour
 
         if (temp > _startPos + _length)
             _startPos += _length * 2;
-        else if(temp < _startPos - _length)
-            _startPos -= _length; 
+        else if (temp < _startPos - _length)
+            _startPos -= _length;
     }
 }
