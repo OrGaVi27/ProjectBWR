@@ -41,12 +41,15 @@ public class Controles : MonoBehaviour
         layerSuelo = LayerMask.GetMask("Suelo");
     }
 
-    // Update is called once per frame
+
     private void Update()
     {
         enTierra = Physics2D.OverlapCircle(_trans.position, radioSuelo, layerSuelo); ;
 
+        // Velocidad constante
         _rb.velocity = new Vector2(velocity, _rb.velocity.y);
+
+        // Casos por cada tecla
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Disparar();
@@ -76,6 +79,7 @@ public class Controles : MonoBehaviour
             _trans.position = new Vector3(_trans.position.x, _trans.position.y + 0.25f, _trans.position.z);
         }
 
+        // Recuperación de saltos al tocar el suelo
         if (enTierra && Time.time - horaUltimoSalto > cooldownRecuperacionSalto)
         {
             saltosDisponibles = saltosMaximos;
