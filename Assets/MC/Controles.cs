@@ -22,7 +22,7 @@ public class Controles : MonoBehaviour
     private bool enTierra;  //Almacena el resultado de la comprobación del contacto del personaje con el suelo
     private float radioSuelo = 1;   //Variable usada en la formula de la comprobación "enTierra"
     private LayerMask layerSuelo;   //Almacena la capa del Suelo
-    public int saltosDisponibles;   //Saltos disponibles en el momento
+    public int saltosDisponibles = 0;   //Saltos disponibles en el momento
     private int saltosMaximos = 1;  //Saltos que se asignaran a saltosDisponibles en cuanto el MC repose en el suelo
     public bool agachado = false;
 
@@ -37,7 +37,6 @@ public class Controles : MonoBehaviour
         _rb.gravityScale = 3;
         horaUltimoDisparo = Time.time - 1f;
         horaUltimoSalto = Time.time;
-        saltosDisponibles = saltosMaximos;
         layerSuelo = LayerMask.GetMask("Suelo");
     }
 
