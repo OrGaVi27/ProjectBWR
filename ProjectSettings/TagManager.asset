@@ -8,6 +8,7 @@ TagManager:
   - Red
   - White
   - Letal
+  - Enemigo
   layers:
   - Default
   - TransparentFX
@@ -15,8 +16,8 @@ TagManager:
   - Suelo
   - Water
   - UI
-  - 
-  - 
+  - Blue
+  - Red
   - 
   - 
   - 

@@ -6,10 +6,24 @@ public class Colisiones : MonoBehaviour
 {
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        //Debug.Log(collision.gameObject.tag);
-        if (collision.gameObject.tag == "Letal")
+        switch (collision.gameObject.tag)
         {
-            gameObject.SetActive(false);
+            case "Letal":
+            case "Enemigo":
+                gameObject.SetActive(false);
+                break;
+            case "Blue":
+                if(!gameObject.CompareTag("Blue"))
+                {
+                    gameObject.SetActive(false);
+                }
+                break;
+            case "Red":
+                if (!gameObject.CompareTag("Red"))
+                {
+                    gameObject.SetActive(false);
+                }
+                break;
         }
     }
 }

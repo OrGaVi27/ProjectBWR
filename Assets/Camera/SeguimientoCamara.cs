@@ -22,6 +22,14 @@ public class SeguimientoCamara : MonoBehaviour
         _trans.position = _transFoco.position;
         _rb.velocity = new Vector3(8.0f, 0, 0);
 
-        _trans.position = new Vector3(_transFoco.position.x, 0, -10f);
+        _trans.position = new Vector3(_transFoco.position.x + 4f, 0, -10f);
+    }
+
+    void Update()
+    {
+        if (!foco.activeSelf)
+        {
+            _rb.velocity = new Vector3(0, 0, 0);
+        }
     }
 }
