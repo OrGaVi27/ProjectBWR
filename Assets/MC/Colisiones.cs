@@ -12,7 +12,6 @@ public class Colisiones : MonoBehaviour
         {
             canvas.SetActive(true);
             gameObject.SetActive(false);
-            
         }
     }
 }
