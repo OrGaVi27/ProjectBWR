@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Colisiones : MonoBehaviour
 {
+    [SerializeField] private GameObject canvas;
     private void OnCollisionEnter2D(Collision2D collision)
     {
         switch (collision.gameObject.tag)
@@ -24,6 +25,7 @@ public class Colisiones : MonoBehaviour
                     gameObject.SetActive(false);
                 }
                 break;
+            canvas.SetActive(true);
         }
     }
 }
