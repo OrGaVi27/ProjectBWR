@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ab61ab382ae215d4aab24f97e1ef6993
+guid: 9b4fb460923e22d4188a4ffc0b2eb8b7
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,13 +123,55 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: blacknwhite-Coin_0
+      name: industrial.proyectil2_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e15ecfe6722963d4d8484cdd986d08ba
+      internalID: -1026868951
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: industrial.proyectil2_1
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 80fa2004d9170bc42baf28d880429a92
+      internalID: 1362723567
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: industrial.proyectil2_2
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 12
-        height: 12
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -137,20 +179,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b9dec9071522c5a49b11477624c3d16a
-      internalID: -1438432255
+      spriteID: 2d9dcaf4c5f9e66428acc614dfd9af04
+      internalID: 190097201
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: blacknwhite-Coin_1
+      name: industrial.proyectil2_3
       rect:
         serializedVersion: 2
-        x: 12
+        x: 16
         y: 0
-        width: 12
-        height: 12
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -158,92 +200,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 00e027d082c024f4b8f26c11859ec5cb
-      internalID: 118929279
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: blacknwhite-Coin_2
-      rect:
-        serializedVersion: 2
-        x: 24
-        y: 0
-        width: 12
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5dad64c0c4e2042469783b255f6d3b51
-      internalID: 1165377494
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: blacknwhite-Coin_3
-      rect:
-        serializedVersion: 2
-        x: 36
-        y: 0
-        width: 12
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 68b9193572d2daf49949d63e3439ad34
-      internalID: -721984737
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: blacknwhite-Coin_4
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 0
-        width: 12
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d410af27064c2f64daaf08b9c438fec6
-      internalID: -61910988
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: blacknwhite-Coin_5
-      rect:
-        serializedVersion: 2
-        x: 60
-        y: 0
-        width: 12
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: acdb39f894f9ff54a82f846d9677c5a9
-      internalID: 735854888
+      spriteID: 323bf90845b36e446acda0526d222514
+      internalID: -1589215797
       vertices: []
       indices: 
       edges: []
@@ -259,12 +217,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      blacknwhite-Coin_0: -1438432255
-      blacknwhite-Coin_1: 118929279
-      blacknwhite-Coin_2: 1165377494
-      blacknwhite-Coin_3: -721984737
-      blacknwhite-Coin_4: -61910988
-      blacknwhite-Coin_5: 735854888
+      industrial.proyectil2_0: -1026868951
+      industrial.proyectil2_1: 1362723567
+      industrial.proyectil2_2: 190097201
+      industrial.proyectil2_3: -1589215797
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
