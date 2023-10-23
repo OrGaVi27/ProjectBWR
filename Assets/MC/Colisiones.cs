@@ -11,21 +11,25 @@ public class Colisiones : MonoBehaviour
         {
             case "Letal":
             case "Enemigo":
-                gameObject.SetActive(false);
+                Muerte();
                 break;
             case "Blue":
                 if(!gameObject.CompareTag("Blue"))
                 {
-                    gameObject.SetActive(false);
+                    Muerte();
                 }
                 break;
             case "Red":
                 if (!gameObject.CompareTag("Red"))
                 {
-                    gameObject.SetActive(false);
+                    Muerte();
                 }
                 break;
-            canvas.SetActive(true);
         }
+    }
+    void Muerte()
+    {
+        canvas.SetActive(true);
+        gameObject.SetActive(false);
     }
 }

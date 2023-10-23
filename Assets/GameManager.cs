@@ -20,12 +20,13 @@ public class GameManager : MonoBehaviour
 
     }
 
-    public void SceneChange(int Scene) 
+    public void SceneChange(string Scene) 
     {
         SceneManager.LoadScene(Scene);
     }
     public void CloseGame()
     {
         Application.Quit();
+        //UnityEditor.EditorApplication.isPlaying = false;
     }
 }
