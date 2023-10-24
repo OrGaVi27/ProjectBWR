@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-   private DataPersisted DataPers;
+    private DataPersisted DataPers;
 
     public static GameManager Instance;
     void Awake()

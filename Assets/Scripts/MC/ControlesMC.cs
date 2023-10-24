@@ -10,10 +10,10 @@ public class Controles : MonoBehaviour
     SpriteRenderer _sr;
     Transform _trans;
 
-    [SerializeField] private GameObject balaPrefab;
+    [SerializeField] private GameObject proyectilPrefab;
     [SerializeField] private Transform puntoDisparo;
 
-    private float jumpForce = 14.0f; //Fuerza horizontal aplicada para simular un salto
+    private float fuerzaSalto = 14.0f; //Fuerza horizontal aplicada para simular un salto
     private float velocity = 8.0f;  //Velocidad lateral base
     private float cooldownDisparo = 0.5f; //Tiempo de espera entre disparos
     private float cooldownRecuperacionSalto = 0.1f; //Tiempo de espera mínimo para que el salto no se recupere antes de que el objeto se levante del suelo
@@ -22,9 +22,9 @@ public class Controles : MonoBehaviour
     private bool enTierra;  //Almacena el resultado de la comprobación del contacto del personaje con el suelo
     private float radioSuelo = 1;   //Variable usada en la formula de la comprobación "enTierra"
     private LayerMask layerSuelo;   //Almacena la capa del Suelo
-    public int saltosDisponibles = 0;   //Saltos disponibles en el momento
+    private int saltosDisponibles = 0;   //Saltos disponibles en el momento
     private int saltosMaximos = 1;  //Saltos que se asignaran a saltosDisponibles en cuanto el MC repose en el suelo
-    public bool agachado = false;
+    private bool agachado;
 
     // Start is called before the first frame update
     private void Start()
@@ -38,6 +38,7 @@ public class Controles : MonoBehaviour
         horaUltimoDisparo = Time.time - 1f;
         horaUltimoSalto = Time.time;
         layerSuelo = LayerMask.GetMask("Suelo");
+        agachado = false;
     }
 
 
@@ -89,14 +90,14 @@ public class Controles : MonoBehaviour
     {
         if (Time.time - horaUltimoDisparo > cooldownDisparo)
         {
-            Instantiate(balaPrefab, puntoDisparo.position, puntoDisparo.rotation);
+            Instantiate(proyectilPrefab, puntoDisparo.position, puntoDisparo.rotation);
             horaUltimoDisparo = Time.time;
             CambioColor("White");
         }
     }
     private void Saltar()
     {
-        _rb.velocity = Vector2.up * jumpForce;
+        _rb.velocity = Vector2.up * fuerzaSalto;
         saltosDisponibles--;
         horaUltimoSalto = Time.time;
     }
