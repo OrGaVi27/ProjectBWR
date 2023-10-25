@@ -25,7 +25,6 @@ public class Controles : Mob
         horaUltimoDisparo = Time.time - 1f;
         horaUltimoSalto = Time.time;
         layerSuelo = LayerMask.GetMask("Suelo");
-        //agachado = false;
     }
 
 
@@ -43,6 +42,7 @@ public class Controles : Mob
         }
         if(Input.GetKeyDown(KeyCode.W) && saltosDisponibles > 0)
         {
+            _anim.SetBool("isJumping", true);
             Saltar();
         }
         if(Input.GetKeyDown(KeyCode.A))
@@ -55,21 +55,18 @@ public class Controles : Mob
         }
         if(Input.GetKeyDown(KeyCode.S))
         {
-            //agachado = true;
-            _trans.localScale = new Vector3( 1, 0.5f, 1);
-            _trans.position = new Vector3(_trans.position.x, _trans.position.y - 0.25f, _trans.position.z);
+            _anim.SetBool("isCrouching", true);
         }
         if(Input.GetKeyUp(KeyCode.S))
         {
-            //agachado = false;
-            _trans.localScale = new Vector3(1, 1, 1);
-            _trans.position = new Vector3(_trans.position.x, _trans.position.y + 0.25f, _trans.position.z);
+            _anim.SetBool("isCrouching", false);
         }
 
         // Recuperación de saltos al tocar el suelo
         if (enTierra && Time.time - horaUltimoSalto > cooldownRecuperacionSalto)
         {
             saltosDisponibles = saltosMaximos;
+            _anim.SetBool("isJumping", false);
         }
     }
     private void Saltar()

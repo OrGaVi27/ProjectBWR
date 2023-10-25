@@ -20,6 +20,6 @@ public class Bala : MonoBehaviour
 
     private void FixedUpdate()
     {
-        _rb.velocity = transform.up * speed;
+        _rb.velocity = transform.right * speed;
     }
 }
