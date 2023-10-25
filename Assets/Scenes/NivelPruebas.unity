@@ -5012,6 +5012,7 @@ GameObject:
   - component: {fileID: 1629588658}
   - component: {fileID: 1629588657}
   - component: {fileID: 1629588656}
+  - component: {fileID: 1629588660}
   m_Layer: 0
   m_Name: Enemigo
   m_TagString: Enemigo
@@ -5152,12 +5153,33 @@ Transform:
   m_GameObject: {fileID: 1629588655}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 92.94, y: -2.83, z: 0}
+  m_LocalPosition: {x: 92.84, y: -2.83, z: 0}
   m_LocalScale: {x: 1, y: 3.6913, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1629588660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1629588655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e1d9b221e332564eacde0674104491f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _anim: {fileID: 0}
+  _rb: {fileID: 0}
+  _sr: {fileID: 0}
+  _trans: {fileID: 0}
+  puntoDisparo: {fileID: 0}
+  proyectilPrefab: {fileID: 0}
+  fuerzaSalto: 0
+  cooldownDisparo: 0
+  horaUltimoDisparo: 0
 --- !u!1001 &1923543711
 PrefabInstance:
   m_ObjectHideFlags: 0

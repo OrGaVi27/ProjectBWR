@@ -49,8 +49,7 @@ public class Mob : Entidad
     {
         if (Time.time - horaUltimoDisparo > cooldownDisparo)
         {
-            GameObject bala = Instantiate(proyectilPrefab, puntoDisparo.position, puntoDisparo.rotation);
-            bala.tag = "Proyectil";
+            Instantiate(proyectilPrefab, puntoDisparo.position, puntoDisparo.rotation);
             horaUltimoDisparo = Time.time;
             CambioColor("White");
         }
