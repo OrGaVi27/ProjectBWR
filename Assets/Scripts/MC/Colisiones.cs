@@ -4,32 +4,28 @@ using UnityEngine;
 
 public class Colisiones : MonoBehaviour
 {
-    [SerializeField] private GameObject canvas;
     private void OnCollisionEnter2D(Collision2D collision)
     {
         switch (collision.gameObject.tag)
         {
             case "Letal":
             case "Enemigo":
-                Muerte();
+                GameManager.Instance.Muerte();
                 break;
             case "Blue":
                 if(!gameObject.CompareTag("Blue"))
                 {
-                    Muerte();
+                    GameManager.Instance.Muerte();
                 }
                 break;
             case "Red":
                 if (!gameObject.CompareTag("Red"))
                 {
-                    Muerte();
+
+                    GameManager.Instance.Muerte();
                 }
                 break;
         }
     }
-    void Muerte()
-    {
-        canvas.SetActive(true);
-        gameObject.SetActive(false);
-    }
+
 }
