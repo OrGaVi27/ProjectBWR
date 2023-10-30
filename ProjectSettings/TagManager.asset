@@ -9,6 +9,7 @@ TagManager:
   - White
   - Letal
   - Enemigo
+  - Coin
   layers:
   - Default
   - TransparentFX

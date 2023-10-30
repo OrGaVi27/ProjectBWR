@@ -11,7 +11,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
     private int Coins = 0;
-    public float Score = 0;
+    private int CoinsObt = 0;
+    private float Score = 0;
     private float MaxScore = 0;
     public bool isDead = true;
     public GameObject gameOver;
@@ -22,6 +23,8 @@ public class GameManager : MonoBehaviour
 
     public TextMeshProUGUI maxScoreText;    
     public TextMeshProUGUI ScoreText;
+    public TextMeshProUGUI coinsText;
+    public TextMeshProUGUI coinsObtText;
     void Awake()
     {
         Score = Time.time;
@@ -37,6 +40,7 @@ public class GameManager : MonoBehaviour
                 MaxScore = (float)Math.Truncate(data.MaxScore);
                 ScoreText.GetComponent<TextMeshProUGUI>().text = $"Score: {(Score)}";
                 maxScoreText.GetComponent<TextMeshProUGUI>().text = $"High Score: {Math.Truncate(MaxScore)}";
+
             }
             DontDestroyOnLoad(this);
 
@@ -54,6 +58,7 @@ public class GameManager : MonoBehaviour
     {
         if (isDead == false)
         {
+            coinsText.GetComponent<TextMeshProUGUI>().text = $"Coins: {Coins}";
             if (Time.time - Score > 1f)
             {
                 ScoreText.GetComponent<TextMeshProUGUI>().text = $"Score: {Math.Truncate(Score)}";
@@ -106,14 +111,20 @@ public class GameManager : MonoBehaviour
         Score = 0;
         isDead = false;
         gameOver.SetActive(false);
+        CoinsObt = 0;
     }
     public void Muerte()
     {
         MC.SetActive(false);
         gameOver.SetActive(true);
         isDead = true;
+        coinsObtText.GetComponent<TextMeshProUGUI>().text = $"Coins: +{CoinsObt}";
         DataChanges dataChanges = new DataChanges();
-        dataChanges.WriteData(new DataPersisted(0, 0, MaxScore, false, false, false, 0));
+        dataChanges.WriteData(new DataPersisted(Coins, 0, MaxScore, false, false, false, 0));
     }
-
+    public void SumCoin() 
+    {
+        CoinsObt++;
+        Coins++;
+    }
 }
