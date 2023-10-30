@@ -78,10 +78,7 @@ public class GameManager : MonoBehaviour
         HoraInicio = Time.time;
         MC = GameObject.Find("MC");
         maxScoreText.GetComponent<TextMeshProUGUI>().text = "High Score: " + MaxScore;
-        ScoreText.GetComponent<TextMeshProUGUI>().text = Score.ToString();
-        Debug.Log(Score.ToString());
-        Debug.Log(Score);
-        
+        ScoreText.GetComponent<TextMeshProUGUI>().text = Score.ToString();        
     }
 
     public void SceneChange(bool cont) 

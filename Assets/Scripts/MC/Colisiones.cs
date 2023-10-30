@@ -21,11 +21,23 @@ public class Colisiones : MonoBehaviour
             case "Red":
                 if (!gameObject.CompareTag("Red"))
                 {
-
                     GameManager.Instance.Muerte();
                 }
                 break;
+            case "Coin":
+                collision.gameObject.SetActive(false);
+                GameManager.Instance.SumCoin();
+                break;                
         }
     }
-
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        switch (collision.gameObject.tag)
+        {
+            case "Coin":
+                collision.gameObject.SetActive(false);
+                GameManager.Instance.SumCoin();
+                break;
+        }
+    }
 }

@@ -15,12 +15,12 @@ public class Coin : MonoBehaviour
     {
         
     }
-    public void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Player") 
-        {
-            this.gameObject.SetActive(false);
-            GameManager.Instance.SumCoin();
-        }
-    }
+    //public void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    if (collision.gameObject.tag == "Player") 
+    //    {
+    //        this.gameObject.SetActive(false);
+    //        GameManager.Instance.SumCoin();
+    //    }
+    //}
 }
