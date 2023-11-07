@@ -37,9 +37,10 @@ public class Colisiones : MonoBehaviour
     {
         if(col.CompareTag("CambiarNivel"))
         {
-            Debug.Log("Cambio nivel!");
-            gameObject.transform.position = GameObject.Find("InicioNivel").transform.position;
-            GameObject.Find("Camara").transform.position = GameObject.Find("InicioNivel").transform.position;
+            GameObject camara = GameObject.Find("Camara");
+            Vector3 posicionCamara = GameObject.Find("InicioNivel").transform.position;
+            gameObject.transform.position = new Vector3(posicionCamara.x, posicionCamara.y, gameObject.transform.position.z);
+            camara.transform.position = new Vector3(posicionCamara.x, posicionCamara.y, camara.transform.position.z);
         }
     }
 }
