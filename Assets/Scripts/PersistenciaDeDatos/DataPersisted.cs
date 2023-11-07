@@ -1,16 +1,18 @@
 [System.Serializable]
 public class DataPersisted
 {
-    private int Coins;
-    private int Shields;
-    private bool IframePostHit;
-    private bool IframePostChangeColor;
-    private bool DontLoseColorAtShoot;
-    private int DoubleCoinsAtCollect;
+    public int Coins;
+    public float MaxScore;
+    public int Shields;
+    public bool IframePostHit;
+    public bool IframePostChangeColor;
+    public bool DontLoseColorAtShoot;
+    public int DoubleCoinsAtCollect;
 
-    public DataPersisted(int coins,int shields,bool iframePostHit,bool iframePostChangeColor,bool dontLoseColorAtShoot,int doubleCoinsAtCollect)
+    public DataPersisted(int coins,int shields,float maxScore, bool iframePostHit,bool iframePostChangeColor,bool dontLoseColorAtShoot,int doubleCoinsAtCollect)
     {
         this.Coins = coins;
+        this.MaxScore = maxScore;
         this.Shields = shields;
         this.IframePostHit = iframePostHit;
         this.IframePostChangeColor = iframePostChangeColor;

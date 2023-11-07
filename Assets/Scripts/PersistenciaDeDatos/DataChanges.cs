@@ -5,15 +5,15 @@ using UnityEngine;
 
 public class DataChanges : MonoBehaviour
 {
-    static private string path = Path.Combine(Application.persistentDataPath, "data.json");
+    private string path = Path.Combine(Application.persistentDataPath, "data.json");
 
-    public static void WriteData(DataPersisted data)
+    public void WriteData(DataPersisted data)
     {
         string json = JsonUtility.ToJson(data);
         File.WriteAllText(path, json);
     }
 
-    public static DataPersisted LoadData()
+    public DataPersisted LoadData()
     {
         if (File.Exists(path))
         {

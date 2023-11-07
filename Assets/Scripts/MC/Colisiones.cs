@@ -4,32 +4,40 @@ using UnityEngine;
 
 public class Colisiones : MonoBehaviour
 {
-    [SerializeField] private GameObject canvas;
     private void OnCollisionEnter2D(Collision2D collision)
     {
         switch (collision.gameObject.tag)
         {
             case "Letal":
             case "Enemigo":
-                Muerte();
+                GameManager.Instance.Muerte();
                 break;
             case "Blue":
                 if(!gameObject.CompareTag("Blue"))
                 {
-                    Muerte();
+                    GameManager.Instance.Muerte();
                 }
                 break;
             case "Red":
                 if (!gameObject.CompareTag("Red"))
                 {
-                    Muerte();
+                    GameManager.Instance.Muerte();
                 }
                 break;
+            case "Coin":
+                collision.gameObject.SetActive(false);
+                GameManager.Instance.SumCoin();
+                break;                
         }
     }
-    void Muerte()
+    public void OnTriggerEnter2D(Collider2D collision)
     {
-        canvas.SetActive(true);
-        gameObject.SetActive(false);
+        switch (collision.gameObject.tag)
+        {
+            case "Coin":
+                collision.gameObject.SetActive(false);
+                GameManager.Instance.SumCoin();
+                break;
+        }
     }
 }
