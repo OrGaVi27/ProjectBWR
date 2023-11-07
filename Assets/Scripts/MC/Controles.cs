@@ -89,6 +89,7 @@ public class Controles : MonoBehaviour
     {
         if (Time.time - horaUltimoDisparo > cooldownDisparo)
         {
+            SoundManager.instance.Play("shoot");
             Instantiate(balaPrefab, puntoDisparo.position, puntoDisparo.rotation);
             horaUltimoDisparo = Time.time;
             CambioColor("White");
@@ -96,6 +97,7 @@ public class Controles : MonoBehaviour
     }
     private void Saltar()
     {
+        SoundManager.instance.Play("jump");
         _rb.velocity = Vector2.up * jumpForce;
         saltosDisponibles--;
         horaUltimoSalto = Time.time;
@@ -104,9 +106,10 @@ public class Controles : MonoBehaviour
     private void CambioColor(string color)
     {
         
-        switch(color)
+        switch (color)
         {
             case "Blue":
+                SoundManager.instance.Play("changeColor");
                 _sr.color = Color.blue;
                 gameObject.tag = "Blue";
                 // Desactiva las colisiones entre la layer default y la layer Blue
@@ -115,6 +118,7 @@ public class Controles : MonoBehaviour
                 Physics2D.IgnoreLayerCollision(0, LayerMask.NameToLayer("Red"), false);
                 break;
             case "Red":
+                SoundManager.instance.Play("changeColor");
                 _sr.color = Color.red;
                 gameObject.tag = "Red";
                 // Activa las colisiones entre la layer default y la layer Blue

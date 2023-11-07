@@ -113,6 +113,7 @@ public class GameManager : MonoBehaviour
     public void Muerte()
     {
         MC.SetActive(false);
+        SoundManager.instance.Stop("music");
         gameOver.SetActive(true);
         isDead = true;
         coinsObtText.GetComponent<TextMeshProUGUI>().text = $"Coins: +{CoinsObt}";
