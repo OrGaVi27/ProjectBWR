@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class Colisiones : MonoBehaviour
 {
-    private void OnCollisionEnter2D(Collision2D collision)
+    [SerializeField] private GameObject canvas;
+    private void OnCollisionEnter2D(Collision2D col)
     {
-        switch (collision.gameObject.tag)
+        switch (col.gameObject.tag)
         {
             case "Letal":
             case "Enemigo":
@@ -34,6 +35,17 @@ public class Colisiones : MonoBehaviour
                 collision.gameObject.SetActive(false);
                 GameManager.Instance.SumCoin();
                 break;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if(col.CompareTag("CambiarNivel"))
+        {
+            GameObject camara = GameObject.Find("Camara");
+            Vector3 posicionCamara = GameObject.Find("InicioNivel").transform.position;
+            gameObject.transform.position = new Vector3(posicionCamara.x, posicionCamara.y, gameObject.transform.position.z);
+            camara.transform.position = new Vector3(posicionCamara.x, posicionCamara.y, camara.transform.position.z);
         }
     }
 }
