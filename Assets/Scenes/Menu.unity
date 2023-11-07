@@ -609,6 +609,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6132128904772976390, guid: 63923ac3cc2f0a945b36b301dde44819, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 1078.4929
+      objectReference: {fileID: 0}
+    - target: {fileID: 6132128904772976390, guid: 63923ac3cc2f0a945b36b301dde44819, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -38.702393
+      objectReference: {fileID: 0}
     - target: {fileID: 6329144443498407510, guid: 63923ac3cc2f0a945b36b301dde44819, type: 3}
       propertyPath: coinsText
       value: 

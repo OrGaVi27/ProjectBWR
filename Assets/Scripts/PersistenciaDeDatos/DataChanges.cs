@@ -15,6 +15,7 @@ public class DataChanges : MonoBehaviour
 
     public DataPersisted LoadData()
     {
+        Debug.Log(Path.Combine(Application.persistentDataPath, "data.json"));
         if (File.Exists(path))
         {
             string savedJson = File.ReadAllText(path);

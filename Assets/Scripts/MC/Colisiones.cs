@@ -23,11 +23,7 @@ public class Colisiones : MonoBehaviour
                 {
                     GameManager.Instance.Muerte();
                 }
-                break;
-            case "Coin":
-                collision.gameObject.SetActive(false);
-                GameManager.Instance.SumCoin();
-                break;                
+                break;              
         }
     }
     public void OnTriggerEnter2D(Collider2D collision)

@@ -77,7 +77,7 @@ public class GameManager : MonoBehaviour
         Score = 0;
         HoraInicio = Time.time;
         MC = GameObject.Find("MC");
-        maxScoreText.GetComponent<TextMeshProUGUI>().text = "High Score: " + MaxScore;
+        maxScoreText.GetComponent<TextMeshProUGUI>().text = $"High Score: {Math.Truncate(MaxScore)}";
         ScoreText.GetComponent<TextMeshProUGUI>().text = Score.ToString();        
     }
 
@@ -115,6 +115,7 @@ public class GameManager : MonoBehaviour
         MC.SetActive(false);
         gameOver.SetActive(true);
         isDead = true;
+        Time.timeScale = 0;
         coinsObtText.GetComponent<TextMeshProUGUI>().text = $"Coins: +{CoinsObt}";
         DataChanges dataChanges = new DataChanges();
         dataChanges.WriteData(new DataPersisted(Coins, 0, MaxScore, false, false, false, 0));
