@@ -7,6 +7,7 @@ public class Colisiones : MonoBehaviour
     [SerializeField] private GameObject canvas;
     private void OnCollisionEnter2D(Collision2D col)
     {
+        Debug.Log(col.gameObject.tag);
         switch (col.gameObject.tag)
         {
             case "Letal":
@@ -24,28 +25,24 @@ public class Colisiones : MonoBehaviour
                 {
                     GameManager.Instance.Muerte();
                 }
-                break;              
-        }
-    }
-    public void OnTriggerEnter2D(Collider2D collision)
-    {
-        switch (collision.gameObject.tag)
-        {
-            case "Coin":
-                collision.gameObject.SetActive(false);
-                GameManager.Instance.SumCoin();
                 break;
         }
     }
-
-    private void OnTriggerEnter2D(Collider2D col)
+    public void OnTriggerEnter2D(Collider2D col)
     {
-        if(col.CompareTag("CambiarNivel"))
+        Debug.Log(col.gameObject.tag);
+        switch (col.gameObject.tag)
         {
-            GameObject camara = GameObject.Find("Camara");
-            Vector3 posicionCamara = GameObject.Find("InicioNivel").transform.position;
-            gameObject.transform.position = new Vector3(posicionCamara.x, posicionCamara.y, gameObject.transform.position.z);
-            camara.transform.position = new Vector3(posicionCamara.x, posicionCamara.y, camara.transform.position.z);
+            case "Coin":
+                col.gameObject.SetActive(false);
+                GameManager.Instance.SumCoin();
+                break;
+            case "CambiarNivel":
+                GameObject camara = GameObject.Find("Camara");
+                Vector3 posicionCamara = GameObject.Find("InicioNivel").transform.position;
+                gameObject.transform.position = new Vector3(posicionCamara.x, posicionCamara.y, gameObject.transform.position.z);
+                camara.transform.position = new Vector3(posicionCamara.x, posicionCamara.y, camara.transform.position.z);
+                break;
         }
     }
 }
