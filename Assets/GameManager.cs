@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
@@ -43,6 +44,7 @@ public class GameManager : MonoBehaviour
 
             }
             DontDestroyOnLoad(this);
+            SceneManager.sceneLoaded += OnSceneWasLoaded;
 
         }
         else if (Instance != this) Destroy(this.gameObject);
@@ -72,13 +74,13 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void OnLevelWasLoaded(int level)
+    private void OnSceneWasLoaded(Scene scene, LoadSceneMode mode)
     {
         Score = 0;
         HoraInicio = Time.time;
         MC = GameObject.Find("MC");
         maxScoreText.GetComponent<TextMeshProUGUI>().text = $"High Score: {Math.Truncate(MaxScore)}";
-        ScoreText.GetComponent<TextMeshProUGUI>().text = Score.ToString();        
+        ScoreText.GetComponent<TextMeshProUGUI>().text = Score.ToString();   
     }
 
     public void SceneChange(bool cont) 

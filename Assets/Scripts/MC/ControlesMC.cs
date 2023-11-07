@@ -21,7 +21,7 @@ public class Controles : Mob
 
         cooldownDisparo = 0.5f;
         fuerzaSalto = 14.0f;
-        _rb.gravityScale = 3;
+        _rb.gravityScale = 4f;
         horaUltimoDisparo = Time.time - 1f;
         horaUltimoSalto = Time.time;
         layerSuelo = LayerMask.GetMask("Suelo");
