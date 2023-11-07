@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
         if (Instance == null) 
         {
             Instance = this;
-            DataChanges dataChanges = new DataChanges();
+            DataChanges dataChanges = gameObject.GetComponent<DataChanges>();
             DataPersisted data = dataChanges.LoadData();
             if (data != null) 
             {
@@ -117,7 +117,7 @@ public class GameManager : MonoBehaviour
         isDead = true;
         Time.timeScale = 0;
         coinsObtText.GetComponent<TextMeshProUGUI>().text = $"Coins: +{CoinsObt}";
-        DataChanges dataChanges = new DataChanges();
+        DataChanges dataChanges = gameObject.GetComponent<DataChanges>();
         dataChanges.WriteData(new DataPersisted(Coins, 0, MaxScore, false, false, false, 0));
     }
     public void SumCoin() 

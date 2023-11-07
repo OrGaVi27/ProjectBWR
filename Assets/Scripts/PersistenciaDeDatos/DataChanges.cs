@@ -5,7 +5,11 @@ using UnityEngine;
 
 public class DataChanges : MonoBehaviour
 {
-    private string path = Path.Combine(Application.persistentDataPath, "data.json");
+    private string path;
+    private void Start()
+    {
+        path = Path.Combine(Application.persistentDataPath, "data.json");
+    }
 
     public void WriteData(DataPersisted data)
     {
@@ -15,7 +19,6 @@ public class DataChanges : MonoBehaviour
 
     public DataPersisted LoadData()
     {
-        Debug.Log(Path.Combine(Application.persistentDataPath, "data.json"));
         if (File.Exists(path))
         {
             string savedJson = File.ReadAllText(path);

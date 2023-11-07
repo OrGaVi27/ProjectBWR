@@ -619,7 +619,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 625182581}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -664,6 +664,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1889449371}
   m_CullTransparentMesh: 1
+--- !u!1 &2013979803 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8545901677057238837, guid: 63923ac3cc2f0a945b36b301dde44819, type: 3}
+  m_PrefabInstance: {fileID: 3187371985544913725}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2013979806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2013979803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46e189d5d9a1f214c96f242f4a82201c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3187371985544913725
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -753,7 +770,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8586889924836335815, guid: 63923ac3cc2f0a945b36b301dde44819, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1413583404}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8545901677057238837, guid: 63923ac3cc2f0a945b36b301dde44819, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2013979806}
   m_SourcePrefab: {fileID: 100100000, guid: 63923ac3cc2f0a945b36b301dde44819, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
@@ -762,3 +782,4 @@ SceneRoots:
   - {fileID: 186872340}
   - {fileID: 3187371985544913725}
   - {fileID: 722524205}
+  - {fileID: 1889449372}

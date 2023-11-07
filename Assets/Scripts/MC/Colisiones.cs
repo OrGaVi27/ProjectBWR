@@ -7,7 +7,6 @@ public class Colisiones : MonoBehaviour
     [SerializeField] private GameObject canvas;
     private void OnCollisionEnter2D(Collision2D col)
     {
-        Debug.Log(col.gameObject.tag);
         switch (col.gameObject.tag)
         {
             case "Letal":
@@ -30,7 +29,6 @@ public class Colisiones : MonoBehaviour
     }
     public void OnTriggerEnter2D(Collider2D col)
     {
-        Debug.Log(col.gameObject.tag);
         switch (col.gameObject.tag)
         {
             case "Coin":
