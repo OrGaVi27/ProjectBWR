@@ -115,6 +115,7 @@ public class GameManager : MonoBehaviour
     public void Muerte()
     {
         MC.SetActive(false);
+        SoundManager.instance.Stop("music");
         gameOver.SetActive(true);
         isDead = true;
         Time.timeScale = 0;
