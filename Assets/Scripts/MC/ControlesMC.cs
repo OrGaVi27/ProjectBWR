@@ -38,7 +38,10 @@ public class Controles : Mob
         // Casos por cada tecla
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Disparar();
+            if(Disparar())
+            {
+                CambioColor("White");
+            }
         }
         if(Input.GetKeyDown(KeyCode.W) && saltosDisponibles > 0)
         {
