@@ -5,13 +5,10 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/PruebaSaltos.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
     path: Assets/Scenes/Menu.unity
     guid: 3d9d7ec3ce47cdb498c6528e35b3058a
   - enabled: 1
     path: Assets/Scenes/NivelPruebas.unity
-    guid: 502300fef90483e49bb1600cdddef774
+    guid: 5940ee8cda232b34f8eeb2bd9c44f80a
   m_configObjects: {}

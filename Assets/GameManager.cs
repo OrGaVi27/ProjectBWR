@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
@@ -10,10 +11,10 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-    private int Coins = 0;
+    private int Coins;
     private int CoinsObt = 0;
-    private float Score = 0;
-    private float MaxScore = 0;
+    private float Score;
+    private float MaxScore;
     public bool isDead = true;
     public GameObject gameOver;
     public GameObject MenuPrincipal;
@@ -25,6 +26,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI ScoreText;
     public TextMeshProUGUI coinsText;
     public TextMeshProUGUI coinsObtText;
+
     void Awake()
     {
         Score = Time.time;
@@ -32,17 +34,8 @@ public class GameManager : MonoBehaviour
         if (Instance == null) 
         {
             Instance = this;
-            DataChanges dataChanges = new DataChanges();
-            DataPersisted data = dataChanges.LoadData();
-            if (data != null) 
-            {
-                Coins = data.Coins;
-                MaxScore = (float)Math.Truncate(data.MaxScore);
-                ScoreText.GetComponent<TextMeshProUGUI>().text = $"Score: {(Score)}";
-                maxScoreText.GetComponent<TextMeshProUGUI>().text = $"High Score: {Math.Truncate(MaxScore)}";
-
-            }
             DontDestroyOnLoad(this);
+            SceneManager.sceneLoaded += OnSceneWasLoaded;
 
         }
         else if (Instance != this) Destroy(this.gameObject);
@@ -50,6 +43,19 @@ public class GameManager : MonoBehaviour
     }
     public void Start()
     {
+
+        DataPersisted data = DataChanges.LoadData();
+        if (data != null)
+        {
+            Coins = data.Coins;
+            //MaxScore = (float)Math.Truncate(data.MaxScore);
+            MaxScore = (float)data.MaxScore;
+            ScoreText.GetComponent<TextMeshProUGUI>().text = $"Score: {(Score)}";
+            maxScoreText.GetComponent<TextMeshProUGUI>().text = $"High Score: {Math.Truncate(MaxScore)}";
+
+        }
+
+        Debug.Log($"MaxScore: {MaxScore}");
         gameOver.SetActive(false);
         isDead = true;
     }
@@ -72,13 +78,13 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void OnLevelWasLoaded(int level)
+    private void OnSceneWasLoaded(Scene scene, LoadSceneMode mode)
     {
         Score = 0;
         HoraInicio = Time.time;
         MC = GameObject.Find("MC");
-        maxScoreText.GetComponent<TextMeshProUGUI>().text = "High Score: " + MaxScore;
-        ScoreText.GetComponent<TextMeshProUGUI>().text = Score.ToString();        
+        maxScoreText.GetComponent<TextMeshProUGUI>().text = $"High Score: {Math.Truncate(MaxScore)}";
+        ScoreText.GetComponent<TextMeshProUGUI>().text = Score.ToString();   
     }
 
     public void SceneChange(bool cont) 
@@ -116,9 +122,9 @@ public class GameManager : MonoBehaviour
         SoundManager.instance.Stop("music");
         gameOver.SetActive(true);
         isDead = true;
+        Time.timeScale = 0;
         coinsObtText.GetComponent<TextMeshProUGUI>().text = $"Coins: +{CoinsObt}";
-        DataChanges dataChanges = new DataChanges();
-        dataChanges.WriteData(new DataPersisted(Coins, 0, MaxScore, false, false, false, 0));
+        DataChanges.WriteData(new DataPersisted(Coins, 0, MaxScore, false, false, false, 0));
     }
     public void SumCoin() 
     {
