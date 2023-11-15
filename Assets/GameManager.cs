@@ -94,10 +94,13 @@ public class GameManager : MonoBehaviour
             MenuPrincipal.SetActive(true);
             ResetValues();
             Time.timeScale = 0;
-            SceneManager.LoadScene(0);       
+            SceneManager.LoadScene(0);
+            SoundManager.instance.Play("mainMenu");
+            SoundManager.instance.Stop("gameOver");
         }
         else
         {
+            SoundManager.instance.Stop("mainMenu");
             SceneManager.LoadScene(1);
             MenuPrincipal.SetActive(false);
             ResetValues();
@@ -118,6 +121,8 @@ public class GameManager : MonoBehaviour
     }
     public void Muerte()
     {
+        SoundManager.instance.Play("death");
+        SoundManager.instance.Play("gameOver");
         MC.SetActive(false);
         SoundManager.instance.Stop("music");
         gameOver.SetActive(true);

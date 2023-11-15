@@ -56,10 +56,12 @@ public class Controles : Mob
         if(Input.GetKeyDown(KeyCode.S))
         {
             _anim.SetBool("isCrouching", true);
+            SoundManager.instance.Play("slide");
         }
         if(Input.GetKeyUp(KeyCode.S))
         {
             _anim.SetBool("isCrouching", false);
+            SoundManager.instance.Stop("slide");
         }
 
         // Recuperación de saltos al tocar el suelo
