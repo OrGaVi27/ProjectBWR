@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class JellyDogMovement : Enemigo
@@ -7,22 +8,26 @@ public class JellyDogMovement : Enemigo
     bool parriba;
     RaycastHit2D RaycastTop;
     RaycastHit2D RaycastBottom;
+    string[] ignoredTags = { "Blue", "Red", "MainCamera", "Enemigo" };
+
     // Start is called before the first frame update
     void Start()
     {
         DefinirEntidad();
         parriba = true;
     }
-
+    
     // Update is called once per frame
     void Update()
     {
         RaycastTop = Physics2D.Raycast(_trans.position, _trans.up);
         RaycastBottom = Physics2D.Raycast(_trans.position, -_trans.up);
 
+        Debug.Log("Top: " + RaycastTop.distance);
+        Debug.Log("Bottom: " + RaycastBottom.distance);
+        
         if (RaycastTop.collider != null)
         {
-            Debug.Log(RaycastTop.collider.gameObject.name);
             if (RaycastTop.distance < 1)
             {
                 parriba = false;
@@ -37,15 +42,15 @@ public class JellyDogMovement : Enemigo
             }
         }
 
-        if (parriba) _rb.velocity = new Vector3(0, 3f);
-        else _rb.velocity = new Vector3(0, -3f);
+        if (parriba) _rb.velocity = new Vector3(_rb.velocity.x, 3f);
+        else _rb.velocity = new Vector3(_rb.velocity.x, -3f);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D col)
     {
-        if (collision.gameObject.name == "JellyDogCollider") 
+        if (col.gameObject.name == "JellyDogCollider") 
         {
-            _rb.velocity += GameObject.Find("Camara").GetComponent<Rigidbody2D>().velocity;
+            _rb.velocity += new Vector2(GameObject.Find("Camara").GetComponent<Rigidbody2D>().velocity.x, _rb.velocity.y);
         }
     }
 }

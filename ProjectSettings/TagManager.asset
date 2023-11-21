@@ -12,6 +12,7 @@ TagManager:
   - Coin
   - Proyectil
   - CambiarNivel
+  - Obstaculos
   layers:
   - Default
   - TransparentFX
@@ -21,9 +22,9 @@ TagManager:
   - UI
   - Blue
   - Red
-  - 
-  - 
-  - 
+  - Enemigos
+  - Obstaculos
+  - Techo
   - 
   - 
   - 

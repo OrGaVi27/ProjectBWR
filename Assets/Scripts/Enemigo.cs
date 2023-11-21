@@ -3,15 +3,17 @@ using UnityEngine;
 
 public class Enemigo : Mob
 {
+    private bool onCamera;
 
     private void Start()
     {
         DefinirEntidad();
+        onCamera = false;
     }
 
     private void FixedUpdate()
     {
-        Disparar();
+        if (onCamera) Disparar();
     }
 
     private void OnTriggerEnter2D(Collider2D col)
@@ -21,5 +23,8 @@ public class Enemigo : Mob
             Destroy(col.gameObject);
             Eliminar();
         }
+
+        if (col.CompareTag("MainCamera")) onCamera = true;
+        else onCamera = false;
     }
 }
