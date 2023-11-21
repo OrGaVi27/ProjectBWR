@@ -4,7 +4,14 @@ using UnityEngine;
 
 public class Colisiones : MonoBehaviour
 {
+    Controles cont;
     [SerializeField] private GameObject canvas;
+
+    private void Start()
+    {
+        cont = GetComponent<Controles>();
+    }
+
     private void OnCollisionEnter2D(Collision2D col)
     {
         switch (col.gameObject.tag)
@@ -27,7 +34,7 @@ public class Colisiones : MonoBehaviour
                 break;
         }
     }
-    public void OnTriggerEnter2D(Collider2D col)
+    private void OnTriggerEnter2D(Collider2D col)
     {
         switch (col.gameObject.tag)
         {
@@ -40,6 +47,24 @@ public class Colisiones : MonoBehaviour
                 Vector3 posicionCamara = GameObject.Find("InicioNivel").transform.position;
                 gameObject.transform.position = new Vector3(posicionCamara.x, posicionCamara.y, gameObject.transform.position.z);
                 camara.transform.position = new Vector3(posicionCamara.x, posicionCamara.y, camara.transform.position.z);
+                break;
+            case "MainCamera":
+                cont.EnPantalla(true);
+                break;
+            case "MCRelativePosition":
+                cont.atrasado = false;
+                break;
+        }
+    }
+    private void OnTriggerExit2D(Collider2D col)
+    {
+        switch (col.gameObject.tag)
+        {
+            case "MainCamera":
+                cont.EnPantalla(false);
+                break;
+            case "MCRelativePosition":
+                cont.atrasado = true;
                 break;
         }
     }

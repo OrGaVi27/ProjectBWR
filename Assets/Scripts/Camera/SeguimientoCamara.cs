@@ -5,20 +5,16 @@ using UnityEngine;
 public class SeguimientoCamara : Entidad
 {
     [SerializeField] GameObject foco;
-    private Transform _transFoco;
-
+    private Controles cont;
 
     // Start is called before the first frame update
     void Start()
     {
         DefinirEntidad();
 
-        _transFoco = foco.GetComponent<Transform>();
+        cont = foco.GetComponent<Controles>();
 
-        _trans.position = _transFoco.position;
-        _rb.velocity = new Vector3(8.0f, 0, 0);
-
-        _trans.position = new Vector3(_transFoco.position.x + 4f, -0.06f, -10f);
+        _rb.velocity = new Vector3(cont.velocidadBase, 0, 0);
     }
 
     void Update()

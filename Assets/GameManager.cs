@@ -55,7 +55,6 @@ public class GameManager : MonoBehaviour
 
         }
 
-        Debug.Log($"MaxScore: {MaxScore}");
         gameOver.SetActive(false);
         isDead = true;
     }
