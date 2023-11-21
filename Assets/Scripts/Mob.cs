@@ -17,7 +17,7 @@ public class Mob : Entidad
     }
     public void CambioColor(string color)
     {
-
+        SoundManager.instance.Play("changeColor");
         switch (color)
         {
             case "Blue":

@@ -39,11 +39,13 @@ public class Controles : Mob
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Disparar();
+            SoundManager.instance.Play("shoot");
         }
         if(Input.GetKeyDown(KeyCode.W) && saltosDisponibles > 0)
         {
             _anim.SetBool("isJumping", true);
             Saltar();
+            SoundManager.instance.Play("jump");
         }
         if(Input.GetKeyDown(KeyCode.A))
         {

@@ -96,7 +96,6 @@ public class GameManager : MonoBehaviour
             Time.timeScale = 0;
             SceneManager.LoadScene(0);
             SoundManager.instance.Play("mainMenu");
-            SoundManager.instance.Stop("gameOver");
         }
         else
         {
@@ -118,12 +117,14 @@ public class GameManager : MonoBehaviour
         isDead = false;
         gameOver.SetActive(false);
         CoinsObt = 0;
+        SoundManager.instance.Stop("gameOver");
     }
     public void Muerte()
     {
         SoundManager.instance.Play("death");
         SoundManager.instance.Play("gameOver");
         MC.SetActive(false);
+        SoundManager.instance.Stop("slide");
         SoundManager.instance.Stop("music");
         gameOver.SetActive(true);
         isDead = true;
