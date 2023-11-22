@@ -51,6 +51,7 @@ public class Mob : Entidad
         {
             Instantiate(proyectilPrefab, puntoDisparo.position, puntoDisparo.rotation);
             horaUltimoDisparo = Time.time;
+            if (gameObject.name == "MC") CambioColor("White");
             return true;
         }
         return false;
