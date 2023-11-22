@@ -6,9 +6,8 @@ using UnityEngine;
 public class JellyDogMovement : Enemigo
 {
     bool parriba;
-    RaycastHit2D RaycastTop;
-    RaycastHit2D RaycastBottom;
-    string[] ignoredTags = { "Blue", "Red", "MainCamera", "Enemigo" };
+    RaycastHit2D[] RaycastTop;
+    RaycastHit2D[] RaycastBottom;
 
     // Start is called before the first frame update
     void Start()
@@ -20,23 +19,19 @@ public class JellyDogMovement : Enemigo
     // Update is called once per frame
     void Update()
     {
-        RaycastTop = Physics2D.Raycast(_trans.position, _trans.up);
-        RaycastBottom = Physics2D.Raycast(_trans.position, -_trans.up);
-
-        Debug.Log("Top: " + RaycastTop.distance);
-        Debug.Log("Bottom: " + RaycastBottom.distance);
-        
-        if (RaycastTop.collider != null)
+        RaycastTop = Physics2D.RaycastAll(_trans.position, _trans.up);
+        RaycastBottom = Physics2D.RaycastAll(_trans.position, -_trans.up);
+        foreach (var hit in RaycastTop)
         {
-            if (RaycastTop.distance < 1)
+            if (hit.distance < 1 && hit.collider.gameObject.layer == 10)
             {
                 parriba = false;
             }
         }
 
-        if (RaycastBottom.collider != null)
+        foreach (var hit in RaycastBottom)
         {
-            if (RaycastBottom.distance < 1)
+            if (hit.distance < 1 && hit.collider.gameObject.layer == 3)
             {
                 parriba = true;
             }
