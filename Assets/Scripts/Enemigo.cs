@@ -21,6 +21,7 @@ public class Enemigo : Mob
         if (col.CompareTag("Proyectil"))
         {
             Destroy(col.gameObject);
+            SoundManager.instance.Play("enemyDeath");
             Eliminar();
         }
 

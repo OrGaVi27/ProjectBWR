@@ -43,6 +43,7 @@ public class SoundManager : MonoBehaviour
             sound.source.pitch = sound.pitch;
             sound.source.loop = sound.loop;
         }
+        Play("mainMenu");
     }
 
     public void Play(string name)

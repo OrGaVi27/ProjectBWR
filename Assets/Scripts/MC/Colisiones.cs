@@ -33,6 +33,7 @@ public class Colisiones : MonoBehaviour
         {
             case "Coin":
                 col.gameObject.SetActive(false);
+                SoundManager.instance.Play("coin");
                 GameManager.Instance.SumCoin();
                 break;
             case "CambiarNivel":

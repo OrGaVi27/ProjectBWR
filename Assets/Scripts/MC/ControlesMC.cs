@@ -6,10 +6,10 @@ using UnityEngine.UIElements;
 public class Controles : Mob
 {
     private float velocidad = 8.0f;  //Velocidad lateral base
-    private float cooldownRecuperacionSalto = 0.1f; //Tiempo de espera mínimo para que el salto no se recupere antes de que el objeto se levante del suelo
-    private float horaUltimoSalto;  //Variable utilizada en la comprobación del cooldown de recuperacion de los saltos
-    private bool enTierra;  //Almacena el resultado de la comprobación del contacto del personaje con el suelo
-    private float radioSuelo = 1;   //Variable usada en la formula de la comprobación "enTierra"
+    private float cooldownRecuperacionSalto = 0.1f; //Tiempo de espera mï¿½nimo para que el salto no se recupere antes de que el objeto se levante del suelo
+    private float horaUltimoSalto;  //Variable utilizada en la comprobaciï¿½n del cooldown de recuperacion de los saltos
+    private bool enTierra;  //Almacena el resultado de la comprobaciï¿½n del contacto del personaje con el suelo
+    private float radioSuelo = 1;   //Variable usada en la formula de la comprobaciï¿½n "enTierra"
     private LayerMask layerSuelo;   //Almacena la capa del Suelo
     private int saltosDisponibles = 0;   //Saltos disponibles en el momento
     private int saltosMaximos = 1;  //Saltos que se asignaran a saltosDisponibles en cuanto el MC repose en el suelo
@@ -38,15 +38,14 @@ public class Controles : Mob
         // Casos por cada tecla
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if(Disparar())
-            {
-                CambioColor("White");
-            }
+            Disparar();
+            SoundManager.instance.Play("shoot");
         }
         if(Input.GetKeyDown(KeyCode.W) && saltosDisponibles > 0)
         {
             _anim.SetBool("isJumping", true);
             Saltar();
+            SoundManager.instance.Play("jump");
         }
         if(Input.GetKeyDown(KeyCode.A))
         {
@@ -59,13 +58,15 @@ public class Controles : Mob
         if(Input.GetKeyDown(KeyCode.S))
         {
             _anim.SetBool("isCrouching", true);
+            SoundManager.instance.Play("slide");
         }
         if(Input.GetKeyUp(KeyCode.S))
         {
             _anim.SetBool("isCrouching", false);
+            SoundManager.instance.Stop("slide");
         }
 
-        // Recuperación de saltos al tocar el suelo
+        // Recuperaciï¿½n de saltos al tocar el suelo
         if (enTierra && Time.time - horaUltimoSalto > cooldownRecuperacionSalto)
         {
             saltosDisponibles = saltosMaximos;
