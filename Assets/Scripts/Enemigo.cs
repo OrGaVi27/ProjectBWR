@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 
@@ -27,5 +28,10 @@ public class Enemigo : Mob
 
         if (col.CompareTag("MainCamera")) onCamera = true;
         else onCamera = false;
+
+        if (col.gameObject.name == "JellyDogCollider" && gameObject.name.Split(' ')[0] == "JellyDog")
+        {
+            _rb.velocity += new Vector2(GameObject.Find("Camara").GetComponent<Rigidbody2D>().velocity.x, _rb.velocity.y);
+        }
     }
 }

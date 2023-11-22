@@ -43,7 +43,6 @@ GameObject:
   - component: {fileID: 4943110193578921788}
   - component: {fileID: 2305276157053152095}
   - component: {fileID: 9036099546008688534}
-  - component: {fileID: 1910899380854832768}
   - component: {fileID: 366551229653721461}
   m_Layer: 0
   m_Name: JellyDog
@@ -192,27 +191,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.74917984, y: 0.5659237}
   m_EdgeRadius: 0
---- !u!114 &1910899380854832768
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7208897128573659582}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e1d9b221e332564eacde0674104491f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _anim: {fileID: 0}
-  _rb: {fileID: 0}
-  _sr: {fileID: 0}
-  _trans: {fileID: 0}
-  puntoDisparo: {fileID: 6860606422886426121}
-  proyectilPrefab: {fileID: 7743577605731376872, guid: 81bd20b18428bdd488dcce23cb89fd3f, type: 3}
-  fuerzaSalto: 0
-  cooldownDisparo: 1
-  horaUltimoDisparo: 0
 --- !u!95 &366551229653721461
 Animator:
   serializedVersion: 5

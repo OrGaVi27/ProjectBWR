@@ -40,12 +40,4 @@ public class JellyDogMovement : Enemigo
         if (parriba) _rb.velocity = new Vector3(_rb.velocity.x, 3f);
         else _rb.velocity = new Vector3(_rb.velocity.x, -3f);
     }
-
-    private void OnTriggerEnter2D(Collider2D col)
-    {
-        if (col.gameObject.name == "JellyDogCollider") 
-        {
-            _rb.velocity += new Vector2(GameObject.Find("Camara").GetComponent<Rigidbody2D>().velocity.x, _rb.velocity.y);
-        }
-    }
 }
