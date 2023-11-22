@@ -5,7 +5,7 @@ using UnityEngine.UIElements;
 
 public class Controles : Mob
 {
-    private float velocidad = 8.0f;  //Velocidad lateral base
+    public float velocidadBase = 8.0f;  //Velocidad lateral base
     private float cooldownRecuperacionSalto = 0.1f; //Tiempo de espera m�nimo para que el salto no se recupere antes de que el objeto se levante del suelo
     private float horaUltimoSalto;  //Variable utilizada en la comprobaci�n del cooldown de recuperacion de los saltos
     private bool enTierra;  //Almacena el resultado de la comprobaci�n del contacto del personaje con el suelo
@@ -13,7 +13,9 @@ public class Controles : Mob
     private LayerMask layerSuelo;   //Almacena la capa del Suelo
     private int saltosDisponibles = 0;   //Saltos disponibles en el momento
     private int saltosMaximos = 1;  //Saltos que se asignaran a saltosDisponibles en cuanto el MC repose en el suelo
-    //private bool agachado;
+    private bool enPantalla; //Se modifica seg�n el MC entre o salga de pantalla.
+    private float horaFueraPantalla; //Registra el momento en el que sale de pantalla.
+    public bool atrasado;
 
     private void Start()
     {
@@ -25,6 +27,7 @@ public class Controles : Mob
         horaUltimoDisparo = Time.time - 1f;
         horaUltimoSalto = Time.time;
         layerSuelo = LayerMask.GetMask("Suelo");
+        atrasado = true;
     }
 
 
@@ -33,9 +36,11 @@ public class Controles : Mob
         enTierra = Physics2D.OverlapCircle(_trans.position, radioSuelo, layerSuelo); ;
 
         // Velocidad constante
-        _rb.velocity = new Vector2(velocidad, _rb.velocity.y);
+        if(atrasado) _rb.velocity = new Vector2(velocidadBase + 2f, _rb.velocity.y);
+        else _rb.velocity = new Vector2(velocidadBase, _rb.velocity.y);
 
         // Casos por cada tecla
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Disparar();
@@ -72,11 +77,26 @@ public class Controles : Mob
             saltosDisponibles = saltosMaximos;
             _anim.SetBool("isJumping", false);
         }
+
+        if(!enPantalla && horaFueraPantalla != 0) 
+        {
+            if (Time.time - horaFueraPantalla > 1f) GameManager.Instance.Muerte();
+        }
     }
     private void Saltar()
     {
         _rb.velocity = Vector2.up * fuerzaSalto;
         saltosDisponibles--;
         horaUltimoSalto = Time.time;
+    }
+    public void EnPantalla(bool estado)
+    {
+        if (estado)
+        {
+            enPantalla = true;
+            return;
+        }
+        enPantalla = false;
+        horaFueraPantalla = Time.time;
     }
 }

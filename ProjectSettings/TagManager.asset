@@ -13,6 +13,7 @@ TagManager:
   - Proyectil
   - CambiarNivel
   - Obstaculos
+  - MCRelativePosition
   layers:
   - Default
   - TransparentFX
