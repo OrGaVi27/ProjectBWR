@@ -45,13 +45,14 @@ public class Mob : Entidad
                 break;
         }
     }
-    public void Disparar()
+    public bool Disparar()
     {
         if (Time.time - horaUltimoDisparo > cooldownDisparo)
         {
             Instantiate(proyectilPrefab, puntoDisparo.position, puntoDisparo.rotation);
             horaUltimoDisparo = Time.time;
-            CambioColor("White");
+            return true;
         }
+        return false;
     }
 }

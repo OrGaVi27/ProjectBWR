@@ -43,6 +43,9 @@ public class GameManager : MonoBehaviour
     }
     public void Start()
     {
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Enemigos"), LayerMask.NameToLayer("Red"), true);
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Enemigos"), LayerMask.NameToLayer("Blue"), true);
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Enemigos"), LayerMask.NameToLayer("Obstaculos"), true);
 
         DataPersisted data = DataChanges.LoadData();
         if (data != null)
