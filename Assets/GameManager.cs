@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
     private int Coins;
     private int CoinsObt = 0;
-    private float Score;
+    public float Score;
     private float MaxScore;
     public bool isDead = true;
     public GameObject gameOver;
@@ -36,9 +36,10 @@ public class GameManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(this);
             SceneManager.sceneLoaded += OnSceneWasLoaded;
+            SceneManager.LoadScene("Menu");
 
         }
-        else if (Instance != this) Destroy(this.gameObject);
+        else if (Instance != this) Destroy(gameObject);
 
     }
     public void Start()
@@ -49,13 +50,10 @@ public class GameManager : MonoBehaviour
         {
             Coins = data.Coins;
             //MaxScore = (float)Math.Truncate(data.MaxScore);
-            MaxScore = (float)data.MaxScore;
-            ScoreText.GetComponent<TextMeshProUGUI>().text = $"Score: {(Score)}";
-            maxScoreText.GetComponent<TextMeshProUGUI>().text = $"High Score: {Math.Truncate(MaxScore)}";
-
+            MaxScore = data.MaxScore;
+            ActualizarScore();
         }
 
-        Debug.Log($"MaxScore: {MaxScore}");
         gameOver.SetActive(false);
         isDead = true;
     }
@@ -65,15 +63,15 @@ public class GameManager : MonoBehaviour
         if (isDead == false)
         {
             coinsText.GetComponent<TextMeshProUGUI>().text = $"Coins: {Coins}";
-            if (Time.time - Score > 1f)
+            if (Time.time - HoraInicio > 0.1f)
             {
-                ScoreText.GetComponent<TextMeshProUGUI>().text = $"Score: {Math.Truncate(Score)}";
-                Score = Time.time - HoraInicio;
+                HoraInicio = Time.time;
+                Score += 1;
                 if (Score > MaxScore)
                 {
                     MaxScore = Score;
-                    maxScoreText.GetComponent<TextMeshProUGUI>().text = $"High Score: {Math.Truncate(MaxScore)}";
                 }
+                ActualizarScore();
             }
         }
     }
@@ -83,8 +81,7 @@ public class GameManager : MonoBehaviour
         Score = 0;
         HoraInicio = Time.time;
         MC = GameObject.Find("MC");
-        maxScoreText.GetComponent<TextMeshProUGUI>().text = $"High Score: {Math.Truncate(MaxScore)}";
-        ScoreText.GetComponent<TextMeshProUGUI>().text = Score.ToString();   
+        ActualizarScore();
     }
 
     public void SceneChange(bool cont) 
@@ -136,5 +133,12 @@ public class GameManager : MonoBehaviour
     {
         CoinsObt++;
         Coins++;
+        Score += 5;
+        ActualizarScore();
+    }
+    public void ActualizarScore()
+    {
+        ScoreText.GetComponent<TextMeshProUGUI>().text = $"Score: {Score}";
+        maxScoreText.GetComponent<TextMeshProUGUI>().text = $"High Score: {Math.Truncate(MaxScore)}";
     }
 }

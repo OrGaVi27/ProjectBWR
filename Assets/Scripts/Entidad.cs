@@ -20,6 +20,11 @@ public class Entidad : MonoBehaviour
     public void Eliminar()
     {
         Destroy(gameObject);
+        if (CompareTag("Enemigo")) 
+        {
+            GameManager.Instance.Score += 20;
+            GameManager.Instance.ActualizarScore();
+        }
     }
     public void Congelar()
     {
