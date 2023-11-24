@@ -46,8 +46,8 @@ public class Colisiones : MonoBehaviour
             case "CambiarNivel":
                 GameObject camara = GameObject.Find("Camara");
                 Vector3 posicionCamara = GameObject.Find("InicioNivel").transform.position;
-                gameObject.transform.position = new Vector3(posicionCamara.x - 7f, posicionCamara.y, gameObject.transform.position.z);
-                camara.transform.position = new Vector3(posicionCamara.x, posicionCamara.y, camara.transform.position.z);
+                gameObject.transform.position = new Vector3(posicionCamara.x - 7f, gameObject.transform.position.y, gameObject.transform.position.z);
+                camara.transform.position = new Vector3(posicionCamara.x, camara.transform.position.y, camara.transform.position.z);
                 break;
             case "MainCamera":
                 cont.EnPantalla(true);
