@@ -19,7 +19,12 @@ public class GameManager : MonoBehaviour
     public GameObject gameOver;
     public GameObject menuPrincipal;
     private float HoraInicio;
-    private GameObject[] levels;
+
+
+    [SerializeField] private GameObject tutorial;
+    [SerializeField] private GameObject bioma_1;
+    [SerializeField] private GameObject bioma_2;
+    [SerializeField] private GameObject bioma_3;
 
     private GameObject MC;
 
@@ -86,6 +91,28 @@ public class GameManager : MonoBehaviour
         HoraInicio = Time.time;
         MC = GameObject.Find("MC");
         ActualizarScore();
+        if(scene.buildIndex == 1)
+        {
+            tutorial.SetActive(false);
+            bioma_1.SetActive(false);
+            bioma_2.SetActive(false);
+            bioma_3.SetActive(false);
+            switch (UnityEngine.Random.Range(1, 3))
+            {
+                case 0:
+                    tutorial.SetActive(true);
+                    break;
+                case 1:
+                    bioma_1.SetActive(true);
+                    break;
+                case 2:
+                    bioma_2.SetActive(true);
+                    break;
+                case 3:
+                    bioma_3.SetActive(true);
+                    break;
+            }
+        }
     }
 
     public void SceneChange(bool cont) 
@@ -104,17 +131,7 @@ public class GameManager : MonoBehaviour
             SceneManager.LoadScene(1);
             menuPrincipal.SetActive(false);
             ResetValues();
-            levels[0] = GameObject.Find("Tutorial");
-            for (int i = 1; i < 4; i++)
-            {
-                levels[i] = GameObject.Find("Bioma " + i);
-                levels[i].SetActive(false);
-            }
         }
-    }
-    public GameObject[] GetLevels()
-    {
-        return levels;
     }
     public void CloseGame()
     {

@@ -290,10 +290,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05a2831931dd5f146aa5804a4ba567bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Score: 0
+  score: 0
   isDead: 0
   gameOver: {fileID: 8598577303115120343}
-  MenuPrincipal: {fileID: 2063553399199622003}
+  menuPrincipal: {fileID: 2063553399199622003}
+  levels:
+  - {fileID: 0}
   maxScoreText: {fileID: 3234603008922088714}
   ScoreText: {fileID: 6247543609801918848}
   coinsText: {fileID: 1986313486344834462}
@@ -2221,42 +2223,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1226942873832820190, guid: 4ab499794a8bffe46a29c458201aa868, type: 3}
-        m_TargetAssemblyTypeName: SoundManager, Assembly-CSharp
-        m_MethodName: Stop
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: gameOver
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SoundManager, Assembly-CSharp
-        m_MethodName: Play
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: button
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SoundManager, Assembly-CSharp
-        m_MethodName: Play
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: music
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 5783416351804100817}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: SceneChange
