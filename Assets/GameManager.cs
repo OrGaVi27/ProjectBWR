@@ -11,14 +11,15 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-    private int Coins;
-    private int CoinsObt = 0;
-    public float Score;
-    private float MaxScore;
+    private int coins;
+    private int coinsObt = 0;
+    public float score;
+    private float maxScore;
     public bool isDead = true;
     public GameObject gameOver;
-    public GameObject MenuPrincipal;
+    public GameObject menuPrincipal;
     private float HoraInicio;
+    private GameObject[] levels;
 
     private GameObject MC;
 
@@ -29,7 +30,7 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
-        Score = Time.time;
+        score = Time.time;
 
         if (Instance == null) 
         {
@@ -37,7 +38,6 @@ public class GameManager : MonoBehaviour
             DontDestroyOnLoad(this);
             SceneManager.sceneLoaded += OnSceneWasLoaded;
             SceneManager.LoadScene("Menu");
-
         }
         else if (Instance != this) Destroy(gameObject);
 
@@ -51,9 +51,9 @@ public class GameManager : MonoBehaviour
         DataPersisted data = DataChanges.LoadData();
         if (data != null)
         {
-            Coins = data.Coins;
+            coins = data.Coins;
             //MaxScore = (float)Math.Truncate(data.MaxScore);
-            MaxScore = data.MaxScore;
+            maxScore = data.MaxScore;
             ActualizarScore();
         }
 
@@ -65,23 +65,24 @@ public class GameManager : MonoBehaviour
     {
         if (isDead == false)
         {
-            coinsText.GetComponent<TextMeshProUGUI>().text = $"Coins: {Coins}";
+            coinsText.GetComponent<TextMeshProUGUI>().text = $"Coins: {coins}";
             if (Time.time - HoraInicio > 0.1f)
             {
                 HoraInicio = Time.time;
-                Score += 1;
-                if (Score > MaxScore)
+                score += 1;
+                if (score > maxScore)
                 {
-                    MaxScore = Score;
+                    maxScore = score;
                 }
                 ActualizarScore();
             }
         }
+
     }
 
     private void OnSceneWasLoaded(Scene scene, LoadSceneMode mode)
     {
-        Score = 0;
+        score = 0;
         HoraInicio = Time.time;
         MC = GameObject.Find("MC");
         ActualizarScore();
@@ -91,7 +92,7 @@ public class GameManager : MonoBehaviour
     {
         if(SceneManager.GetActiveScene().buildIndex == 1 && cont == false)
         {
-            MenuPrincipal.SetActive(true);
+            menuPrincipal.SetActive(true);
             ResetValues();
             Time.timeScale = 0;
             SceneManager.LoadScene(0);
@@ -101,9 +102,19 @@ public class GameManager : MonoBehaviour
         {
             SoundManager.instance.Stop("mainMenu");
             SceneManager.LoadScene(1);
-            MenuPrincipal.SetActive(false);
+            menuPrincipal.SetActive(false);
             ResetValues();
+            levels[0] = GameObject.Find("Tutorial");
+            for (int i = 1; i < 4; i++)
+            {
+                levels[i] = GameObject.Find("Bioma " + i);
+                levels[i].SetActive(false);
+            }
         }
+    }
+    public GameObject[] GetLevels()
+    {
+        return levels;
     }
     public void CloseGame()
     {
@@ -113,10 +124,10 @@ public class GameManager : MonoBehaviour
     public void ResetValues()
     {
         Time.timeScale = 1;
-        Score = 0;
+        score = 0;
         isDead = false;
         gameOver.SetActive(false);
-        CoinsObt = 0;
+        coinsObt = 0;
         SoundManager.instance.Stop("gameOver");
     }
     public void Muerte()
@@ -129,19 +140,19 @@ public class GameManager : MonoBehaviour
         gameOver.SetActive(true);
         isDead = true;
         Time.timeScale = 0;
-        coinsObtText.GetComponent<TextMeshProUGUI>().text = $"Coins: +{CoinsObt}";
-        DataChanges.WriteData(new DataPersisted(Coins, 0, MaxScore, false, false, false, 0));
+        coinsObtText.GetComponent<TextMeshProUGUI>().text = $"Coins: +{coinsObt}";
+        DataChanges.WriteData(new DataPersisted(coins, 0, maxScore, false, false, false, 0));
     }
     public void SumCoin() 
     {
-        CoinsObt++;
-        Coins++;
-        Score += 5;
+        coinsObt++;
+        coins++;
+        score += 5;
         ActualizarScore();
     }
     public void ActualizarScore()
     {
-        ScoreText.GetComponent<TextMeshProUGUI>().text = $"Score: {Score}";
-        maxScoreText.GetComponent<TextMeshProUGUI>().text = $"High Score: {Math.Truncate(MaxScore)}";
+        ScoreText.GetComponent<TextMeshProUGUI>().text = $"Score: {score}";
+        maxScoreText.GetComponent<TextMeshProUGUI>().text = $"High Score: {Math.Truncate(maxScore)}";
     }
 }

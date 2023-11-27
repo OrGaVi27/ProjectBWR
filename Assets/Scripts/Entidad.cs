@@ -22,7 +22,7 @@ public class Entidad : MonoBehaviour
         Destroy(gameObject);
         if (CompareTag("Enemigo")) 
         {
-            GameManager.Instance.Score += 20;
+            GameManager.Instance.score += 20;
             GameManager.Instance.ActualizarScore();
         }
     }

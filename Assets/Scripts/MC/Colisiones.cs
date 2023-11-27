@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class Colisiones : MonoBehaviour
@@ -48,6 +50,9 @@ public class Colisiones : MonoBehaviour
                 Vector3 posicionCamara = GameObject.Find("InicioNivel").transform.position;
                 gameObject.transform.position = new Vector3(posicionCamara.x - 7f, gameObject.transform.position.y, gameObject.transform.position.z);
                 camara.transform.position = new Vector3(posicionCamara.x, camara.transform.position.y, camara.transform.position.z);
+                GameObject[] levels = GameManager.Instance.GetLevels();
+                levels[0].SetActive(false);
+                levels[1].SetActive(true);
                 break;
             case "MainCamera":
                 cont.EnPantalla(true);
