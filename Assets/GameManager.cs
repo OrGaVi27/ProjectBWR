@@ -52,6 +52,7 @@ public class GameManager : MonoBehaviour
         if (data != null)
         {
             Coins = data.Coins;
+            coinsText.GetComponent<TextMeshProUGUI>().text = $"Coins: {Coins}";
             //MaxScore = (float)Math.Truncate(data.MaxScore);
             MaxScore = data.MaxScore;
             ActualizarScore();
