@@ -7,7 +7,6 @@ using UnityEngine;
 public class Colisiones : MonoBehaviour
 {
     Controles cont;
-    [SerializeField] private GameObject canvas;
 
     private void Start()
     {
@@ -50,6 +49,7 @@ public class Colisiones : MonoBehaviour
                 Vector3 posicionCamara = GameObject.Find("InicioNivel").transform.position;
                 gameObject.transform.position = new Vector3(posicionCamara.x - 7f, gameObject.transform.position.y, gameObject.transform.position.z);
                 camara.transform.position = new Vector3(posicionCamara.x, camara.transform.position.y, camara.transform.position.z);
+                BiomeManager.Instance.RandomBiome();
                 break;
             case "MainCamera":
                 cont.EnPantalla(true);

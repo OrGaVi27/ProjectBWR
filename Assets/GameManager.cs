@@ -20,12 +20,6 @@ public class GameManager : MonoBehaviour
     public GameObject menuPrincipal;
     private float HoraInicio;
 
-
-    [SerializeField] private GameObject tutorial;
-    [SerializeField] private GameObject bioma_1;
-    [SerializeField] private GameObject bioma_2;
-    [SerializeField] private GameObject bioma_3;
-
     private GameObject MC;
 
     public TextMeshProUGUI maxScoreText;    
@@ -57,7 +51,6 @@ public class GameManager : MonoBehaviour
         if (data != null)
         {
             coins = data.Coins;
-            //MaxScore = (float)Math.Truncate(data.MaxScore);
             maxScore = data.MaxScore;
             ActualizarScore();
         }
@@ -91,28 +84,6 @@ public class GameManager : MonoBehaviour
         HoraInicio = Time.time;
         MC = GameObject.Find("MC");
         ActualizarScore();
-        if(scene.buildIndex == 1)
-        {
-            tutorial.SetActive(false);
-            bioma_1.SetActive(false);
-            bioma_2.SetActive(false);
-            bioma_3.SetActive(false);
-            switch (UnityEngine.Random.Range(1, 3))
-            {
-                case 0:
-                    tutorial.SetActive(true);
-                    break;
-                case 1:
-                    bioma_1.SetActive(true);
-                    break;
-                case 2:
-                    bioma_2.SetActive(true);
-                    break;
-                case 3:
-                    bioma_3.SetActive(true);
-                    break;
-            }
-        }
     }
 
     public void SceneChange(bool cont) 
