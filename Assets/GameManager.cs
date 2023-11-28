@@ -88,18 +88,18 @@ public class GameManager : MonoBehaviour
 
     public void SceneChange(bool cont) 
     {
-        if(SceneManager.GetActiveScene().buildIndex == 1 && cont == false)
+        if(SceneManager.GetActiveScene().buildIndex != 1 && cont == false)
         {
             menuPrincipal.SetActive(true);
             ResetValues();
             Time.timeScale = 0;
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(1);
             SoundManager.instance.Play("mainMenu");
         }
         else
         {
             SoundManager.instance.Stop("mainMenu");
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene(2);
             menuPrincipal.SetActive(false);
             ResetValues();
         }
