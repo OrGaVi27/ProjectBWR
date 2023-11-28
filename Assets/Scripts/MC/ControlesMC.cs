@@ -80,7 +80,7 @@ public class Controles : Mob
 
         if(!enPantalla && horaFueraPantalla != 0) 
         {
-            if (Time.time - horaFueraPantalla > 1f) GameManager.Instance.Muerte();
+            if (Time.time - horaFueraPantalla > 0.5f) GameManager.Instance.Muerte();
         }
     }
     private void Saltar()

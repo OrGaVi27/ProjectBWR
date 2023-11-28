@@ -57,6 +57,9 @@ public class Colisiones : MonoBehaviour
             case "MCRelativePosition":
                 cont.atrasado = false;
                 break;
+            case "Proyectil":
+                GameManager.Instance.Muerte();
+                break;
         }
     }
     private void OnTriggerExit2D(Collider2D col)
