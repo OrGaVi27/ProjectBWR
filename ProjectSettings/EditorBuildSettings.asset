@@ -12,6 +12,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu.unity
     guid: 3d9d7ec3ce47cdb498c6528e35b3058a
   - enabled: 1
-    path: Assets/Scenes/Juego.unity
+    path: Assets/Scenes/Juego_Cambioioma.unity
     guid: 5940ee8cda232b34f8eeb2bd9c44f80a
   m_configObjects: {}
