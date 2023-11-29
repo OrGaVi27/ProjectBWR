@@ -50,8 +50,10 @@ public class GameManager : MonoBehaviour
         DataPersisted data = DataChanges.LoadData();
         if (data != null)
         {
-            coins = data.Coins;
-            maxScore = data.MaxScore;
+            Coins = data.Coins;
+            coinsText.GetComponent<TextMeshProUGUI>().text = $"Coins: {Coins}";
+            //MaxScore = (float)Math.Truncate(data.MaxScore);
+            MaxScore = data.MaxScore;
             ActualizarScore();
         }
 
