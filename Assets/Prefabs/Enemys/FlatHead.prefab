@@ -177,11 +177,11 @@ MonoBehaviour:
   _rb: {fileID: 0}
   _sr: {fileID: 0}
   _trans: {fileID: 0}
-  puntoDisparo: {fileID: 0}
-  proyectilPrefab: {fileID: 0}
-  fuerzaSalto: 0
-  cooldownDisparo: 0
-  horaUltimoDisparo: 0
+  shootPoint: {fileID: 7382612398209859303}
+  projectilePrefab: {fileID: 7743577605731376872, guid: 81bd20b18428bdd488dcce23cb89fd3f, type: 3}
+  jumpForce: 0
+  shootCooldown: 2
+  lastShootDate: 0
 --- !u!95 &607351441114125151
 Animator:
   serializedVersion: 5

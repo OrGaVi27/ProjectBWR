@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 2305276157053152095}
   - component: {fileID: 9036099546008688534}
   - component: {fileID: 366551229653721461}
+  - component: {fileID: -7988813268216334913}
   m_Layer: 0
   m_Name: JellyDog
   m_TagString: Enemigo
@@ -212,3 +213,24 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-7988813268216334913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7208897128573659582}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7d72bb7358265e4f9eb5896783f02bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _anim: {fileID: 0}
+  _rb: {fileID: 0}
+  _sr: {fileID: 0}
+  _trans: {fileID: 0}
+  shootPoint: {fileID: 6860606422886426121}
+  projectilePrefab: {fileID: 7743577605731376872, guid: 81bd20b18428bdd488dcce23cb89fd3f, type: 3}
+  jumpForce: 0
+  shootCooldown: 2
+  lastShootDate: 0

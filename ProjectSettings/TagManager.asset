@@ -7,25 +7,25 @@ TagManager:
   - Blue
   - Red
   - White
-  - Letal
-  - Enemigo
+  - Lethal
+  - Enemy
   - Coin
-  - Proyectil
-  - CambiarNivel
-  - Obstaculos
+  - Projectile
+  - ChangeLevel
+  - Obstacle
   - MCRelativePosition
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Suelo
+  - Floor
   - Water
   - UI
   - Blue
   - Red
-  - Enemigos
-  - Obstaculos
-  - Techo
+  - Enemies
+  - Obstacles
+  - Ceiling
   - 
   - 
   - 

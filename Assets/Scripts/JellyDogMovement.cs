@@ -3,17 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class JellyDogMovement : Enemigo
+public class JellyDogMovement : Enemy
 {
-    bool parriba;
+    bool toUp;
     RaycastHit2D[] RaycastTop;
     RaycastHit2D[] RaycastBottom;
 
     // Start is called before the first frame update
     void Start()
     {
-        DefinirEntidad();
-        parriba = true;
+        DefineEntity();
+        toUp = true;
     }
     
     // Update is called once per frame
@@ -25,7 +25,7 @@ public class JellyDogMovement : Enemigo
         {
             if (hit.distance < 1 && hit.collider.gameObject.layer == 10)
             {
-                parriba = false;
+                toUp = false;
             }
         }
 
@@ -33,11 +33,11 @@ public class JellyDogMovement : Enemigo
         {
             if (hit.distance < 1 && hit.collider.gameObject.layer == 3)
             {
-                parriba = true;
+                toUp = true;
             }
         }
 
-        if (parriba) _rb.velocity = new Vector3(_rb.velocity.x, 3f);
+        if (toUp) _rb.velocity = new Vector3(_rb.velocity.x, 3f);
         else _rb.velocity = new Vector3(_rb.velocity.x, -3f);
     }
 }

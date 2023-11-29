@@ -2,20 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Mob : Entidad
+public class Mob : Entity
 {
-    [SerializeField] private Transform puntoDisparo;
-    [SerializeField] private GameObject proyectilPrefab;
-    public float fuerzaSalto;   //Fuerza horizontal aplicada para simular un salto
-    public float cooldownDisparo;   //Tiempo de espera entre disparos
-    public float horaUltimoDisparo; //Variable utilizada en la comprobación del cooldown de los disparos
+    [SerializeField] private Transform shootPoint;
+    [SerializeField] private GameObject projectilePrefab;
+    public float jumpForce;   //Fuerza horizontal aplicada para simular un salto
+    public float shootCooldown;   //Tiempo de espera entre disparos
+    public float lastShootDate; //Variable utilizada en la comprobación del cooldown de los disparos
 
     void Start()
     {
-        DefinirEntidad();
-        horaUltimoDisparo = Time.time - 1f;
+        DefineEntity();
+        lastShootDate = Time.time - 1f;
     }
-    public void CambioColor(string color)
+    public void ColorChange(string color)
     {
         SoundManager.instance.Play("changeColor");
         switch (color)
@@ -47,11 +47,11 @@ public class Mob : Entidad
     }
     public bool Disparar()
     {
-        if (Time.time - horaUltimoDisparo > cooldownDisparo)
+        if (Time.time - lastShootDate > shootCooldown)
         {
-            Instantiate(proyectilPrefab, puntoDisparo.position, puntoDisparo.rotation);
-            horaUltimoDisparo = Time.time;
-            if (gameObject.name == "MC") CambioColor("White");
+            Instantiate(projectilePrefab, shootPoint.position, shootPoint.rotation);
+            lastShootDate = Time.time;
+            if (gameObject.name == "MC") ColorChange("White");
             return true;
         }
         return false;

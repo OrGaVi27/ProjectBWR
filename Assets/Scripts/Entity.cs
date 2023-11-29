@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Entidad : MonoBehaviour
+public class Entity : MonoBehaviour
 {
     public Animator _anim;
     public Rigidbody2D _rb;
     public SpriteRenderer _sr;
     public Transform _trans;
 
-    public void DefinirEntidad()
+    public void DefineEntity()
     {
         _anim = GetComponent<Animator>();
         _rb = GetComponent<Rigidbody2D>();
@@ -17,17 +17,13 @@ public class Entidad : MonoBehaviour
         _trans = GetComponent<Transform>();
     }
 
-    public void Eliminar()
+    public void Delete()
     {
         Destroy(gameObject);
         if (CompareTag("Enemigo")) 
         {
             GameManager.Instance.score += 20;
-            GameManager.Instance.ActualizarScore();
+            GameManager.Instance.UpdateScore();
         }
-    }
-    public void Congelar()
-    {
-        _rb.velocity = new Vector3( 0, 0, 0);
     }
 }

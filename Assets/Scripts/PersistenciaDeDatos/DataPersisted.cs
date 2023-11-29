@@ -11,13 +11,13 @@ public class DataPersisted
 
     public DataPersisted(int coins,int shields,float maxScore, bool iframePostHit,bool iframePostChangeColor,bool dontLoseColorAtShoot,int doubleCoinsAtCollect)
     {
-        this.Coins = coins;
-        this.MaxScore = maxScore;
-        this.Shields = shields;
-        this.IframePostHit = iframePostHit;
-        this.IframePostChangeColor = iframePostChangeColor;
-        this.DontLoseColorAtShoot = dontLoseColorAtShoot;
-        this.DoubleCoinsAtCollect = doubleCoinsAtCollect;
+        Coins = coins;
+        MaxScore = maxScore;
+        Shields = shields;
+        IframePostHit = iframePostHit;
+        IframePostChangeColor = iframePostChangeColor;
+        DontLoseColorAtShoot = dontLoseColorAtShoot;
+        DoubleCoinsAtCollect = doubleCoinsAtCollect;
         
     }
 }

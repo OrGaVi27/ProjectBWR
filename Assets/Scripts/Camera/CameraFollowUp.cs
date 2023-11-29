@@ -2,24 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SeguimientoCamara : Entidad
+public class CameraFollowUp : Entity
 {
-    [SerializeField] GameObject foco;
-    private Controles cont;
+    [SerializeField] GameObject focus;
 
     // Start is called before the first frame update
     void Start()
     {
-        DefinirEntidad();
+        DefineEntity();
 
-        cont = foco.GetComponent<Controles>();
+        Controls cont = focus.GetComponent<Controls>();
 
-        _rb.velocity = new Vector3(cont.velocidadBase, 0, 0);
+        _rb.velocity = new Vector3(cont.baseSpeed, 0, 0);
     }
 
     void Update()
     {
-        if (!foco.activeSelf)
+        if (!focus.activeSelf)
         {
             _rb.velocity = new Vector3(0, 0, 0);
         }

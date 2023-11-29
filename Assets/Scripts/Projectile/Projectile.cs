@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Proyectil : MonoBehaviour
+public class Projectile : MonoBehaviour
 {
     [Range(1, 100)]
     [SerializeField] private float speed = 30f;
