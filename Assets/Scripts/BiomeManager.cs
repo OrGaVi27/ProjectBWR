@@ -9,7 +9,7 @@ public class BiomeManager : MonoBehaviour
     public static BiomeManager Instance;
     [SerializeField] private List<GameObject> biomesPrefab = new List<GameObject>();
     private GameObject biome;
-    public int lastBiome;
+    private int lastBiome;
 
     void Awake()
     {
@@ -34,7 +34,6 @@ public class BiomeManager : MonoBehaviour
         {
             random = Random.Range(1, 4);
         } while (random == lastBiome);
-        lastBiome = random;
         biome = Instantiate(biomesPrefab[random]);
     }
 }
