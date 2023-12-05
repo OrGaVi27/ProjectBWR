@@ -244,6 +244,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: MainMenu
       objectReference: {fileID: 0}
+    - target: {fileID: 2129256473337306968, guid: 5cee5f2ffa8e8494da5966a5fc330d27, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2129256473337306968, guid: 5cee5f2ffa8e8494da5966a5fc330d27, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2129256473337306968, guid: 5cee5f2ffa8e8494da5966a5fc330d27, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1296698664}
+    - target: {fileID: 2129256473337306968, guid: 5cee5f2ffa8e8494da5966a5fc330d27, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2129256473337306968, guid: 5cee5f2ffa8e8494da5966a5fc330d27, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: AddShield
+      objectReference: {fileID: 0}
+    - target: {fileID: 2129256473337306968, guid: 5cee5f2ffa8e8494da5966a5fc330d27, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: GameManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2129256473337306968, guid: 5cee5f2ffa8e8494da5966a5fc330d27, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 2279758185602009471, guid: 5cee5f2ffa8e8494da5966a5fc330d27, type: 3}
       propertyPath: m_SizeDelta.y
       value: 178
@@ -255,6 +283,10 @@ PrefabInstance:
     - target: {fileID: 2279758185602009471, guid: 5cee5f2ffa8e8494da5966a5fc330d27, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -60
+      objectReference: {fileID: 0}
+    - target: {fileID: 2305591464115996901, guid: 5cee5f2ffa8e8494da5966a5fc330d27, type: 3}
+      propertyPath: m_text
+      value: Add Shield
       objectReference: {fileID: 0}
     - target: {fileID: 2383231760006441760, guid: 5cee5f2ffa8e8494da5966a5fc330d27, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -327,6 +359,10 @@ PrefabInstance:
     - target: {fileID: 3201521432837127937, guid: 5cee5f2ffa8e8494da5966a5fc330d27, type: 3}
       propertyPath: m_Name
       value: Play
+      objectReference: {fileID: 0}
+    - target: {fileID: 3362432927609641903, guid: 5cee5f2ffa8e8494da5966a5fc330d27, type: 3}
+      propertyPath: m_Name
+      value: 1-AddShield
       objectReference: {fileID: 0}
     - target: {fileID: 3950181034490856364, guid: 5cee5f2ffa8e8494da5966a5fc330d27, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size

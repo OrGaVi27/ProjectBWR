@@ -11,6 +11,7 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
+    public DataPersisted data;
     private int coins;
     private int coinsObt = 0;
     public float score;
@@ -47,13 +48,13 @@ public class GameManager : MonoBehaviour
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Enemies"), LayerMask.NameToLayer("Blue"), true);
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Enemies"), LayerMask.NameToLayer("Obstacles"), true);
 
-        DataPersisted data = DataChanges.LoadData();
+        data = DataChanges.LoadData();
         if (data != null)
         {
-            coins = data.Coins;
+            coins = data.coins;
             coinsText.GetComponent<TextMeshProUGUI>().text = $"Coins: {coins}";
             //MaxScore = (float)Math.Truncate(data.MaxScore);
-            maxScore = data.MaxScore;
+            maxScore = data.maxScore;
             UpdateScore();
         }
 
@@ -131,7 +132,7 @@ public class GameManager : MonoBehaviour
         isDead = true;
         Time.timeScale = 0;
         coinsObtText.GetComponent<TextMeshProUGUI>().text = $"Coins: +{coinsObt}";
-        DataChanges.WriteData(new DataPersisted(coins, 0, maxScore, false, false, false, 0));
+        DataChanges.WriteData(new DataPersisted(coins, maxScore, 0, false, false, false, 0, 0));
     }
     public void SumCoin() 
     {
@@ -144,5 +145,9 @@ public class GameManager : MonoBehaviour
     {
         ScoreText.GetComponent<TextMeshProUGUI>().text = $"Score: {score}";
         maxScoreText.GetComponent<TextMeshProUGUI>().text = $"High Score: {Math.Truncate(maxScore)}";
+    }
+    public void AddShield()
+    {
+        data.shields++;
     }
 }

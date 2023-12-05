@@ -8,7 +8,6 @@ public class Enemy : Mob
 
     private void Start()
     {
-        DefineEntity();
         onCamera = false;
     }
 

@@ -6,11 +6,11 @@ using UnityEngine;
 
 public class CollisionManager : MonoBehaviour
 {
-    Controls cont;
+    Controls player;
 
     private void Start()
     {
-        cont = GetComponent<Controls>();
+        player = GetComponent<Controls>();
     }
 
     private void OnCollisionEnter2D(Collision2D col)
@@ -18,20 +18,7 @@ public class CollisionManager : MonoBehaviour
         switch (col.gameObject.tag)
         {
             case "Lethal":
-            case "Enemy":
                 GameManager.Instance.Death();
-                break;
-            case "Blue":
-                if(!gameObject.CompareTag("Blue"))
-                {
-                    GameManager.Instance.Death();
-                }
-                break;
-            case "Red":
-                if (!gameObject.CompareTag("Red"))
-                {
-                    GameManager.Instance.Death();
-                }
                 break;
         }
     }
@@ -52,13 +39,29 @@ public class CollisionManager : MonoBehaviour
                 BiomeManager.Instance.RandomBiome();
                 break;
             case "MainCamera":
-                cont.OnScreen(true);
+                player.OnScreen(true);
                 break;
             case "MCRelativePosition":
-                cont.delayed = false;
+                player.delayed = false;
                 break;
             case "Projectile":
-                GameManager.Instance.Death();
+                Destroy(col);
+                player.Hit();
+                break;
+            case "Enemy":
+                player.Hit();
+                break;
+            case "Blue":
+                if (!gameObject.CompareTag("Blue"))
+                {
+                    player.Hit();
+                }
+                break;
+            case "Red":
+                if (!gameObject.CompareTag("Red"))
+                {
+                    player.Hit();
+                }
                 break;
         }
     }
@@ -67,10 +70,10 @@ public class CollisionManager : MonoBehaviour
         switch (col.gameObject.tag)
         {
             case "MainCamera":
-                cont.OnScreen(false);
+                player.OnScreen(false);
                 break;
             case "MCRelativePosition":
-                cont.delayed = true;
+                player.delayed = true;
                 break;
         }
     }

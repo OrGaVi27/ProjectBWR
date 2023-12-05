@@ -12,7 +12,6 @@ public class Mob : Entity
 
     void Start()
     {
-        DefineEntity();
         lastShootDate = Time.time - 1f;
     }
     public void ColorChange(string color)

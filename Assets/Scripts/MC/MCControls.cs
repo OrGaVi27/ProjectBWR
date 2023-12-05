@@ -16,11 +16,13 @@ public class Controls : Mob
     private bool onScreen; //Se modifica seg�n el MC entre o salga de pantalla.
     private float OutScreenDate; //Registra el momento en el que sale de pantalla.
     public bool delayed;
+    [SerializeField] private GameObject shield;
+    private bool invulnerability;
+    private float lastHitDate;
+    private float invulnerabilityDuration;
 
     private void Start()
     {
-        DefineEntity();
-
         shootCooldown = 0.5f;
         jumpForce = 14.0f;
         _rb.gravityScale = 4f;
@@ -29,11 +31,23 @@ public class Controls : Mob
         layerGround = LayerMask.GetMask("Floor");
         delayed = true;
         availableJumps = maxJumps;
+        invulnerability = false;
+        invulnerabilityDuration = 1f;
+        if (GameManager.Instance.data.iFramePostHit) invulnerabilityDuration = 2f;
+        lastHitDate = 0;
     }
 
 
     private void Update()
     {
+        if (Time.time - lastHitDate > invulnerabilityDuration) invulnerability = false;
+
+        if (invulnerability) _sr.color = Color.green;
+        else _sr.color = Color.white;
+
+        if (GameManager.Instance.data.shields > 0) shield.transform.localScale = Vector3.one;
+        else shield.transform.localScale = Vector3.zero;
+
         onGround = Physics2D.OverlapCircle(_trans.position, radiusGround, layerGround); ;
 
         // Velocidad constante
@@ -99,5 +113,15 @@ public class Controls : Mob
         }
         onScreen = false;
         OutScreenDate = Time.time;
+    }
+    public void Hit()
+    {
+        if (!invulnerability)
+        {
+            if (GameManager.Instance.data.shields > 0) GameManager.Instance.data.shields--;
+            else GameManager.Instance.Death();
+            lastHitDate = Time.time;
+            invulnerability = true;
+        }
     }
 }

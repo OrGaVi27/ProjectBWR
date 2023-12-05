@@ -9,7 +9,7 @@ public class Entity : MonoBehaviour
     public SpriteRenderer _sr;
     public Transform _trans;
 
-    public void DefineEntity()
+    void Awake()
     {
         _anim = GetComponent<Animator>();
         _rb = GetComponent<Rigidbody2D>();

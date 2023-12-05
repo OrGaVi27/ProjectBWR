@@ -9,8 +9,6 @@ public class CameraFollowUp : Entity
     // Start is called before the first frame update
     void Start()
     {
-        DefineEntity();
-
         Controls cont = focus.GetComponent<Controls>();
 
         _rb.velocity = new Vector3(cont.baseSpeed, 0, 0);
