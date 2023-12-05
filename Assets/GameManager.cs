@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     public GameObject gameOver;
     public GameObject mainMenu;
     private float startDate;
+    public Toggle fullScreen;
 
     private GameObject MC;
 
@@ -26,6 +27,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI ScoreText;
     public TextMeshProUGUI coinsText;
     public TextMeshProUGUI coinsObtText;
+    public TextMeshProUGUI resDisplay;
 
     void Awake()
     {
@@ -43,10 +45,8 @@ public class GameManager : MonoBehaviour
     }
     public void Start()
     {
-        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Enemies"), LayerMask.NameToLayer("Red"), true);
-        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Enemies"), LayerMask.NameToLayer("Blue"), true);
-        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Enemies"), LayerMask.NameToLayer("Obstacles"), true);
-
+        SetResolution(1920, 1090, true);
+        SetRefreshRate(60);
         DataPersisted data = DataChanges.LoadData();
         if (data != null)
         {
@@ -63,6 +63,10 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            resDisplay.text = Screen.currentResolution.ToString();
+        }
         if (isDead == false)
         {
             coinsText.GetComponent<TextMeshProUGUI>().text = $"Coins: {coins}";
@@ -144,5 +148,21 @@ public class GameManager : MonoBehaviour
     {
         ScoreText.GetComponent<TextMeshProUGUI>().text = $"Score: {score}";
         maxScoreText.GetComponent<TextMeshProUGUI>().text = $"High Score: {Math.Truncate(maxScore)}";
+    }
+    public void SetResolution(Resolution resolution)
+    {
+        Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
+    }
+    public void SetResolution(int width, int height, bool fullscreen)
+    {
+        Screen.SetResolution(width, height, fullscreen);
+    }
+    public void SetFullScreen()
+    {
+        Screen.fullScreen = !Screen.fullScreen;
+    }
+    public void SetRefreshRate(float maxFPS)
+    {
+        Application.targetFrameRate = (int)maxFPS;
     }
 }

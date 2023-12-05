@@ -5,9 +5,10 @@ using UnityEngine.UI;
 
 public class SoundSlider : MonoBehaviour    
 {
-    [SerializeField] Slider volumeSlider;
+    Slider volumeSlider;
     void Start()
     {
+        volumeSlider = GetComponent<Slider>();
         if (!PlayerPrefs.HasKey("musicVolume"))
         {
             PlayerPrefs.SetFloat("musicVolume", 1);

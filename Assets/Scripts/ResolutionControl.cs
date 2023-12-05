@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System.Security.Cryptography;
 
 public class ResolutionControl : MonoBehaviour
 {
@@ -10,43 +11,43 @@ public class ResolutionControl : MonoBehaviour
     private Resolution[] resolutions;
     private List<Resolution> filteredResolutions;
 
-    private float currentRefreshRate;
-    private int currentResolutionIndex = 0;
     void Start()
     {
+        Resolution currentResolution = new Resolution();
         resolutions = Screen.resolutions;
         filteredResolutions = new List<Resolution>();
 
         resolutionDropdown.ClearOptions();
-        currentRefreshRate = Screen.currentResolution.refreshRate;
 
-        for (int i = 0; i < resolutions.Length; i++) 
+        foreach (var res in resolutions)
         {
-            if (resolutions[i].refreshRate == currentRefreshRate)
+            bool rep = false;
+            foreach (var filRes in filteredResolutions)
             {
-                filteredResolutions.Add(resolutions[i]);
+                if (res.width == filRes.width && res.height == filRes.height) rep = true;
             }
+            if(!rep) filteredResolutions.Add(res);
         }
 
         List<string> options = new List<string>();
-        for (int i = 0; i < filteredResolutions.Count; i++) 
-        {
-            string resolutionOption = filteredResolutions[i].width+ "x" + filteredResolutions[i].height + " " + filteredResolutions[i].refreshRateRatio.ToString() + "Hz";
-            options.Add(resolutionOption);
-            if (filteredResolutions[i].width == Screen.width && filteredResolutions[i].height == Screen.height) 
-            {
-                currentResolutionIndex = i;
-            }
 
-            resolutionDropdown.AddOptions(options);
-            resolutionDropdown.value = currentResolutionIndex;
-            resolutionDropdown.RefreshShownValue();
+        foreach (var res in filteredResolutions)
+        {
+            string resolutionOption = res.width+ "x" + res.height + " ";
+            options.Add(resolutionOption);
+            if (res.width == Screen.width && res.height == Screen.height) 
+            {
+                    currentResolution = res;
+            }
         }
+
+        resolutionDropdown.AddOptions(options);
+        resolutionDropdown.value = options.IndexOf(currentResolution.width + "x" + currentResolution.height + " ");
+        resolutionDropdown.RefreshShownValue();
     }
     public void SetResolution(int resolutionIndex) 
     {
-        Resolution resolution = filteredResolutions[resolutionIndex];
-        Screen.SetResolution(resolution.width, resolution.height, true);
+        GameManager.Instance.SetResolution(filteredResolutions[resolutionIndex]);
     }
 
 }
