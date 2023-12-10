@@ -47,7 +47,7 @@ GameObject:
   - component: {fileID: 4815294429843126062}
   - component: {fileID: 7362767519690401711}
   m_Layer: 0
-  m_Name: ObstaculosLetales
+  m_Name: Lethal_Obstacles
   m_TagString: Lethal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -322,7 +322,7 @@ GameObject:
   - component: {fileID: 9004736810186814402}
   - component: {fileID: 7274344903533896636}
   m_Layer: 3
-  m_Name: Obstaculos
+  m_Name: Obstacles
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -853,7 +853,7 @@ GameObject:
   - component: {fileID: 4415285876530534563}
   - component: {fileID: 4262773846660119414}
   m_Layer: 7
-  m_Name: Obstaculos_Rojos
+  m_Name: Red_Obstacles
   m_TagString: Red
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1381,7 +1381,7 @@ GameObject:
   - component: {fileID: 3544676125959226954}
   - component: {fileID: 4220035809264469423}
   m_Layer: 6
-  m_Name: Obstaculos_Azules
+  m_Name: Blue_Obstacles
   m_TagString: Blue
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
