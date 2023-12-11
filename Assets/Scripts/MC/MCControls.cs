@@ -32,7 +32,7 @@ public class Controls : Mob
     }
 
 
-    private void Update()
+    private void FixedUpdate()
     {
         onGround = Physics2D.OverlapCircle(_trans.position, radiusGround, layerGround); ;
 

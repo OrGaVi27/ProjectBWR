@@ -46,7 +46,7 @@ public class GameManager : MonoBehaviour
     public void Start()
     {
         SetResolution(1920, 1090, true);
-        SetRefreshRate(60);
+        SetRefreshRate(240);
         DataPersisted data = DataChanges.LoadData();
         if (data != null)
         {
@@ -61,7 +61,7 @@ public class GameManager : MonoBehaviour
         isDead = true;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (Input.GetKeyDown(KeyCode.M))
         {
