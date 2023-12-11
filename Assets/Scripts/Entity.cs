@@ -20,7 +20,7 @@ public class Entity : MonoBehaviour
     public void Delete()
     {
         Destroy(gameObject);
-        if (CompareTag("Enemigo")) 
+        if (CompareTag("Enemy")) 
         {
             GameManager.Instance.score += 20;
             GameManager.Instance.UpdateScore();

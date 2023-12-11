@@ -409,7 +409,7 @@ GameObject:
   - component: {fileID: 3697359098492873224}
   m_Layer: 0
   m_Name: ObstaculosLetales
-  m_TagString: Letal
+  m_TagString: Lethal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
