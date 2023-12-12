@@ -43,7 +43,21 @@ public class Controls : Mob
         if (Time.time - lastHitDate > invulnerabilityDuration) invulnerability = false;
 
         if (invulnerability) _sr.color = Color.green;
-        else _sr.color = Color.white;
+        else
+        {
+            switch (tag)
+            {
+                case "Red":
+                    _sr.color = Color.red;
+                    break;
+                case "Blue":
+                    _sr.color = Color.blue;
+                    break;
+                case "Untagged":
+                    _sr.color = Color.white;
+                    break;
+            }
+        }
 
         if (GameManager.Instance.data.shields > 0) shield.transform.localScale = Vector3.one;
         else shield.transform.localScale = Vector3.zero;
