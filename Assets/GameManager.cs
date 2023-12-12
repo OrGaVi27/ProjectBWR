@@ -45,8 +45,9 @@ public class GameManager : MonoBehaviour
     }
     public void Start()
     {
+        QualitySettings.vSyncCount = 0;
         SetResolution(1920, 1090, true);
-        SetRefreshRate(240);
+        SetRefreshRate(0);
         DataPersisted data = DataChanges.LoadData();
         if (data != null)
         {
@@ -61,12 +62,8 @@ public class GameManager : MonoBehaviour
         isDead = true;
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.M))
-        {
-            resDisplay.text = Screen.currentResolution.ToString();
-        }
         if (isDead == false)
         {
             coinsText.GetComponent<TextMeshProUGUI>().text = $"Coins: {coins}";

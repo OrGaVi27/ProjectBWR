@@ -13,10 +13,11 @@ public class FrameRateSlider : MonoBehaviour
         frameRateSlider = GetComponent<Slider>();
         if (!PlayerPrefs.HasKey("frameRate"))
         {
-            PlayerPrefs.SetFloat("frameRate", 240f);
+            frameRateSlider.value = 1;
+            ChangeFrameRate();
+            PlayerPrefs.SetFloat("frameRate", 241f);
             Load();
         }
-
         else 
         {
             Load();
@@ -26,17 +27,21 @@ public class FrameRateSlider : MonoBehaviour
     public void ChangeFrameRate() 
     {
         GameManager.Instance.SetRefreshRate((frameRateSlider.value * 211) + 30);
-        if(frameRateSlider.value == 1) maxFPSText.text = "Unlimited";
+        if (frameRateSlider.value == 1)
+        {
+            maxFPSText.text = "Unlimited";
+            GameManager.Instance.SetRefreshRate(0);
+        }
         else maxFPSText.text = Mathf.Round((frameRateSlider.value * 211) + 30).ToString();
 
         Save();
     }
     private void Load() 
     {
-        frameRateSlider.value = PlayerPrefs.GetFloat("frameRate") / 60;
+        frameRateSlider.value = PlayerPrefs.GetFloat("frameRate") / 211;
     }
     private void Save() 
     {
-        PlayerPrefs.SetFloat("frameRate", (float)(frameRateSlider.value * 60));
+        PlayerPrefs.SetFloat("frameRate", (float)(frameRateSlider.value * 211));
     }
 }
