@@ -261,7 +261,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1443441056954472987, guid: 5cee5f2ffa8e8494da5966a5fc330d27, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0.18666697
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1445345801942091585, guid: 5cee5f2ffa8e8494da5966a5fc330d27, type: 3}
       propertyPath: m_AnchorMax.y
@@ -341,7 +341,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1916061836081519200, guid: 5cee5f2ffa8e8494da5966a5fc330d27, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.000019073486
+      value: -0.000015258789
       objectReference: {fileID: 0}
     - target: {fileID: 2063553399199622003, guid: 5cee5f2ffa8e8494da5966a5fc330d27, type: 3}
       propertyPath: m_Name
@@ -1143,6 +1143,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Continue
       objectReference: {fileID: 0}
+    - target: {fileID: 7102984461389023236, guid: 5cee5f2ffa8e8494da5966a5fc330d27, type: 3}
+      propertyPath: m_IsOn
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7102984461389023236, guid: 5cee5f2ffa8e8494da5966a5fc330d27, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2079341965}
     - target: {fileID: 7129052055931403124, guid: 5cee5f2ffa8e8494da5966a5fc330d27, type: 3}
       propertyPath: m_Name
       value: Save (placeholder)
@@ -1731,7 +1739,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2079341963}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 070f044d70f015847a0d41dc8b96eaa8, type: 3}
   m_Name: 

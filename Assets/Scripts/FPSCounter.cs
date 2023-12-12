@@ -19,7 +19,7 @@ public class FPSCounter : MonoBehaviour
     private void OnGUI()
     {
         GUIStyle style = new GUIStyle();
-        style.fontSize = 110;
+        style.fontSize = 20;
         style.richText = true;
         style.normal.textColor = Color.yellow;
         GUI.Label(new Rect(5, 40, 400, 100), "FPS: " + Mathf.Round(count), style);
