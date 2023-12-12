@@ -37,6 +37,7 @@ public class CollisionManager : MonoBehaviour
                 gameObject.transform.position = new Vector3(posicionCamara.x - 7f, gameObject.transform.position.y, gameObject.transform.position.z);
                 camara.transform.position = new Vector3(posicionCamara.x, camara.transform.position.y, camara.transform.position.z);
                 BiomeManager.Instance.RandomBiome();
+                if(player.baseSpeed < 20) player.baseSpeed += 0.1f;
                 break;
             case "MainCamera":
                 player.OnScreen(true);

@@ -9,8 +9,10 @@ public class DataPersisted
     public bool dontLoseColorAtShoot;
     public int doubleCoinsAtCollect;
     public int invulnerability;
+    public int extraJumps;
+    public int lessCooldownColorChange;
 
-    public DataPersisted(int coins,float maxScore, int shields, bool iFramePostHit,bool bulletPenetration,bool dontLoseColorAtShoot,int doubleCoinsAtCollect, int invulnerability)
+    public DataPersisted(int coins,float maxScore, int shields, bool iFramePostHit,bool bulletPenetration,bool dontLoseColorAtShoot,int doubleCoinsAtCollect, int invulnerability, int extraJumps, int lessCooldownColorChange)
     {
         this.coins = coins;
         this.maxScore = maxScore;
@@ -20,5 +22,7 @@ public class DataPersisted
         this.dontLoseColorAtShoot = dontLoseColorAtShoot;
         this.doubleCoinsAtCollect = doubleCoinsAtCollect;
         this.invulnerability = invulnerability;
-}
+        this.extraJumps = extraJumps;
+        this.lessCooldownColorChange = lessCooldownColorChange;
+    }
 }

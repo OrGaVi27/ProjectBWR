@@ -5,14 +5,14 @@ using UnityEngine.UIElements;
 
 public class Controls : Mob
 {
-    public float baseSpeed = 8.0f;  //Velocidad lateral base
-    private float cooldownJumpRecover = 0.1f; //Tiempo de espera m�nimo para que el salto no se recupere antes de que el objeto se levante del suelo
-    private float lastJumpDate;  //Variable utilizada en la comprobaci�n del cooldown de recuperacion de los saltos
-    private bool onGround;  //Almacena el resultado de la comprobaci�n del contacto del personaje con el suelo
+    public float baseSpeed;  //Velocidad lateral base
+    private float cooldownJumpRecover; // Tiempo de espera minimo para que el salto no se recupere antes de que el objeto se levante del suelo
+    private float lastJumpDate;  //Variable utilizada en la comprobacion del cooldown de recuperacion de los saltos
+    private bool onGround;  //Almacena el resultado de la comprobacion del contacto del personaje con el suelo
     private float radiusGround = 1;   //Variable usada en la formula de la comprobaci�n "enTierra"
     private LayerMask layerGround;   //Almacena la capa del Suelo
     private int availableJumps;   //Saltos disponibles en el momento
-    private int maxJumps = 1;  //Saltos que se asignaran a saltosDisponibles en cuanto el MC repose en el suelo
+    private int maxJumps;  //Saltos que se asignaran a saltosDisponibles en cuanto el MC repose en el suelo
     private bool onScreen; //Se modifica seg�n el MC entre o salga de pantalla.
     private float OutScreenDate; //Registra el momento en el que sale de pantalla.
     public bool delayed;
@@ -20,21 +20,33 @@ public class Controls : Mob
     private bool invulnerability;
     private float lastHitDate;
     private float invulnerabilityDuration;
+    private float lastColorChange;
+    private float cooldownColorChange;
 
     private void Start()
     {
+        // Estadisticas base
         shootCooldown = 0.5f;
         jumpForce = 14.0f;
         _rb.gravityScale = 4f;
-        lastShootDate = Time.time - 1f;
-        lastJumpDate = Time.time;
+        cooldownColorChange = 1f - GameManager.Instance.data.lessCooldownColorChange * 0.5f;
+        cooldownJumpRecover = 0.1f;
+        baseSpeed = 8.0f;
+        maxJumps = 1 + GameManager.Instance.data.extraJumps;
+
+        // Variables para los cooldowns puestas a 0
+        lastShootDate = 0;
+        lastJumpDate = 0;
+        lastHitDate = 0;
+        lastColorChange = 0;
+
+        // Otros
         layerGround = LayerMask.GetMask("Floor");
         delayed = true;
         availableJumps = maxJumps;
         invulnerability = false;
         invulnerabilityDuration = 1f;
         if (GameManager.Instance.data.iFramePostHit) invulnerabilityDuration = 2f;
-        lastHitDate = 0;
     }
 
 
@@ -83,16 +95,28 @@ public class Controls : Mob
         }
         if(Input.GetKeyDown(KeyCode.A))
         {
-            ColorChange("Blue");
+            if(Time.time - lastColorChange > cooldownColorChange)
+            {
+                ColorChange("Blue");
+                lastColorChange = Time.time;
+            }
         }
         if(Input.GetKeyDown(KeyCode.D))
         {
-            ColorChange("Red");
+            if (Time.time - lastColorChange > cooldownColorChange)
+            {
+                ColorChange("Red");
+                lastColorChange = Time.time;
+            }
         }
         if(Input.GetKeyDown(KeyCode.S))
         {
             _anim.SetBool("isCrouching", true);
             SoundManager.instance.Play("slide");
+            if(!onGround)
+            {
+                _rb.velocity = new Vector2(_rb.velocity.x, _rb.velocity.y - 10);
+            }
         }
         if(Input.GetKeyUp(KeyCode.S))
         {

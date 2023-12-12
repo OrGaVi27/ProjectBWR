@@ -132,7 +132,7 @@ public class GameManager : MonoBehaviour
         isDead = true;
         Time.timeScale = 0;
         coinsObtText.GetComponent<TextMeshProUGUI>().text = $"Coins: +{coinsObt}";
-        DataChanges.WriteData(new DataPersisted(coins, maxScore, 0, false, false, false, 0, 0));
+        DataChanges.WriteData(new DataPersisted(coins, maxScore, 0, false, false, false, 0, 0, 0, 0));
     }
     public void SumCoin() 
     {
