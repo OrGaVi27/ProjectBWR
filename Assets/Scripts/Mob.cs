@@ -39,7 +39,7 @@ public class Mob : Entity
         {
             Instantiate(projectilePrefab, shootPoint.position, shootPoint.rotation);
             lastShootDate = Time.time;
-            if (gameObject.name == "MC") ColorChange("White");
+            if (gameObject.name == "MC" && !GameManager.Instance.data.dontLoseColorAtShoot) ColorChange("White");
             return true;
         }
         return false;

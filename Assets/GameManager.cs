@@ -97,6 +97,8 @@ public class GameManager : MonoBehaviour
             EditText(0, $"Shields: {data.shields}\n 5 Coins");
             EditText(1, $"ExtraJumps: {data.extraJumps}\n 5 Coins");
             EditText(2, $"Less Color Cooldown: {data.lessCooldownColorChange}\n 5 Coins");
+            EditText(3, $"Don't lose Color: {data.dontLoseColorAtShoot}\n 5 Coins");
+            EditText(4, $"Piercing Bullets: {data.bulletPenetration}\n 5 Coins");
         }
     }
 
@@ -171,33 +173,51 @@ public class GameManager : MonoBehaviour
     }
     public void Purchase(string element)
     {
-        int ShieldPrice = 5;
-        int ExtraJumpPrice = 5;
-        int LessColorCooldownPrice = 5;
+        int shieldPrice = 5;
+        int extraJumpPrice = 5;
+        int lessColorCooldownPrice = 5;
+        int dontLoseColorPrice = 5;
+        int piercingBulletsPrice = 5;
 
-        switch(element)
+        switch (element)
         {
             case "Shield":
-                if (data.shields < 99 && coins >= ShieldPrice)
+                if (data.shields < 99 && coins >= shieldPrice)
                 {
                     data.shields++;
-                    coins -= ShieldPrice;
+                    coins -= shieldPrice;
                     UpdateCoins();
                 }
                 break;
             case "ExtraJump":
-                if (data.extraJumps < 2 && coins >= ExtraJumpPrice)
+                if (data.extraJumps < 2 && coins >= extraJumpPrice)
                 {
                     data.extraJumps++;
-                    coins -= ExtraJumpPrice;
+                    coins -= extraJumpPrice;
                     UpdateCoins();
                 }
                 break;
             case "LessColorCooldown":
-                if (data.lessCooldownColorChange < 2 && coins >= LessColorCooldownPrice)
+                if (data.lessCooldownColorChange < 2 && coins >= lessColorCooldownPrice)
                 {
                     data.lessCooldownColorChange++;
-                    coins -= LessColorCooldownPrice;
+                    coins -= lessColorCooldownPrice;
+                    UpdateCoins();
+                }
+                break;
+            case "DontLoseColor":
+                if (!data.dontLoseColorAtShoot && coins >= dontLoseColorPrice)
+                {
+                    data.dontLoseColorAtShoot = true;
+                    coins -= dontLoseColorPrice;
+                    UpdateCoins();
+                }
+                break;
+            case "PiercingBullets":
+                if (!data.bulletPenetration && coins >= piercingBulletsPrice)
+                {
+                    data.bulletPenetration = true;
+                    coins -= piercingBulletsPrice;
                     UpdateCoins();
                 }
                 break;

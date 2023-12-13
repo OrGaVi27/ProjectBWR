@@ -28,7 +28,6 @@ public class CollisionManager : MonoBehaviour
         {
             case "Floor":
                 player.availableJumps--;
-                Debug.Log("Salto--");
                 break;
         }
     }

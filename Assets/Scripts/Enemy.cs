@@ -20,7 +20,7 @@ public class Enemy : Mob
     {
         if (col.CompareTag("Projectile"))
         {
-            Destroy(col.gameObject);
+            if(!GameManager.Instance.data.bulletPenetration) Destroy(col.gameObject);
             SoundManager.instance.Play("enemyDeath");
             GameManager.Instance.score += 20;
             GameManager.Instance.UpdateScore();
