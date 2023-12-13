@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
     public DataPersisted data;
-    private int coins;
+    public int coins;
     private int coinsObt = 0;
     public float score;
     private float maxScore;
@@ -52,11 +52,12 @@ public class GameManager : MonoBehaviour
         if (data != null)
         {
             coins = data.coins;
-            coinsText.GetComponent<TextMeshProUGUI>().text = $"Coins: {coins}";
             //MaxScore = (float)Math.Truncate(data.MaxScore);
             maxScore = data.maxScore;
             UpdateScore();
         }
+        coins = 99;
+        UpdateCoins();
 
         gameOver.SetActive(false);
         isDead = true;
@@ -66,7 +67,7 @@ public class GameManager : MonoBehaviour
     {
         if (isDead == false)
         {
-            coinsText.GetComponent<TextMeshProUGUI>().text = $"Coins: {coins}";
+            UpdateCoins();
             if (Time.time - startDate > 0.1f)
             {
                 startDate = Time.time;
@@ -146,8 +147,28 @@ public class GameManager : MonoBehaviour
         ScoreText.GetComponent<TextMeshProUGUI>().text = $"Score: {score}";
         maxScoreText.GetComponent<TextMeshProUGUI>().text = $"High Score: {Math.Truncate(maxScore)}";
     }
+    public void UpdateCoins()
+    {
+        coinsText.GetComponent<TextMeshProUGUI>().text = $"Coins: {coins}";
+    }
     public void AddShield()
     {
-        data.shields++;
+        int price = 5;
+        if(data.shields < 99 && coins >= price)
+        {
+            data.shields++;
+            coins -= price;
+            UpdateCoins();
+        }
+    }
+    public void ExtraJump()
+    {
+        int price = 5;
+        if (data.extraJumps < 2 && coins >= price)
+        {
+            data.extraJumps++;
+            coins -= price;
+            UpdateCoins();
+        }
     }
 }

@@ -22,6 +22,7 @@ public class Controls : Mob
     private float invulnerabilityDuration;
     private float lastColorChange;
     private float cooldownColorChange;
+    private float shieldUsed;
 
     private void Start()
     {
@@ -41,6 +42,7 @@ public class Controls : Mob
         lastColorChange = 0;
 
         // Otros
+        shieldUsed = 0;
         layerGround = LayerMask.GetMask("Floor");
         delayed = true;
         availableJumps = maxJumps;
@@ -71,7 +73,7 @@ public class Controls : Mob
             }
         }
 
-        if (GameManager.Instance.data.shields > 0) shield.transform.localScale = Vector3.one;
+        if (GameManager.Instance.data.shields > 0 && shieldUsed < 3) shield.transform.localScale = Vector3.one;
         else shield.transform.localScale = Vector3.zero;
 
         onGround = Physics2D.OverlapCircle(_trans.position, radiusGround, layerGround); ;
@@ -156,7 +158,11 @@ public class Controls : Mob
     {
         if (!invulnerability)
         {
-            if (GameManager.Instance.data.shields > 0) GameManager.Instance.data.shields--;
+            if (GameManager.Instance.data.shields > 0 && shieldUsed < 3)
+            {
+                GameManager.Instance.data.shields--;
+                shieldUsed++;
+            }
             else GameManager.Instance.Death();
             lastHitDate = Time.time;
             invulnerability = true;

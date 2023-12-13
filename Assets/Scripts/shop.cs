@@ -10,9 +10,8 @@ public class shop : MonoBehaviour
 
     private void Update()
     {
-        var data = GameManager.Instance.data;
-        EditText(0, $"Shields: {data.shields}");
-        EditText(1, $"ExtraJumps: {data.extraJumps}");
+        EditText(0, $"Shields: {GameManager.Instance.data.shields}\n 5 Coins");
+        EditText(1, $"ExtraJumps: {GameManager.Instance.data.extraJumps}\n 5 Coins");
     }
     private void EditText(int index, string text)
     {
