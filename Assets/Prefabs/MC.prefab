@@ -303,6 +303,7 @@ MonoBehaviour:
   baseSpeed: 8
   availableJumps: 0
   delayed: 0
+  marioStarColor: {r: 0.6, g: 0, b: 0.6, a: 1}
   shield: {fileID: 7236414570649473764}
   glasses: {fileID: 8071881763844645568}
   doubleCoins: 0

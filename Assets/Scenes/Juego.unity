@@ -249,6 +249,7 @@ MonoBehaviour:
   - {fileID: 7145887047928200201, guid: fee9e823b44b82a44bd11949d5132947, type: 3}
   - {fileID: 2695129974943132522, guid: 298dbb69d90872f45a7930ccab071ecd, type: 3}
   - {fileID: 6620774658227703132, guid: 15cfc4145fb851b48a228d2680acb53f, type: 3}
+  lastBiome: 0
 --- !u!1 &755473478
 GameObject:
   m_ObjectHideFlags: 0
@@ -4327,7 +4328,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6354102197722250172, guid: d5dd2bf03907e994bb71967c07ca28d4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.4141376
+      value: -3.563
       objectReference: {fileID: 0}
     - target: {fileID: 6354102197722250172, guid: d5dd2bf03907e994bb71967c07ca28d4, type: 3}
       propertyPath: m_LocalPosition.z

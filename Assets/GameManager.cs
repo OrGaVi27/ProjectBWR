@@ -102,6 +102,7 @@ public class GameManager : MonoBehaviour
             EditText(5, $"Longer Invulnerability: {data.longerInvulnerability}\n 5 Coins");
             EditText(6, $"Bigger Bullets: {data.biggerBullets}\n 5 Coins");
             EditText(7, $"Double Coins (Consum): {data.doubleCoinsAtCollect}\n 5 Coins");
+            EditText(8, $"Invulnerability (Consum): {data.marioStar}\n 5 Coins");
         }
     }
 
@@ -156,7 +157,7 @@ public class GameManager : MonoBehaviour
         isDead = true;
         Time.timeScale = 0;
         coinsObtText.GetComponent<TextMeshProUGUI>().text = $"Coins: +{coinsObt}";
-        DataChanges.WriteData(new DataPersisted(coins, maxScore, 0, false, false, false, 0, 0, 0, 0, false));
+        DataChanges.WriteData(new DataPersisted(coins, maxScore, 0, false, false, false, 0, 0, 0, 0, false, 0));
     }
     public void SumCoin(bool doubleCoins) 
     {
@@ -189,6 +190,7 @@ public class GameManager : MonoBehaviour
         int longerInvulnerabilityPrice = 5;
         int biggerBulletsPrice = 5;
         int doubleCoinsAtCollectPrice = 5;
+        int invulnerabilityPrice = 5;
 
         switch (element)
         {
@@ -246,6 +248,13 @@ public class GameManager : MonoBehaviour
                 {
                     data.doubleCoinsAtCollect++;
                     coins -= doubleCoinsAtCollectPrice;
+                }
+                break;
+            case "Invulnerability":
+                if (data.doubleCoinsAtCollect < 99 && coins >= invulnerabilityPrice)
+                {
+                    data.marioStar++;
+                    coins -= invulnerabilityPrice;
                 }
                 break;
         }

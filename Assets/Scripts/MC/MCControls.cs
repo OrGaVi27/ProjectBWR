@@ -5,23 +5,41 @@ using UnityEngine.UIElements;
 
 public class Controls : Mob
 {
-    public float baseSpeed;  //Velocidad lateral base
-    private bool onGround;  //Almacena el resultado de la comprobacion del contacto del personaje con el suelo
-    public int availableJumps;   //Saltos disponibles en el momento
-    private int maxJumps;  //Saltos que se asignaran a saltosDisponibles en cuanto el MC repose en el suelo
+    public float baseSpeed;  //Velocidad lateral base.
+    private bool onGround;  //Almacena el resultado de la comprobacion del contacto del personaje con el suelo.
+    public int availableJumps;   //Saltos disponibles en el momento.
+    private int maxJumps;  //Saltos que se asignaran a saltosDisponibles en cuanto el MC repose en el suelo.
     private bool onScreen; //Se modifica seg�n el MC entre o salga de pantalla.
     private float OutScreenDate; //Registra el momento en el que sale de pantalla.
-    public bool delayed;
+    public bool delayed; //Comprueba si el jugador está más atras de su posición predefinida.
+    [SerializeField] private Color marioStarColor;
+
+    // Objetos que tiene el jugador para mostrar el escudo y el duplicador de monedas (gafas) respectivamente.
     [SerializeField] private GameObject shield;
     [SerializeField] private GameObject glasses;
+
+    // Variables para invulnerabilidad por golpe.
     private bool invulnerability;
     private float lastHitDate;
+    private bool invulnerabilityItem;
+
+    // Variables para invulnerabilidad por objeto.
     private float invulnerabilityDuration;
+    private float invulnerabilityItemStart;
+    private float invulnerabilityItemDuration;
+
+    // Variables para el consumible de monedas dobles.
     private float doubleCoinsDuration;
     private float doubleCoinsActivationDate;
+
+    // Variables para el Cambio de Color.
     private float lastColorChange;
     private float cooldownColorChange;
+
+    // Contador de escudos usados por intento.
     private float shieldUsed;
+
+    // Variable publica para comprobar si el duplicador de monedas está activo des de el CollisionManager.
     public bool doubleCoins;
 
     private void Start()
@@ -34,12 +52,14 @@ public class Controls : Mob
         baseSpeed = 8.0f;
         maxJumps = 1 + GameManager.Instance.data.extraJumps;
         doubleCoinsDuration = 30f;
+        invulnerabilityItemDuration = 5f;
 
-        // Variables para los cooldowns puestas a 0
+        // Variables para los cooldowns puestas a 0.
         lastShootDate = 0;
         lastHitDate = 0;
         lastColorChange = 0;
         doubleCoinsActivationDate = 0;
+        invulnerabilityItemStart = 0;
 
         // Otros
         doubleCoins = false;
@@ -54,7 +74,11 @@ public class Controls : Mob
 
     private void Update()
     {
-        if (Time.time - lastHitDate > invulnerabilityDuration) invulnerability = false;
+        if (Time.time - lastHitDate > invulnerabilityDuration && Time.time - invulnerabilityItemStart > invulnerabilityItemDuration)
+        {
+            invulnerability = false;
+            invulnerabilityItem = false;
+        }
         if (Time.time - doubleCoinsActivationDate > doubleCoinsDuration)
         {
             doubleCoins = false;
@@ -62,6 +86,7 @@ public class Controls : Mob
         }
 
         if (invulnerability) _sr.color = Color.green;
+        else if (invulnerabilityItem) _sr.color = marioStarColor;
         else
         {
             switch (tag)
@@ -85,7 +110,7 @@ public class Controls : Mob
         if(delayed) _rb.velocity = new Vector2(baseSpeed + 2f, _rb.velocity.y);
         else _rb.velocity = new Vector2(baseSpeed, _rb.velocity.y);
 
-        // Casos por cada tecla
+        // Controlador de teclas
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -139,6 +164,15 @@ public class Controls : Mob
                 doubleCoinsActivationDate = Time.time;
             }
         }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            if (!invulnerability && !invulnerabilityItem && GameManager.Instance.data.marioStar > 0)
+            {
+                invulnerabilityItem = true;
+                GameManager.Instance.data.marioStar--;
+                invulnerabilityItemStart = Time.time;
+            }
+        }
 
         // Recuperacion de saltos al tocar el suelo
         foreach (RaycastHit2D rc in Physics2D.RaycastAll(_trans.position, Vector2.down))
@@ -172,7 +206,7 @@ public class Controls : Mob
     }
     public void Hit()
     {
-        if (!invulnerability)
+        if (!invulnerability && !invulnerabilityItem)
         {
             if (GameManager.Instance.data.shields > 0 && shieldUsed < 3)
             {
