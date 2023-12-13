@@ -13,12 +13,16 @@ public class Controls : Mob
     private float OutScreenDate; //Registra el momento en el que sale de pantalla.
     public bool delayed;
     [SerializeField] private GameObject shield;
+    [SerializeField] private GameObject glasses;
     private bool invulnerability;
     private float lastHitDate;
     private float invulnerabilityDuration;
+    private float doubleCoinsDuration;
+    private float doubleCoinsActivationDate;
     private float lastColorChange;
     private float cooldownColorChange;
     private float shieldUsed;
+    public bool doubleCoins;
 
     private void Start()
     {
@@ -29,18 +33,21 @@ public class Controls : Mob
         cooldownColorChange = 1f - GameManager.Instance.data.lessCooldownColorChange * 0.5f;
         baseSpeed = 8.0f;
         maxJumps = 1 + GameManager.Instance.data.extraJumps;
+        doubleCoinsDuration = 30f;
 
         // Variables para los cooldowns puestas a 0
         lastShootDate = 0;
         lastHitDate = 0;
         lastColorChange = 0;
+        doubleCoinsActivationDate = 0;
 
         // Otros
+        doubleCoins = false;
         shieldUsed = 0;
         delayed = true;
         availableJumps = maxJumps;
         invulnerability = false;
-        invulnerabilityDuration = 1f;
+        invulnerabilityDuration = 1f + 0.5f * GameManager.Instance.data.longerInvulnerability;
         if (GameManager.Instance.data.iFramePostHit) invulnerabilityDuration = 2f;
     }
 
@@ -48,6 +55,11 @@ public class Controls : Mob
     private void Update()
     {
         if (Time.time - lastHitDate > invulnerabilityDuration) invulnerability = false;
+        if (Time.time - doubleCoinsActivationDate > doubleCoinsDuration)
+        {
+            doubleCoins = false;
+            glasses.SetActive(false);
+        }
 
         if (invulnerability) _sr.color = Color.green;
         else
@@ -77,6 +89,7 @@ public class Controls : Mob
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            if (GameManager.Instance.data.biggerBullets) projectilePrefab.transform.localScale = Vector3.one * 2;
             Disparar();
             SoundManager.instance.Play("shoot");
         }
@@ -88,7 +101,7 @@ public class Controls : Mob
         }
         if(Input.GetKeyDown(KeyCode.A))
         {
-            if(Time.time - lastColorChange > cooldownColorChange)
+            if(Time.time - lastColorChange > cooldownColorChange && !CompareTag("Blue"))
             {
                 ColorChange("Blue");
                 lastColorChange = Time.time;
@@ -96,7 +109,7 @@ public class Controls : Mob
         }
         if(Input.GetKeyDown(KeyCode.D))
         {
-            if (Time.time - lastColorChange > cooldownColorChange)
+            if (Time.time - lastColorChange > cooldownColorChange && !CompareTag("Red"))
             {
                 ColorChange("Red");
                 lastColorChange = Time.time;
@@ -115,6 +128,16 @@ public class Controls : Mob
         {
             _anim.SetBool("isCrouching", false);
             SoundManager.instance.Stop("slide");
+        }
+        if(Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            if (!doubleCoins && GameManager.Instance.data.doubleCoinsAtCollect > 0)
+            {
+                doubleCoins = true;
+                glasses.SetActive(true);
+                GameManager.Instance.data.doubleCoinsAtCollect--;
+                doubleCoinsActivationDate = Time.time;
+            }
         }
 
         // Recuperacion de saltos al tocar el suelo

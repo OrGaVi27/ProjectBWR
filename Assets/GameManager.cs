@@ -60,7 +60,7 @@ public class GameManager : MonoBehaviour
             maxScore = data.maxScore;
             UpdateScore();
         }
-        coins = 99;
+        coins = 100;
         UpdateCoins();
 
         gameOver.SetActive(false);
@@ -99,6 +99,9 @@ public class GameManager : MonoBehaviour
             EditText(2, $"Less Color Cooldown: {data.lessCooldownColorChange}\n 5 Coins");
             EditText(3, $"Don't lose Color: {data.dontLoseColorAtShoot}\n 5 Coins");
             EditText(4, $"Piercing Bullets: {data.bulletPenetration}\n 5 Coins");
+            EditText(5, $"Longer Invulnerability: {data.longerInvulnerability}\n 5 Coins");
+            EditText(6, $"Bigger Bullets: {data.biggerBullets}\n 5 Coins");
+            EditText(7, $"Double Coins (Consum): {data.doubleCoinsAtCollect}\n 5 Coins");
         }
     }
 
@@ -153,10 +156,15 @@ public class GameManager : MonoBehaviour
         isDead = true;
         Time.timeScale = 0;
         coinsObtText.GetComponent<TextMeshProUGUI>().text = $"Coins: +{coinsObt}";
-        DataChanges.WriteData(new DataPersisted(coins, maxScore, 0, false, false, false, 0, 0, 0, 0));
+        DataChanges.WriteData(new DataPersisted(coins, maxScore, 0, false, false, false, 0, 0, 0, 0, false));
     }
-    public void SumCoin() 
+    public void SumCoin(bool doubleCoins) 
     {
+        if(doubleCoins)
+        {
+            coinsObt++;
+            coins++;
+        }
         coinsObt++;
         coins++;
         score += 5;
@@ -178,6 +186,9 @@ public class GameManager : MonoBehaviour
         int lessColorCooldownPrice = 5;
         int dontLoseColorPrice = 5;
         int piercingBulletsPrice = 5;
+        int longerInvulnerabilityPrice = 5;
+        int biggerBulletsPrice = 5;
+        int doubleCoinsAtCollectPrice = 5;
 
         switch (element)
         {
@@ -186,7 +197,6 @@ public class GameManager : MonoBehaviour
                 {
                     data.shields++;
                     coins -= shieldPrice;
-                    UpdateCoins();
                 }
                 break;
             case "ExtraJump":
@@ -194,7 +204,6 @@ public class GameManager : MonoBehaviour
                 {
                     data.extraJumps++;
                     coins -= extraJumpPrice;
-                    UpdateCoins();
                 }
                 break;
             case "LessColorCooldown":
@@ -202,7 +211,6 @@ public class GameManager : MonoBehaviour
                 {
                     data.lessCooldownColorChange++;
                     coins -= lessColorCooldownPrice;
-                    UpdateCoins();
                 }
                 break;
             case "DontLoseColor":
@@ -210,7 +218,6 @@ public class GameManager : MonoBehaviour
                 {
                     data.dontLoseColorAtShoot = true;
                     coins -= dontLoseColorPrice;
-                    UpdateCoins();
                 }
                 break;
             case "PiercingBullets":
@@ -218,10 +225,32 @@ public class GameManager : MonoBehaviour
                 {
                     data.bulletPenetration = true;
                     coins -= piercingBulletsPrice;
-                    UpdateCoins();
+                }
+                break;
+            case "LongerInvulnerability":
+                if (data.longerInvulnerability < 3 && coins >= longerInvulnerabilityPrice)
+                {
+                    data.longerInvulnerability++;
+                    coins -= longerInvulnerabilityPrice;
+                }
+                break;
+            case "BiggerBullets":
+                if (!data.biggerBullets && coins >= biggerBulletsPrice)
+                {
+                    data.biggerBullets = true;
+                    coins -= biggerBulletsPrice;
+                }
+                break;
+            case "DoubleCoins":
+                if (data.doubleCoinsAtCollect < 99 && coins >= doubleCoinsAtCollectPrice)
+                {
+                    data.doubleCoinsAtCollect++;
+                    coins -= doubleCoinsAtCollectPrice;
                 }
                 break;
         }
+
+        UpdateCoins();
     }
     private void EditText(int index, string text)
     {

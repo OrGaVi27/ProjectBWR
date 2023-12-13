@@ -38,7 +38,7 @@ public class CollisionManager : MonoBehaviour
             case "Coin":
                 col.gameObject.SetActive(false);
                 SoundManager.instance.Play("coin");
-                GameManager.Instance.SumCoin();
+                GameManager.Instance.SumCoin(player.doubleCoins);
                 break;
             case "ChangeLevel":
                 GameObject camara = GameObject.Find("Camera");
@@ -54,7 +54,7 @@ public class CollisionManager : MonoBehaviour
             case "MCRelativePosition":
                 player.delayed = false;
                 break;
-            case "Projectile":
+            case "ProjectileEnemy":
                 Destroy(col);
                 player.Hit();
                 break;
