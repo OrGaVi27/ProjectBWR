@@ -184,6 +184,7 @@ public class Controls : Mob
             }
         }
 
+        // Comprueba el tiempo que lleva el jugador fuera de pantalla y hace que muera pasado un tiempo anteriormente determinado
         if(!onScreen && OutScreenDate != 0) 
         {
             if (Time.time - OutScreenDate > 0.5f) GameManager.Instance.Death();
