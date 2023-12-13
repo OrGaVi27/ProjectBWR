@@ -22,7 +22,9 @@ public class Enemy : Mob
         {
             Destroy(col.gameObject);
             SoundManager.instance.Play("enemyDeath");
-            Delete();
+            GameManager.Instance.score += 20;
+            GameManager.Instance.UpdateScore();
+            Destroy(gameObject);
         }
 
         if (col.CompareTag("MainCamera")) onCamera = true;

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -19,6 +20,8 @@ public class GameManager : MonoBehaviour
     public bool isDead = true;
     public GameObject gameOver;
     public GameObject mainMenu;
+    public GameObject shop;
+    public List<GameObject> shopButtons;
     private float startDate;
 
     private GameObject MC;
@@ -54,7 +57,6 @@ public class GameManager : MonoBehaviour
         if (data != null)
         {
             coins = data.coins;
-            //MaxScore = (float)Math.Truncate(data.MaxScore);
             maxScore = data.maxScore;
             UpdateScore();
         }
@@ -63,6 +65,15 @@ public class GameManager : MonoBehaviour
 
         gameOver.SetActive(false);
         isDead = true;
+
+        foreach (var item in shop.GetComponentsInChildren<Transform>())
+        {
+            if(item.name.Length >= 6 && item.name[..6] == "Button")
+            {
+                shopButtons.Add(item.gameObject);
+            }
+        }
+        shop.SetActive(false);
     }
 
     private void Update()
@@ -81,7 +92,12 @@ public class GameManager : MonoBehaviour
                 UpdateScore();
             }
         }
-
+        if(shop.activeSelf)
+        {
+            EditText(0, $"Shields: {data.shields}\n 5 Coins");
+            EditText(1, $"ExtraJumps: {data.extraJumps}\n 5 Coins");
+            EditText(2, $"Less Color Cooldown: {data.lessCooldownColorChange}\n 5 Coins");
+        }
     }
 
     private void OnSceneWasLoaded(Scene scene, LoadSceneMode mode)
@@ -153,24 +169,42 @@ public class GameManager : MonoBehaviour
     {
         coinsText.GetComponent<TextMeshProUGUI>().text = $"Coins: {coins}";
     }
-    public void AddShield()
+    public void Purchase(string element)
     {
-        int price = 5;
-        if(data.shields < 99 && coins >= price)
+        int ShieldPrice = 5;
+        int ExtraJumpPrice = 5;
+        int LessColorCooldownPrice = 5;
+
+        switch(element)
         {
-            data.shields++;
-            coins -= price;
-            UpdateCoins();
+            case "Shield":
+                if (data.shields < 99 && coins >= ShieldPrice)
+                {
+                    data.shields++;
+                    coins -= ShieldPrice;
+                    UpdateCoins();
+                }
+                break;
+            case "ExtraJump":
+                if (data.extraJumps < 2 && coins >= ExtraJumpPrice)
+                {
+                    data.extraJumps++;
+                    coins -= ExtraJumpPrice;
+                    UpdateCoins();
+                }
+                break;
+            case "LessColorCooldown":
+                if (data.lessCooldownColorChange < 2 && coins >= LessColorCooldownPrice)
+                {
+                    data.lessCooldownColorChange++;
+                    coins -= LessColorCooldownPrice;
+                    UpdateCoins();
+                }
+                break;
         }
     }
-    public void ExtraJump()
+    private void EditText(int index, string text)
     {
-        int price = 5;
-        if (data.extraJumps < 2 && coins >= price)
-        {
-            data.extraJumps++;
-            coins -= price;
-            UpdateCoins();
-        }
+        shopButtons[index].GetComponentInChildren<TextMeshProUGUI>().text = text;
     }
 }

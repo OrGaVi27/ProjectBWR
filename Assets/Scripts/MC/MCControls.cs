@@ -118,9 +118,9 @@ public class Controls : Mob
         }
 
         // Recuperacion de saltos al tocar el suelo
-        foreach (RaycastHit2D rc in Physics2D.RaycastAll(new Vector2(_trans.position.x, _trans.position.y - 0.5f), Vector2.down))
+        foreach (RaycastHit2D rc in Physics2D.RaycastAll(_trans.position, Vector2.down))
         {
-            if (rc.collider.gameObject.layer == LayerMask.NameToLayer("Floor") && rc.distance < 0.015)
+            if (rc.collider.gameObject.layer == LayerMask.NameToLayer("Floor") && rc.distance < 0.6)
             {
                 availableJumps = maxJumps;
                 _anim.SetBool("isJumping", false);
@@ -135,6 +135,7 @@ public class Controls : Mob
     private void Jump()
     {
         _rb.velocity = Vector2.up * jumpForce;
+        if (_anim.GetBool("isJumping")) availableJumps--;
     }
     public void OnScreen(bool estado)
     {

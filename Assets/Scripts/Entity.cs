@@ -16,14 +16,4 @@ public class Entity : MonoBehaviour
         _sr = GetComponent<SpriteRenderer>();
         _trans = GetComponent<Transform>();
     }
-
-    public void Delete()
-    {
-        Destroy(gameObject);
-        if (CompareTag("Enemy")) 
-        {
-            GameManager.Instance.score += 20;
-            GameManager.Instance.UpdateScore();
-        }
-    }
 }
