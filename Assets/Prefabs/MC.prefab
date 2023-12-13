@@ -232,7 +232,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!61 &8374404995150471089
 BoxCollider2D:
@@ -302,6 +302,7 @@ MonoBehaviour:
   lastShootDate: 0
   baseSpeed: 8
   availableJumps: 0
+  maxJumps: 0
   delayed: 0
   marioStarColor: {r: 0.6, g: 0, b: 0.6, a: 1}
   shield: {fileID: 7236414570649473764}
