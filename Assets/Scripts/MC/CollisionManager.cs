@@ -21,6 +21,17 @@ public class CollisionManager : MonoBehaviour
                 GameManager.Instance.Death();
                 break;
         }
+        if(col.gameObject.layer == LayerMask.NameToLayer("Floor"))
+        {
+            foreach (RaycastHit2D rc in Physics2D.RaycastAll(player._trans.position, Vector2.down))
+            {
+                if (rc.collider.gameObject.layer == LayerMask.NameToLayer("Floor") && rc.distance < 0.6f)
+                {
+                    player.availableJumps = player.maxJumps;
+                    player._anim.SetBool("isJumping", false);
+                }
+            }
+        }
     }
     private void OnCollisionExit2D(Collision2D col)
     {
@@ -28,6 +39,7 @@ public class CollisionManager : MonoBehaviour
         {
             case "Floor":
                 player.availableJumps--;
+                player._anim.SetBool("isJumping", true);
                 break;
         }
     }

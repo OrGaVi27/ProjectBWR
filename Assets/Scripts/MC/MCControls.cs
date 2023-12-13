@@ -8,7 +8,7 @@ public class Controls : Mob
     public float baseSpeed;  //Velocidad lateral base.
     private bool onGround;  //Almacena el resultado de la comprobacion del contacto del personaje con el suelo.
     public int availableJumps;   //Saltos disponibles en el momento.
-    private int maxJumps;  //Saltos que se asignaran a saltosDisponibles en cuanto el MC repose en el suelo.
+    public int maxJumps;  //Saltos que se asignaran a saltosDisponibles en cuanto el MC repose en el suelo.
     private bool onScreen; //Se modifica seg�n el MC entre o salga de pantalla.
     private float OutScreenDate; //Registra el momento en el que sale de pantalla.
     public bool delayed; //Comprueba si el jugador está más atras de su posición predefinida.
@@ -120,7 +120,6 @@ public class Controls : Mob
         }
         if(Input.GetKeyDown(KeyCode.W) && availableJumps > 0)
         {
-            _anim.SetBool("isJumping", true);
             Jump();
             SoundManager.instance.Play("jump");
         }
@@ -171,16 +170,6 @@ public class Controls : Mob
                 invulnerabilityItem = true;
                 GameManager.Instance.data.marioStar--;
                 invulnerabilityItemStart = Time.time;
-            }
-        }
-
-        // Recuperacion de saltos al tocar el suelo
-        foreach (RaycastHit2D rc in Physics2D.RaycastAll(_trans.position, Vector2.down))
-        {
-            if (rc.collider.gameObject.layer == LayerMask.NameToLayer("Floor") && rc.distance < 0.6)
-            {
-                availableJumps = maxJumps;
-                _anim.SetBool("isJumping", false);
             }
         }
 
