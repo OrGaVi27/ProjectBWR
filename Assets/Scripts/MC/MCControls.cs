@@ -6,12 +6,8 @@ using UnityEngine.UIElements;
 public class Controls : Mob
 {
     public float baseSpeed;  //Velocidad lateral base
-    private float cooldownJumpRecover; // Tiempo de espera minimo para que el salto no se recupere antes de que el objeto se levante del suelo
-    private float lastJumpDate;  //Variable utilizada en la comprobacion del cooldown de recuperacion de los saltos
     private bool onGround;  //Almacena el resultado de la comprobacion del contacto del personaje con el suelo
-    private float radiusGround = 1;   //Variable usada en la formula de la comprobaci�n "enTierra"
-    private LayerMask layerGround;   //Almacena la capa del Suelo
-    private int availableJumps;   //Saltos disponibles en el momento
+    public int availableJumps;   //Saltos disponibles en el momento
     private int maxJumps;  //Saltos que se asignaran a saltosDisponibles en cuanto el MC repose en el suelo
     private bool onScreen; //Se modifica seg�n el MC entre o salga de pantalla.
     private float OutScreenDate; //Registra el momento en el que sale de pantalla.
@@ -31,19 +27,16 @@ public class Controls : Mob
         jumpForce = 14.0f;
         _rb.gravityScale = 4f;
         cooldownColorChange = 1f - GameManager.Instance.data.lessCooldownColorChange * 0.5f;
-        cooldownJumpRecover = 0.1f;
         baseSpeed = 8.0f;
         maxJumps = 1 + GameManager.Instance.data.extraJumps;
 
         // Variables para los cooldowns puestas a 0
         lastShootDate = 0;
-        lastJumpDate = 0;
         lastHitDate = 0;
         lastColorChange = 0;
 
         // Otros
         shieldUsed = 0;
-        layerGround = LayerMask.GetMask("Floor");
         delayed = true;
         availableJumps = maxJumps;
         invulnerability = false;
@@ -75,8 +68,6 @@ public class Controls : Mob
 
         if (GameManager.Instance.data.shields > 0 && shieldUsed < 3) shield.transform.localScale = Vector3.one;
         else shield.transform.localScale = Vector3.zero;
-
-        onGround = Physics2D.OverlapCircle(_trans.position, radiusGround, layerGround); ;
 
         // Velocidad constante
         if(delayed) _rb.velocity = new Vector2(baseSpeed + 2f, _rb.velocity.y);
@@ -126,11 +117,14 @@ public class Controls : Mob
             SoundManager.instance.Stop("slide");
         }
 
-        // Recuperaci�n de saltos al tocar el suelo
-        if (onGround && Time.time - lastJumpDate > cooldownJumpRecover)
+        // Recuperacion de saltos al tocar el suelo
+        foreach (RaycastHit2D rc in Physics2D.RaycastAll(new Vector2(_trans.position.x, _trans.position.y - 0.5f), Vector2.down))
         {
-            availableJumps = maxJumps;
-            _anim.SetBool("isJumping", false);
+            if (rc.collider.gameObject.layer == LayerMask.NameToLayer("Floor") && rc.distance < 0.015)
+            {
+                availableJumps = maxJumps;
+                _anim.SetBool("isJumping", false);
+            }
         }
 
         if(!onScreen && OutScreenDate != 0) 
@@ -141,8 +135,6 @@ public class Controls : Mob
     private void Jump()
     {
         _rb.velocity = Vector2.up * jumpForce;
-        availableJumps--;
-        lastJumpDate = Time.time;
     }
     public void OnScreen(bool estado)
     {

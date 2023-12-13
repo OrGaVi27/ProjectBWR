@@ -22,6 +22,16 @@ public class CollisionManager : MonoBehaviour
                 break;
         }
     }
+    private void OnCollisionExit2D(Collision2D col)
+    {
+        switch (LayerMask.LayerToName(col.gameObject.layer))
+        {
+            case "Floor":
+                player.availableJumps--;
+                Debug.Log("Salto--");
+                break;
+        }
+    }
     private void OnTriggerEnter2D(Collider2D col)
     {
         switch (col.gameObject.tag)
