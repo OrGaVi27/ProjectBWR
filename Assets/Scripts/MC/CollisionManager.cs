@@ -23,10 +23,9 @@ public class CollisionManager : MonoBehaviour
         }
         if(col.gameObject.layer == LayerMask.NameToLayer("Floor"))
         {
-            //if(transform.position.y + transform)
             foreach (RaycastHit2D rc in Physics2D.RaycastAll(player._trans.position, Vector2.down))
             {
-                if (rc.collider.gameObject.layer == LayerMask.NameToLayer("Floor") && rc.distance < 0.6f)
+                if (rc.collider.gameObject.layer == LayerMask.NameToLayer("Floor") || rc.collider.CompareTag("Obstacle") && rc.distance < 0.6f)
                 {
                     player.availableJumps = player.maxJumps;
                     player._anim.SetBool("isJumping", false);

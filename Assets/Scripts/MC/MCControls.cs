@@ -48,7 +48,7 @@ public class Controls : Mob
         shootCooldown = 0.5f;
         jumpForce = 14.0f;
         _rb.gravityScale = 4f;
-        cooldownColorChange = 1f - GameManager.Instance.data.lessCooldownColorChange * 0.5f;
+        cooldownColorChange = 0.5f - GameManager.Instance.data.lessCooldownColorChange * 0.25f;
         baseSpeed = 8.0f;
         maxJumps = 1 + GameManager.Instance.data.extraJumps;
         doubleCoinsDuration = 30f;
