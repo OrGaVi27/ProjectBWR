@@ -59,7 +59,6 @@ public class GameManager : MonoBehaviour
         QualitySettings.vSyncCount = 0;
         SetResolution(1920, 1090, true);
         SetRefreshRate(0);
-        DataPersisted data = DataChanges.LoadData();
         if (data != null)
         {
             coins = data.coins;
