@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     public GameObject shop;
     public List<GameObject> shopButtons;
     private float startDate;
+    public Toggle fullScreen;
 
     private GameObject MC;
 
@@ -30,6 +31,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI ScoreText;
     public TextMeshProUGUI coinsText;
     public TextMeshProUGUI coinsObtText;
+    public TextMeshProUGUI resDisplay;
 
     void Awake()
     {
@@ -54,6 +56,10 @@ public class GameManager : MonoBehaviour
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Enemies"), LayerMask.NameToLayer("Ceiling"), true);
 
         data = DataChanges.LoadData();
+        QualitySettings.vSyncCount = 0;
+        SetResolution(1920, 1090, true);
+        SetRefreshRate(0);
+        DataPersisted data = DataChanges.LoadData();
         if (data != null)
         {
             coins = data.coins;
@@ -264,5 +270,21 @@ public class GameManager : MonoBehaviour
     private void EditText(int index, string text)
     {
         shopButtons[index].GetComponentInChildren<TextMeshProUGUI>().text = text;
+    }
+    public void SetResolution(Resolution resolution)
+    {
+        Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
+    }
+    public void SetResolution(int width, int height, bool fullscreen)
+    {
+        Screen.SetResolution(width, height, fullscreen);
+    }
+    public void SetFullScreen()
+    {
+        Screen.fullScreen = !Screen.fullScreen;
+    }
+    public void SetRefreshRate(float maxFPS)
+    {
+        Application.targetFrameRate = (int)maxFPS;
     }
 }

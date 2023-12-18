@@ -11,7 +11,7 @@ public class BiomeManager : MonoBehaviour
     [SerializeField] private List<GameObject> levelsPrefab = new List<GameObject>();
     private GameObject biome;
     private GameObject level;
-    public int lastBiome;
+    private int lastBiome;
 
     void Awake()
     {
@@ -38,7 +38,6 @@ public class BiomeManager : MonoBehaviour
             random = Random.Range(1, 4);
             random2 = Random.Range(0, 3);
         } while (random == lastBiome);
-        lastBiome = random;
         biome = Instantiate(biomesPrefab[random]);
         level = Instantiate(levelsPrefab[random2 + 3 * (random  - 1)], biome.transform);
     }
