@@ -8,7 +8,9 @@ public class BiomeManager : MonoBehaviour
 {
     public static BiomeManager Instance;
     [SerializeField] private List<GameObject> biomesPrefab = new List<GameObject>();
+    [SerializeField] private List<GameObject> levelsPrefab = new List<GameObject>();
     private GameObject biome;
+    private GameObject level;
     public int lastBiome;
 
     void Awake()
@@ -29,12 +31,15 @@ public class BiomeManager : MonoBehaviour
     public void RandomBiome()
     {
         Destroy(biome);
-        int random;
+        if (level != null) Destroy(level);
+        int random, random2;
         do
         {
             random = Random.Range(1, 4);
+            random2 = Random.Range(0, 3);
         } while (random == lastBiome);
         lastBiome = random;
         biome = Instantiate(biomesPrefab[random]);
+        level = Instantiate(levelsPrefab[random2 + 3 * (random  - 1)], biome.transform);
     }
 }
