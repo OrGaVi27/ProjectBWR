@@ -9,21 +9,11 @@ public class Entity : MonoBehaviour
     public SpriteRenderer _sr;
     public Transform _trans;
 
-    public void DefineEntity()
+    void Awake()
     {
         _anim = GetComponent<Animator>();
         _rb = GetComponent<Rigidbody2D>();
         _sr = GetComponent<SpriteRenderer>();
         _trans = GetComponent<Transform>();
-    }
-
-    public void Delete()
-    {
-        Destroy(gameObject);
-        if (CompareTag("Enemigo")) 
-        {
-            GameManager.Instance.score += 20;
-            GameManager.Instance.UpdateScore();
-        }
     }
 }

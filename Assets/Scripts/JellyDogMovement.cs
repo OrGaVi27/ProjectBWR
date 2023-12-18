@@ -12,7 +12,6 @@ public class JellyDogMovement : Enemy
     // Start is called before the first frame update
     void Start()
     {
-        DefineEntity();
         toUp = true;
     }
     

@@ -5,12 +5,6 @@ using UnityEngine;
 
 public class DataChanges : MonoBehaviour
 {
-    //private string path;
-
-    //private void Start()
-    //{
-    //    path = Path.Combine(Application.persistentDataPath, "data.json");
-    //}
     static public void WriteData(DataPersisted data)
     {
         string path = Path.Combine(Application.persistentDataPath, "data.json");
