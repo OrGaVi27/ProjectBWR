@@ -65,7 +65,6 @@ public class GameManager : MonoBehaviour
             maxScore = data.maxScore;
             UpdateScore();
         }
-        coins = 100;
         UpdateCoins();
 
         gameOver.SetActive(false);
@@ -132,6 +131,7 @@ public class GameManager : MonoBehaviour
         else
         {
             SoundManager.instance.Stop("mainMenu");
+            SoundManager.instance.Play("music");
             SceneManager.LoadScene(2);
             mainMenu.SetActive(false);
             ResetValues();
@@ -175,6 +175,11 @@ public class GameManager : MonoBehaviour
         coins++;
         score += 5;
         UpdateScore();
+    }
+    public void AddCoins(int value)
+    {
+        coins += value;
+        UpdateCoins();
     }
     public void UpdateScore()
     {
