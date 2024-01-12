@@ -19,4 +19,8 @@ public class Projectile : Entity
     {
         _rb.velocity = transform.right * speed;
     }
+    private void OnTriggerExit2D(Collider2D col)
+    {
+        if(col.gameObject.CompareTag("MainCamera")) Destroy(gameObject);
+    }
 }

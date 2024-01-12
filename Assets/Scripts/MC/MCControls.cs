@@ -51,7 +51,7 @@ public class Controls : Mob
         cooldownColorChange = 0.5f - GameManager.Instance.data.lessCooldownColorChange * 0.25f;
         baseSpeed = 8.0f;
         maxJumps = 1 + GameManager.Instance.data.extraJumps;
-        doubleCoinsDuration = 30f;
+        doubleCoinsDuration = 180f;
         invulnerabilityItemDuration = 5f;
 
         // Variables para los cooldowns puestas a 0.

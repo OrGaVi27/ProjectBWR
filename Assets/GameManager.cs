@@ -99,14 +99,14 @@ public class GameManager : MonoBehaviour
         if(shop.activeSelf)
         {
             EditText(0, $"Shields: {data.shields}\n 5 Coins");
-            EditText(1, $"ExtraJumps: {data.extraJumps}\n 5 Coins");
-            EditText(2, $"Less Color Cooldown: {data.lessCooldownColorChange}\n 5 Coins");
-            EditText(3, $"Don't lose Color: {data.dontLoseColorAtShoot}\n 5 Coins");
-            EditText(4, $"Piercing Bullets: {data.bulletPenetration}\n 5 Coins");
-            EditText(5, $"Longer Invulnerability: {data.longerInvulnerability}\n 5 Coins");
-            EditText(6, $"Bigger Bullets: {data.biggerBullets}\n 5 Coins");
-            EditText(7, $"Double Coins (Consum): {data.doubleCoinsAtCollect}\n 5 Coins");
-            EditText(8, $"Invulnerability (Consum): {data.marioStar}\n 5 Coins");
+            EditText(1, $"ExtraJumps: {data.extraJumps}\n 100 Coins");
+            EditText(2, $"Less Color Cooldown: {data.lessCooldownColorChange}\n 50 Coins");
+            EditText(3, $"Don't lose Color: {data.dontLoseColorAtShoot}\n 125 Coins");
+            EditText(4, $"Piercing Bullets: {data.bulletPenetration}\n 50 Coins");
+            EditText(5, $"Longer Invulnerability: {data.longerInvulnerability}\n 50 Coins");
+            EditText(6, $"Bigger Bullets: {data.biggerBullets}\n 75 Coins");
+            EditText(7, $"Double Coins (Consum): {data.doubleCoinsAtCollect}\n 12 Coins");
+            EditText(8, $"Invulnerability (Consum): {data.marioStar}\n 15 Coins");
         }
     }
 
