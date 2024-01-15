@@ -54,6 +54,7 @@ public class CollisionManager : MonoBehaviour
                 break;
             case "ChangeLevel":
                 col.GetComponent<Animator>().SetBool("transition", true);
+                Debug.Log(col.GetComponent<Animator>().GetBool("transition"));
                 break;
             case "MainCamera":
                 player.OnScreen(true);
