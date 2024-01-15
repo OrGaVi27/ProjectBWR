@@ -53,12 +53,7 @@ public class CollisionManager : MonoBehaviour
                 GameManager.Instance.SumCoin(player.doubleCoins);
                 break;
             case "ChangeLevel":
-                GameObject camara = GameObject.Find("Camera");
-                Vector3 posicionCamara = GameObject.Find("LevelStart").transform.position;
-                gameObject.transform.position = new Vector3(posicionCamara.x - 7f, gameObject.transform.position.y, gameObject.transform.position.z);
-                camara.transform.position = new Vector3(posicionCamara.x, camara.transform.position.y, camara.transform.position.z);
-                BiomeManager.Instance.RandomBiome();
-                if(player.baseSpeed < 20) player.baseSpeed += 0.1f;
+                col.GetComponent<Animator>().SetBool("transition", true);
                 break;
             case "MainCamera":
                 player.OnScreen(true);
@@ -96,6 +91,15 @@ public class CollisionManager : MonoBehaviour
                 break;
             case "MCRelativePosition":
                 player.delayed = true;
+                break;
+            case "ChangeLevel":
+                GameObject camara = GameObject.Find("Camera");
+                Vector3 posicionCamara = GameObject.Find("LevelStart").transform.position;
+                gameObject.transform.position = new Vector3(posicionCamara.x - 7f, gameObject.transform.position.y, gameObject.transform.position.z);
+                camara.transform.position = new Vector3(posicionCamara.x, camara.transform.position.y, camara.transform.position.z);
+                BiomeManager.Instance.RandomBiome();
+                if (player.baseSpeed < 20) player.baseSpeed += 0.1f;
+                col.GetComponent<Animator>().SetBool("transition", false);
                 break;
         }
     }
