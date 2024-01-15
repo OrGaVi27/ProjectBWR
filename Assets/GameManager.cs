@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using TMPro;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.SocialPlatforms.Impl;
@@ -162,7 +163,19 @@ public class GameManager : MonoBehaviour
         isDead = true;
         Time.timeScale = 0;
         coinsObtText.GetComponent<TextMeshProUGUI>().text = $"Coins: +{coinsObt}";
-        DataChanges.WriteData(new DataPersisted(coins, maxScore, 0, false, false, false, 0, 0, 0, 0, false, 0));
+        data.coins = coins;
+        data.maxScore = maxScore;
+        DataChanges.WriteData(data);
+    }
+    public void ResetData()
+    {
+        data = new DataPersisted();
+        DataChanges.WriteData(data);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        coins = data.coins;
+        maxScore = data.maxScore;
+        UpdateCoins();
+        UpdateScore();
     }
     public void SumCoin(bool doubleCoins) 
     {

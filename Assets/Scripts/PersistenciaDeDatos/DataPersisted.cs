@@ -29,4 +29,19 @@ public class DataPersisted
         this.biggerBullets = biggerBullets;
         this.marioStar = marioStar;
     }
+    public DataPersisted()
+    {
+        coins = 0;
+        maxScore = 0;
+        shields = 0;
+        iFramePostHit = false;
+        bulletPenetration = false;
+        dontLoseColorAtShoot = false;
+        doubleCoinsAtCollect = 0;
+        longerInvulnerability = 0;
+        extraJumps = 0;
+        lessCooldownColorChange = 0;
+        biggerBullets = false;
+        marioStar = 0;
+    }
 }
