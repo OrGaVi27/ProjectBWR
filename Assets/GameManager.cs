@@ -57,8 +57,16 @@ public class GameManager : MonoBehaviour
 
         data = DataChanges.LoadData();
         QualitySettings.vSyncCount = 0;
-        SetResolution(1920, 1090, true);
-        SetRefreshRate(0);
+        if (!PlayerPrefs.HasKey("resolution"))
+        {
+            Screen.SetResolution(ResolutionControl.GetFilteredResolutions()[PlayerPrefs.GetInt("resolution")]);
+        }
+        else 
+        {
+            SetResolution(1920, 1090, true);
+            SetRefreshRate(0);
+        }
+        
         if (data != null)
         {
             coins = data.coins;
