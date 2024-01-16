@@ -8,10 +8,10 @@ public class Achievements : MonoBehaviour
     [SerializeField] private GameObject prefab;
     private void Start()
     {
-        AchievementUI("Polla 1", 1, 10, 0);
-        AchievementUI("Polla 2", 1, 10, 1);
-        AchievementUI("Polla 3", 1, 10, 2);
-        AchievementUI("Polla 4", 1, 10, 3);
+        AchievementUI("Logro: 1", 1, 10, 0);
+        AchievementUI("Logro: 2", 1, 10, 1);
+        AchievementUI("Logro: 3", 1, 10, 2);
+        AchievementUI("Logro: 4", 1, 10, 3);
     }
     private void AchievementUI(string text, float quantity, float maxQuantity, int index)
     {
