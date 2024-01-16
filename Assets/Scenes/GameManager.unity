@@ -310,6 +310,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 476429611373839880, guid: 5cee5f2ffa8e8494da5966a5fc330d27, type: 3}
+      propertyPath: m_text
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 476429611373839880, guid: 5cee5f2ffa8e8494da5966a5fc330d27, type: 3}
       propertyPath: m_fontAsset
       value: 
       objectReference: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
@@ -1903,7 +1907,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4820370925516337328, guid: 5cee5f2ffa8e8494da5966a5fc330d27, type: 3}
       propertyPath: m_Value
-      value: 0
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 4820370925516337328, guid: 5cee5f2ffa8e8494da5966a5fc330d27, type: 3}
+      propertyPath: m_MaxValue
+      value: 241
+      objectReference: {fileID: 0}
+    - target: {fileID: 4820370925516337328, guid: 5cee5f2ffa8e8494da5966a5fc330d27, type: 3}
+      propertyPath: m_MinValue
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 4820370925516337328, guid: 5cee5f2ffa8e8494da5966a5fc330d27, type: 3}
       propertyPath: m_Transition
@@ -1911,7 +1923,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4820370925516337328, guid: 5cee5f2ffa8e8494da5966a5fc330d27, type: 3}
       propertyPath: m_WholeNumbers
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4820370925516337328, guid: 5cee5f2ffa8e8494da5966a5fc330d27, type: 3}
       propertyPath: m_Colors.m_NormalColor.b
@@ -4095,7 +4107,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2079341963}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 070f044d70f015847a0d41dc8b96eaa8, type: 3}
   m_Name: 
