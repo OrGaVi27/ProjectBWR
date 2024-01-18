@@ -118,7 +118,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 1
-  controlID: 115
+  controlID: 102
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -143,7 +143,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 116
+  controlID: 103
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -671,9 +671,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 892.6287, y: 545.50836, z: -349.94675}
+    m_Target: {x: 1052.4252, y: 615.0682, z: -349.66565}
     speed: 2
-    m_Value: {x: 892.6287, y: 545.50836, z: -349.94675}
+    m_Value: {x: 1052.4252, y: 615.0682, z: -349.66565}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -723,9 +723,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 589.17365
+    m_Target: 561.03986
     speed: 2
-    m_Value: 589.17365
+    m_Value: 561.03986
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -743,7 +743,7 @@ MonoBehaviour:
     m_FarClip: 10000
     m_DynamicClip: 1
     m_OcclusionCulling: 0
-  m_LastSceneViewRotation: {x: -0.20521347, y: 0.44465256, z: -0.10543113, w: -0.8654819}
+  m_LastSceneViewRotation: {x: -0.08717229, y: 0.89959055, z: -0.21045254, w: -0.3726226}
   m_LastSceneViewOrtho: 0
   m_ReplacementShader: {fileID: 0}
   m_ReplacementString: 
@@ -787,23 +787,23 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: b424feff
-      m_LastClickedID: -121676
-      m_ExpandedIDs: b424feff5c26feff7c45feffe493feffb69dfeff10a2feffecaffeffd0b2feffb4b3feff6ec9feff00d1feff30f6feff50f6feff70f6feff90f6feffb0f6feff08fdfeff8201fffff401ffffa41dffffae1dffffb01dfffffe1dffff6c1effffcc23ffff9029ffffa629fffffe8dffffaa92ffffb292ffffbe92ffff2c99ffff3e99ffff4899ffff4a99ffffaae5ffff1af2ffff24f2ffff26f2ffff16fbffff1afbfffff4ffffff1865000062730000f68700006c910000
+      m_SelectedIDs: 90f9ffff
+      m_LastClickedID: -1648
+      m_ExpandedIDs: 86f9ffff18fbffff1afbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: 
-        m_OriginalName: 
+        m_Name: Achievements
+        m_OriginalName: Achievements
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: 0
+        m_UserData: -1578
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
-        m_OriginalEventType: 11
+        m_OriginalEventType: 0
         m_IsRenamingFilename: 0
         m_ClientGUIView: {fileID: 9}
       m_SearchString: 
@@ -956,7 +956,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets
+    - Assets/Sprites
     m_Globs: []
     m_OriginalText: 
     m_ImportLogFlags: 0
@@ -964,16 +964,16 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 85
   m_LastFolders:
-  - Assets
+  - Assets/Sprites
   m_LastFoldersGridSize: 85
   m_LastProjectPath: D:\Unity Proyectos\ProjectBWR
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 24}
-    m_SelectedIDs: 286a0000
-    m_LastClickedID: 27176
-    m_ExpandedIDs: 00000000286a0000a46d0000d68a0000d88a0000da8a0000dc8a000000ca9a3b
+    scrollPos: {x: 0, y: 8}
+    m_SelectedIDs: 4e6c0000
+    m_LastClickedID: 27726
+    m_ExpandedIDs: 00000000be680000c0680000c2680000c4680000c668000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1001,7 +1001,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000286a0000
+    m_ExpandedIDs: 00000000be680000c0680000c2680000c4680000c6680000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1029,7 +1029,7 @@ MonoBehaviour:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
     m_HadKeyboardFocusLastEvent: 1
-    m_ExpandedInstanceIDs: c6230000d2670000be6700001a69000026770000707700006a8d00000e6e0000106e0000d08a0000088a0000e669000000000000
+    m_ExpandedInstanceIDs: c6230000d2670000be6700001a69000026770000707700006a8d00000e6e0000106e0000d08a0000088a0000e6690000687a000000000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
