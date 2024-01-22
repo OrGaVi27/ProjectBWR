@@ -9,22 +9,19 @@ public class Achievements : MonoBehaviour
     [SerializeField] private GameObject prefab;
     private void Start()
     {
-        AchievementUI("Logro: 1", 0, 10);
-        AchievementUI("Logro: 2", 1, 10);
-        AchievementUI("Logro: 3", 2, 10);
-        AchievementUI("Logro: 4", 3, 10);
-        AchievementUI("Logro: 5", 4, 10);
-        AchievementUI("Logro: 6", 5, 10);
-        AchievementUI("Logro: 7", 6, 10);
-        AchievementUI("Logro: 8", 7, 10);
-        AchievementUI("Logro: 9", 8, 10);
-        AchievementUI("Logro: 10", 9, 10);
-        AchievementUI("Logro: 11", 10, 10);
+        AchievementUI("Coge 200 monedas:", GameManager.Instance.data.achieCoins, 200);
+        AchievementUI("Elimina 100 enemigos:", GameManager.Instance.data.achieEnemies, 10);
+        AchievementUI("Llega a 1.000 de Score:", GameManager.Instance.maxScore, 1000);
+        AchievementUI("Atraviesa 200 muros:", GameManager.Instance.data.achieWalls, 10);
+        AchievementUI("Muere 69 veces:", 4, 10);
+        AchievementUI("Compra toda la tienda (no consumibles):", 5, 10);
     }
     private void AchievementUI(string text, float quantity, float maxQuantity)
     {
+        float percent = quantity / maxQuantity;
+        if (percent > 1) percent = 1;
         GameObject achievement = Instantiate(prefab, GetComponentsInChildren<Transform>().Where(item => item.name == "container").ToArray()[0]);
-        achievement.GetComponentInChildren<TextMeshProUGUI>().text = text;
-        achievement.GetComponentsInChildren<RectTransform>().Where(item => item.name == "Bar").ToArray()[0].position -= new Vector3(776 * (1 -(quantity / maxQuantity)), 0,0);
+        achievement.GetComponentInChildren<TextMeshProUGUI>().text = $"{text} {quantity} / {maxQuantity}";
+        achievement.GetComponentsInChildren<RectTransform>().Where(item => item.name == "Bar").ToArray()[0].position -= new Vector3(776 * (1 -(percent)), 0,0);
     }
 }

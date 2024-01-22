@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     public int coins;
     private int coinsObt = 0;
     public float score;
-    private float maxScore;
+    public float maxScore;
     public bool isDead = true;
     public GameObject gameOver;
     public GameObject mainMenu;

@@ -13,8 +13,15 @@ public class DataPersisted
     public int lessCooldownColorChange;
     public bool biggerBullets;
     public int marioStar;
+    public int achieCoins;
+    public int achieEnemies;
+    public int achieWalls;
+    public int achieDeaths;
 
-    public DataPersisted(int coins,float maxScore, int shields, bool iFramePostHit,bool bulletPenetration,bool dontLoseColorAtShoot,int doubleCoinsAtCollect, int longerInvulnerability, int extraJumps, int lessCooldownColorChange, bool biggerBullets, int marioStar)
+    public DataPersisted(int coins,float maxScore, int shields, bool iFramePostHit,bool bulletPenetration,
+        bool dontLoseColorAtShoot,int doubleCoinsAtCollect, int longerInvulnerability, int extraJumps,
+        int lessCooldownColorChange, bool biggerBullets, int marioStar,
+        int achiCoins, int achieEnemies, int achieWalls, int achieDeaths)
     {
         this.coins = coins;
         this.maxScore = maxScore;
@@ -28,6 +35,10 @@ public class DataPersisted
         this.lessCooldownColorChange = lessCooldownColorChange;
         this.biggerBullets = biggerBullets;
         this.marioStar = marioStar;
+        this.achieCoins = achiCoins;
+        this.achieEnemies = achieEnemies;
+        this.achieWalls = achieWalls;
+        this.achieDeaths = achieDeaths;
     }
     public DataPersisted()
     {
