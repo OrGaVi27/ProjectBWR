@@ -21,7 +21,7 @@ public class DataPersisted
     public DataPersisted(int coins,float maxScore, int shields, bool iFramePostHit,bool bulletPenetration,
         bool dontLoseColorAtShoot,int doubleCoinsAtCollect, int longerInvulnerability, int extraJumps,
         int lessCooldownColorChange, bool biggerBullets, int marioStar,
-        int achiCoins, int achieEnemies, int achieWalls, int achieDeaths)
+        int achieCoins, int achieEnemies, int achieWalls, int achieDeaths)
     {
         this.coins = coins;
         this.maxScore = maxScore;
@@ -35,7 +35,7 @@ public class DataPersisted
         this.lessCooldownColorChange = lessCooldownColorChange;
         this.biggerBullets = biggerBullets;
         this.marioStar = marioStar;
-        this.achieCoins = achiCoins;
+        this.achieCoins = achieCoins;
         this.achieEnemies = achieEnemies;
         this.achieWalls = achieWalls;
         this.achieDeaths = achieDeaths;
@@ -54,5 +54,10 @@ public class DataPersisted
         lessCooldownColorChange = 0;
         biggerBullets = false;
         marioStar = 0;
+    }
+    public int AchieShop(bool all)
+    {
+        if (all) return 10;
+        return extraJumps + lessCooldownColorChange + System.Convert.ToInt32(bulletPenetration) + longerInvulnerability + System.Convert.ToInt32(biggerBullets);
     }
 }

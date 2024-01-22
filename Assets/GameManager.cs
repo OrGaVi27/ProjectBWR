@@ -133,6 +133,8 @@ public class GameManager : MonoBehaviour
     }
     public void Death()
     {
+        UnityEngine.Debug.Log(data.achieDeaths);
+        data.achieDeaths++;
         SoundManager.instance.Play("death");
         SoundManager.instance.Play("gameOver");
         MC.SetActive(false);
@@ -162,9 +164,12 @@ public class GameManager : MonoBehaviour
         {
             coinsObt++;
             coins++;
+            data.achieCoins++;
         }
         coinsObt++;
         coins++;
+        data.achieCoins++;
+
         score += 5;
         UpdateScore();
     }
