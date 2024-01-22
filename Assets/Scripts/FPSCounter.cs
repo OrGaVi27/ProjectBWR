@@ -7,17 +7,6 @@ public class FPSCounter : MonoBehaviour
 {
     private float count;
 
-    private void OnDisable()
-    {
-        PlayerPrefs.SetInt("fpsCounter", 0);
-        Debug.Log(Convert.ToBoolean(PlayerPrefs.GetInt("fpsCounter")));
-    }
-    private void OnEnable()
-    {        
-        Debug.Log(Convert.ToBoolean(PlayerPrefs.GetInt("fpsCounter")));
-        this.enabled=Convert.ToBoolean(PlayerPrefs.GetInt("fpsCounter"));
-        PlayerPrefs.SetInt("fpsCounter", 1);
-    }
     private IEnumerator Start()
     {
         GUI.depth = 2;

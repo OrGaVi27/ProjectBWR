@@ -48,12 +48,10 @@ public class ResolutionControl : MonoBehaviour
     {
         GameManager.Instance.SetResolution(filteredResolutions[resolutionIndex]);
         Save();
-        Debug.Log((int)PlayerPrefs.GetInt("resolution") + " guardado");
     }
     private void Load()
     {
         resolutionDropdown.value = PlayerPrefs.GetInt("resolution");
-        Debug.Log((int)PlayerPrefs.GetInt("resolution") + " cargado");
     }
     private void Save()
     {

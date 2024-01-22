@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     public GameObject gameOver;
     public GameObject mainMenu;
     public GameObject shop;
+    public GameObject FPSToggle;
     public List<GameObject> shopButtons;
     private float startDate;
     public Toggle fullScreen;
@@ -34,6 +35,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI coinsText;
     public TextMeshProUGUI coinsObtText;
     public TextMeshProUGUI resDisplay;
+
 
     void Awake()
     {
@@ -51,6 +53,9 @@ public class GameManager : MonoBehaviour
     }
     public void Start()
     {
+        GetComponent<FPSCounter>().enabled = PlayerPrefs.GetInt("FPSCounter") == 1;
+        FPSToggle.GetComponent<Toggle>().isOn = GetComponent<FPSCounter>().enabled;
+
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Enemies"), LayerMask.NameToLayer("Red"), true);
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Enemies"), LayerMask.NameToLayer("Blue"), true);
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Enemies"), LayerMask.NameToLayer("Obstacles"), true);
@@ -116,6 +121,10 @@ public class GameManager : MonoBehaviour
             EditText(7, $"Double Coins (Consum): {data.doubleCoinsAtCollect}\n 5 Coins");
             EditText(8, $"Invulnerability (Consum): {data.marioStar}\n 5 Coins");
         }
+    }
+    public void FPSCounterState()
+    {
+        PlayerPrefs.SetInt("FPSCounter", Convert.ToInt32(GetComponent<FPSCounter>().enabled));
     }
 
     private void OnSceneWasLoaded(Scene scene, LoadSceneMode mode)
