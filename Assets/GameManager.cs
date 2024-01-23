@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
     public Toggle fullScreen;
     private float clock;
 
-    private GameObject MC;
+    public GameObject Player;
 
     public TextMeshProUGUI maxScoreText;    
     public TextMeshProUGUI ScoreText;
@@ -42,7 +42,6 @@ public class GameManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(this);
-            SceneManager.sceneLoaded += OnSceneWasLoaded;
             SceneManager.LoadScene("Menu");
         }
         else if (Instance != this) Destroy(gameObject);
@@ -65,11 +64,10 @@ public class GameManager : MonoBehaviour
             coins = data.coins;
             maxScore = data.maxScore;
             UpdateScore();
+            UpdateCoins();
         }
-        UpdateCoins();
 
-        gameOver.SetActive(false);
-        isDead = 0;
+        isDead = -1;
 
         foreach (var item in shop.GetComponentsInChildren<Transform>())
         {
@@ -83,34 +81,30 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (isDead < 0)
-        {
-            UpdateCoins();
-            if (Time.time - startDate > 0.1f)
-            {
-                startDate = Time.time;
-                score += 1;
-                if (score > maxScore)
-                {
-                    maxScore = score;
-                }
-                UpdateScore();
-            }
-        }
-        else if (isDead == 0 && Time.timeScale != 0)
-        {
-            //MC.GetComponent<Animator>().SetBool("isDead", true);
-            //MC.SetActive(false);
-            MC.GetComponent<SpriteRenderer>().enabled = false;
-            Time.timeScale = 0;
-        }
 
         if (Time.time - clock > 0.1f)
         {
             if (isDead > 0) isDead--;
             clock = Time.time;
-        }
 
+            if (isDead == -1 && SceneManager.GetActiveScene().buildIndex == 2)
+            {
+                if (Player == null) GameObject.FindGameObjectWithTag("Player");
+                UpdateCoins();
+                UpdateScore();
+
+                score += 1;
+                if (score > maxScore)
+                {
+                    maxScore = score;
+                }
+            }
+            else if (isDead == 0)
+            {
+                Player.GetComponent<SpriteRenderer>().enabled = false;
+                Player.transform.position = new Vector3(-19, -3.5f, 0);
+            }
+        }
 
         if (shop.activeSelf)
         {
@@ -126,31 +120,30 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void OnSceneWasLoaded(Scene scene, LoadSceneMode mode)
-    {
-        score = 0;
-        startDate = Time.time;
-        MC = GameObject.Find("MC");
-        UpdateScore();
-    }
-
     public void SceneChange(bool cont) 
     {
-        if(SceneManager.GetActiveScene().buildIndex != 1 && cont == false)
+        if(SceneManager.GetActiveScene().buildIndex != 1 && !cont)
         {
-            mainMenu.SetActive(true);
-            ResetValues();
-            Time.timeScale = 0;
-            SceneManager.LoadScene(1);
+            Destroy(Player);
             SoundManager.instance.Play("mainMenu");
+            mainMenu.SetActive(true);
+            SceneManager.LoadScene(1);
         }
         else
         {
+            score = 0;
+            startDate = Time.time;
+            score = 0;
+            isDead = -1;
+            gameOver.SetActive(false);
+            coinsObt = 0;
+            SoundManager.instance.Stop("gameOver");
+            UpdateScore();
+
             SoundManager.instance.Stop("mainMenu");
             SoundManager.instance.Play("music");
-            SceneManager.LoadScene(2);
             mainMenu.SetActive(false);
-            ResetValues();
+            SceneManager.LoadScene(2);
         }
     }
     public void CloseGame()
@@ -158,26 +151,16 @@ public class GameManager : MonoBehaviour
         Application.Quit();
         //UnityEditor.EditorApplication.isPlaying = false;
     }
-    public void ResetValues()
-    {
-        Time.timeScale = 1;
-        score = 0;
-        isDead = -1;
-        gameOver.SetActive(false);
-        coinsObt = 0;
-        SoundManager.instance.Stop("gameOver");
-    }
     public void Death()
     {
-        if(isDead == -1)
+        if(isDead == -1 && Time.time - startDate > 1)
         {
-            UnityEngine.Debug.Log("a");
-            SoundManager.instance.Play("death");
-            SoundManager.instance.Play("gameOver");
             SoundManager.instance.Stop("slide");
             SoundManager.instance.Stop("music");
+            SoundManager.instance.Play("death");
+            SoundManager.instance.Play("gameOver");
             gameOver.SetActive(true);
-            MC.GetComponent<Animator>().SetBool("isDead", true);
+            Player.GetComponent<Animator>().SetBool("isDead", true);
             isDead = 10f;
             coinsObtText.GetComponent<TextMeshProUGUI>().text = $"Coins: +{coinsObt}";
             DataChanges.WriteData(new DataPersisted(coins, maxScore, 0, false, false, false, 0, 0, 0, 0, false, 0));

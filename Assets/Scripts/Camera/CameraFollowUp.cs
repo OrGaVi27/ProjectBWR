@@ -5,6 +5,10 @@ using UnityEngine;
 public class CameraFollowUp : Entity
 {
     [SerializeField] GameObject focus;
+    private void Start()
+    {
+        GameManager.Instance.Player = focus;
+    }
     void Update()
     {
         Controls cont = focus.GetComponent<Controls>();

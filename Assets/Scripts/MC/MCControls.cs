@@ -182,8 +182,8 @@ public class Controls : Mob
         if (GameManager.Instance.isDead >= 0)
         {
             _rb.velocity = Vector2.zero;
-            GetComponent<BoxCollider2D>().enabled = false;
-            _rb.gravityScale = 0;
+            if (TryGetComponent(out BoxCollider2D box)) box.enabled = false;
+            if(_rb.gravityScale != 0) _rb.gravityScale = 0;
         }
     }
     private void Jump()

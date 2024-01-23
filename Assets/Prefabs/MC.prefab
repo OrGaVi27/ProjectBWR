@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3610571002815174177}
   m_Layer: 0
-  m_Name: PuntoDisparo
+  m_Name: ShootPoint
   m_TagString: Untagged
   m_Icon: {fileID: 7148428337604731935, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 8721002784426624464}
   m_Layer: 0
   m_Name: MC
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -200,7 +200,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1523783458, guid: e2f4003e014c62747bb0262016cc6699, type: 3}
+  m_Sprite: {fileID: 750733075, guid: e2f4003e014c62747bb0262016cc6699, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -226,7 +226,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 2
   m_Material: {fileID: 6200000, guid: 0c72d02a3d969a9479e30849e23ec1a6, type: 2}
   m_IncludeLayers:
     serializedVersion: 2

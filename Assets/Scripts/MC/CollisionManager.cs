@@ -7,10 +7,12 @@ using UnityEngine;
 public class CollisionManager : MonoBehaviour
 {
     Controls player;
+    private float startTime;
 
     private void Start()
     {
         player = GetComponent<Controls>();
+        startTime = Time.time;
     }
 
     private void OnCollisionEnter2D(Collision2D col)
