@@ -178,6 +178,13 @@ public class Controls : Mob
         {
             if (Time.time - OutScreenDate > 0.5f) GameManager.Instance.Death();
         }
+
+        if (GameManager.Instance.isDead >= 0)
+        {
+            _rb.velocity = Vector2.zero;
+            GetComponent<BoxCollider2D>().enabled = false;
+            _rb.gravityScale = 0;
+        }
     }
     private void Jump()
     {
@@ -196,7 +203,7 @@ public class Controls : Mob
     }
     public void Hit()
     {
-        if (!invulnerability && !invulnerabilityItem)
+        if (!invulnerability && !invulnerabilityItem && GameManager.Instance.isDead == -1)
         {
             if (GameManager.Instance.data.shields > 0 && shieldUsed < 3)
             {
