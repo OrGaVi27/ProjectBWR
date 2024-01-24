@@ -127,6 +127,7 @@ public class GameManager : MonoBehaviour
             Destroy(Player);
             SoundManager.instance.Play("mainMenu");
             mainMenu.SetActive(true);
+            gameOver.SetActive(false);
             SceneManager.LoadScene(1);
         }
         else

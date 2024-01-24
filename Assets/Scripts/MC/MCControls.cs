@@ -182,6 +182,7 @@ public class Controls : Mob
         if (GameManager.Instance.isDead >= 0)
         {
             _rb.velocity = Vector2.zero;
+            _sr.color = Color.white;
             if (TryGetComponent(out BoxCollider2D box)) box.enabled = false;
             if(_rb.gravityScale != 0) _rb.gravityScale = 0;
         }
