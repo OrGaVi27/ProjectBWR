@@ -23,11 +23,8 @@ public class GameManager : MonoBehaviour
     public GameObject gameOver;
     public GameObject mainMenu;
     public GameObject shop;
-    public GameObject FPSToggle;
-    public GameObject vSyncToggle;
     public List<GameObject> shopButtons;
     private float startDate;
-    public Toggle fullScreen;
 
     private GameObject MC;
 
@@ -54,9 +51,10 @@ public class GameManager : MonoBehaviour
     }
     public void Start()
     {
-        GetComponent<FPSCounter>().enabled = Convert.ToBoolean(PlayerPrefs.GetInt("FPSCounter"));
-        QualitySettings.vSyncCount = Convert.ToInt32(Convert.ToBoolean(PlayerPrefs.GetInt("vsync")));
-        Screen.fullScreen = Convert.ToBoolean(PlayerPrefs.GetInt("fullscreen"));
+        GetComponent<FPSCounter>().enabled = Convert.ToBoolean(PlayerPrefs.GetFloat("FPSCounter"));
+        QualitySettings.vSyncCount = Convert.ToInt32(Convert.ToBoolean(PlayerPrefs.GetFloat("vsync")));
+        Screen.fullScreen = Convert.ToBoolean(PlayerPrefs.GetFloat("fullscreen"));
+        AudioListener.volume = PlayerPrefs.GetFloat("musicVolume");
 
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Enemies"), LayerMask.NameToLayer("Red"), true);
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Enemies"), LayerMask.NameToLayer("Blue"), true);
@@ -69,9 +67,8 @@ public class GameManager : MonoBehaviour
         Resolution resolution = ResolutionControl.GetFilteredResolutions()[PlayerPrefs.GetInt("resolution")];
         if (PlayerPrefs.HasKey("resolution"))
         {
-            Screen.SetResolution( resolution.width, resolution.height, Convert.ToBoolean(PlayerPrefs.GetFloat("fullScreen"))); 
+            Screen.SetResolution( resolution.width, resolution.height, Convert.ToBoolean(PlayerPrefs.GetFloat("fullscreen"))); 
         }
-
 
         SetRefreshRate(PlayerPrefs.GetFloat("frameRate"));
 
@@ -98,23 +95,11 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.G)) UnityEngine.Debug.Log($"{QualitySettings.vSyncCount}, {Convert.ToInt32(Screen.fullScreen)}, {Convert.ToInt32(GetComponent<FPSCounter>().enabled)}");
         if (isDead == false)
         {
             UpdateCoins();
             if (Time.time - startDate > 0.1f)
             {
-                if (FPSToggle.transform.parent.gameObject.activeSelf)
-                {
-                    FPSToggle.GetComponent<Toggle>().isOn = GetComponent<FPSCounter>().enabled;
-                    vSyncToggle.GetComponent<Toggle>().isOn = Convert.ToBoolean(QualitySettings.vSyncCount);
-                    fullScreen.isOn = Screen.fullScreen;
-                }
-
-                PlayerPrefs.SetFloat("fullscreen", Convert.ToInt32(Screen.fullScreen));
-                PlayerPrefs.SetInt("FPSCounter", Convert.ToInt32(GetComponent<FPSCounter>().enabled));
-                PlayerPrefs.SetFloat("vsync", QualitySettings.vSyncCount);
-
                 startDate = Time.time;
                 score += 1;
                 if (score > maxScore)
@@ -310,15 +295,6 @@ public class GameManager : MonoBehaviour
     public void SetResolution(int width, int height, bool fullscreen)
     {
         Screen.SetResolution(width, height, fullscreen);
-    }
-    public void SetFullScreen()
-    {
-        Screen.fullScreen = !Screen.fullScreen;
-    }
-    public void SetVSync()
-    {
-        if (PlayerPrefs.GetFloat("vsync") == 1) QualitySettings.vSyncCount = 0;
-        else QualitySettings.vSyncCount = 1;
     }
     public void SetRefreshRate(float maxFPS)
     {
