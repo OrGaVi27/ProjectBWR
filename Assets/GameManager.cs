@@ -2,7 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Events;
@@ -24,7 +26,6 @@ public class GameManager : MonoBehaviour
     public GameObject shop;
     public GameObject achievements;
     private float startDate;
-    public Toggle fullScreen;
 
     private GameObject MC;
 
@@ -33,6 +34,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI coinsText;
     public TextMeshProUGUI coinsObtText;
     public TextMeshProUGUI resDisplay;
+
 
     void Awake()
     {
@@ -50,6 +52,11 @@ public class GameManager : MonoBehaviour
     }
     public void Start()
     {
+        GetComponent<FPSCounter>().enabled = Convert.ToBoolean(PlayerPrefs.GetFloat("FPSCounter"));
+        QualitySettings.vSyncCount = Convert.ToInt32(Convert.ToBoolean(PlayerPrefs.GetFloat("vsync")));
+        Screen.fullScreen = Convert.ToBoolean(PlayerPrefs.GetFloat("fullscreen"));
+        AudioListener.volume = PlayerPrefs.GetFloat("musicVolume");
+
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Enemies"), LayerMask.NameToLayer("Red"), true);
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Enemies"), LayerMask.NameToLayer("Blue"), true);
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Enemies"), LayerMask.NameToLayer("Obstacles"), true);
@@ -57,9 +64,15 @@ public class GameManager : MonoBehaviour
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Enemies"), LayerMask.NameToLayer("Ceiling"), true);
 
         data = DataChanges.LoadData();
-        QualitySettings.vSyncCount = 0;
-        SetResolution(1920, 1090, true);
-        SetRefreshRate(0);
+
+        Resolution resolution = ResolutionControl.GetFilteredResolutions()[PlayerPrefs.GetInt("resolution")];
+        if (PlayerPrefs.HasKey("resolution"))
+        {
+            Screen.SetResolution( resolution.width, resolution.height, Convert.ToBoolean(PlayerPrefs.GetFloat("fullscreen"))); 
+        }
+
+        SetRefreshRate(PlayerPrefs.GetFloat("frameRate"));
+
         if (data != null)
         {
             coins = data.coins;
@@ -275,10 +288,6 @@ public class GameManager : MonoBehaviour
     public void SetResolution(int width, int height, bool fullscreen)
     {
         Screen.SetResolution(width, height, fullscreen);
-    }
-    public void SetFullScreen()
-    {
-        Screen.fullScreen = !Screen.fullScreen;
     }
     public void SetRefreshRate(float maxFPS)
     {
