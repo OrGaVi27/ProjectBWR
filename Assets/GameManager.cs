@@ -27,21 +27,19 @@ public class GameManager : MonoBehaviour
     public float maxScore;
     [HideInInspector]
     public float isDead;
-    [HideInInspector]
     public GameObject gameOver;
     public GameObject mainMenu;
     public GameObject shop;
     public GameObject achievements;
     private float clock;
-    public Toggle fullScreen;
 
+    [HideInInspector]
     public GameObject Player;
 
     public TextMeshProUGUI maxScoreText;    
     public TextMeshProUGUI ScoreText;
     public TextMeshProUGUI coinsText;
     public TextMeshProUGUI coinsObtText;
-    public TextMeshProUGUI resDisplay;
 
 
     void Awake()
