@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using TMPro;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.SocialPlatforms.Impl;
@@ -16,12 +17,12 @@ public class GameManager : MonoBehaviour
     public int coins;
     private int coinsObt = 0;
     public float score;
-    private float maxScore;
+    public float maxScore;
     public bool isDead = true;
     public GameObject gameOver;
     public GameObject mainMenu;
     public GameObject shop;
-    public List<GameObject> shopButtons;
+    public GameObject achievements;
     private float startDate;
     public Toggle fullScreen;
 
@@ -69,15 +70,6 @@ public class GameManager : MonoBehaviour
 
         gameOver.SetActive(false);
         isDead = true;
-
-        foreach (var item in shop.GetComponentsInChildren<Transform>())
-        {
-            if(item.name.Length >= 6 && item.name[..6] == "Button")
-            {
-                shopButtons.Add(item.gameObject);
-            }
-        }
-        shop.SetActive(false);
     }
 
     private void Update()
@@ -95,18 +87,6 @@ public class GameManager : MonoBehaviour
                 }
                 UpdateScore();
             }
-        }
-        if(shop.activeSelf)
-        {
-            EditText(0, $"Shields: {data.shields}\n 5 Coins");
-            EditText(1, $"ExtraJumps: {data.extraJumps}\n 5 Coins");
-            EditText(2, $"Less Color Cooldown: {data.lessCooldownColorChange}\n 5 Coins");
-            EditText(3, $"Don't lose Color: {data.dontLoseColorAtShoot}\n 5 Coins");
-            EditText(4, $"Piercing Bullets: {data.bulletPenetration}\n 5 Coins");
-            EditText(5, $"Longer Invulnerability: {data.longerInvulnerability}\n 5 Coins");
-            EditText(6, $"Bigger Bullets: {data.biggerBullets}\n 5 Coins");
-            EditText(7, $"Double Coins (Consum): {data.doubleCoinsAtCollect}\n 5 Coins");
-            EditText(8, $"Invulnerability (Consum): {data.marioStar}\n 5 Coins");
         }
     }
 
@@ -153,6 +133,8 @@ public class GameManager : MonoBehaviour
     }
     public void Death()
     {
+        UnityEngine.Debug.Log(data.achieDeaths);
+        data.achieDeaths++;
         SoundManager.instance.Play("death");
         SoundManager.instance.Play("gameOver");
         MC.SetActive(false);
@@ -162,7 +144,19 @@ public class GameManager : MonoBehaviour
         isDead = true;
         Time.timeScale = 0;
         coinsObtText.GetComponent<TextMeshProUGUI>().text = $"Coins: +{coinsObt}";
-        DataChanges.WriteData(new DataPersisted(coins, maxScore, 0, false, false, false, 0, 0, 0, 0, false, 0));
+        data.coins = coins;
+        data.maxScore = maxScore;
+        DataChanges.WriteData(data);
+    }
+    public void ResetData()
+    {
+        data = new DataPersisted();
+        DataChanges.WriteData(data);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        coins = data.coins;
+        maxScore = data.maxScore;
+        UpdateCoins();
+        UpdateScore();
     }
     public void SumCoin(bool doubleCoins) 
     {
@@ -170,9 +164,12 @@ public class GameManager : MonoBehaviour
         {
             coinsObt++;
             coins++;
+            data.achieCoins++;
         }
         coinsObt++;
         coins++;
+        data.achieCoins++;
+
         score += 5;
         UpdateScore();
     }
@@ -270,10 +267,6 @@ public class GameManager : MonoBehaviour
         }
 
         UpdateCoins();
-    }
-    private void EditText(int index, string text)
-    {
-        shopButtons[index].GetComponentInChildren<TextMeshProUGUI>().text = text;
     }
     public void SetResolution(Resolution resolution)
     {

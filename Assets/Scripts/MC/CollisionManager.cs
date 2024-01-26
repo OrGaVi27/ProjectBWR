@@ -74,15 +74,21 @@ public class CollisionManager : MonoBehaviour
                 player.Hit();
                 break;
             case "Blue":
-                if (!gameObject.CompareTag("Blue"))
+                if (!CompareTag("Blue"))
                 {
                     player.Hit();
+                } else
+                {
+                    GameManager.Instance.data.achieWalls++;
                 }
                 break;
             case "Red":
-                if (!gameObject.CompareTag("Red"))
+                if (!CompareTag("Red"))
                 {
                     player.Hit();
+                } else
+                {
+                    GameManager.Instance.data.achieWalls++;
                 }
                 break;
         }

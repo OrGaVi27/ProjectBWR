@@ -24,6 +24,7 @@ public class Enemy : Mob
             SoundManager.instance.Play("enemyDeath");
             GameManager.Instance.score += 20;
             GameManager.Instance.UpdateScore();
+            GameManager.Instance.data.achieEnemies++;
             Destroy(gameObject);
         }
 
