@@ -14,18 +14,25 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    [HideInInspector]
     public static GameManager Instance;
+    [HideInInspector]
     public DataPersisted data;
+    [HideInInspector]
     public int coins;
     private int coinsObt = 0;
+    [HideInInspector]
     public float score;
-    private float maxScore;
+    [HideInInspector]
+    public float maxScore;
+    [HideInInspector]
     public float isDead;
+    [HideInInspector]
     public GameObject gameOver;
     public GameObject mainMenu;
     public GameObject shop;
     public GameObject achievements;
-    private float startDate;
+    private float clock;
     public Toggle fullScreen;
 
     public GameObject Player;
@@ -105,18 +112,6 @@ public class GameManager : MonoBehaviour
                 Player.transform.position = new Vector3(-19, -3.5f, 0);
             }
         }
-        if(shop.activeSelf)
-        {
-            EditText(0, $"Shields: {data.shields}\n 5 Coins");
-            EditText(1, $"ExtraJumps: {data.extraJumps}\n 5 Coins");
-            EditText(2, $"Less Color Cooldown: {data.lessCooldownColorChange}\n 5 Coins");
-            EditText(3, $"Don't lose Color: {data.dontLoseColorAtShoot}\n 5 Coins");
-            EditText(4, $"Piercing Bullets: {data.bulletPenetration}\n 5 Coins");
-            EditText(5, $"Longer Invulnerability: {data.longerInvulnerability}\n 5 Coins");
-            EditText(6, $"Bigger Bullets: {data.biggerBullets}\n 5 Coins");
-            EditText(7, $"Double Coins (Consum): {data.doubleCoinsAtCollect}\n 5 Coins");
-            EditText(8, $"Invulnerability (Consum): {data.marioStar}\n 5 Coins");
-        }
     }
 
     public void SceneChange(bool cont) 
@@ -132,7 +127,7 @@ public class GameManager : MonoBehaviour
         else
         {
             score = 0;
-            startDate = Time.time;
+            clock = Time.time;
             score = 0;
             isDead = -1;
             gameOver.SetActive(false);
@@ -153,20 +148,19 @@ public class GameManager : MonoBehaviour
     }
     public void Death()
     {
-        UnityEngine.Debug.Log(data.achieDeaths);
         data.achieDeaths++;
+
         SoundManager.instance.Play("death");
         SoundManager.instance.Play("gameOver");
-        MC.SetActive(false);
         SoundManager.instance.Stop("slide");
         SoundManager.instance.Stop("music");
+
         gameOver.SetActive(true);
-        Time.timeScale = 0;
         coinsObtText.GetComponent<TextMeshProUGUI>().text = $"Coins: +{coinsObt}";
         data.coins = coins;
         data.maxScore = maxScore;
         DataChanges.WriteData(data);
-            isDead = 10f;
+        isDead = 10f;
     }
     public void ResetData()
     {
