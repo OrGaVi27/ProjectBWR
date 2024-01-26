@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -16,6 +17,7 @@ public class Controls : Mob
 
     // Objetos que tiene el jugador para mostrar el escudo y el duplicador de monedas (gafas) respectivamente.
     [SerializeField] private GameObject shield;
+    [SerializeField] private GameObject shieldText;
     [SerializeField] private GameObject glasses;
 
     // Variables para invulnerabilidad por golpe.
@@ -103,11 +105,13 @@ public class Controls : Mob
             }
         }
 
-        if (GameManager.Instance.data.shields > 0 && shieldUsed < 3) shield.transform.localScale = Vector3.one;
-        else shield.transform.localScale = Vector3.zero;
+        if (GameManager.Instance.data.shields > 0 && shieldUsed < 3) shield.SetActive(true); 
+        else shield.SetActive(false);
+        shieldText.GetComponent<TextMeshPro>().text = $"{3 - shieldUsed}";
+
 
         // Velocidad constante
-        if(delayed) _rb.velocity = new Vector2(baseSpeed + 2f, _rb.velocity.y);
+        if (delayed) _rb.velocity = new Vector2(baseSpeed + 2f, _rb.velocity.y);
         else _rb.velocity = new Vector2(baseSpeed, _rb.velocity.y);
 
         // Controlador de teclas
@@ -178,6 +182,14 @@ public class Controls : Mob
         {
             if (Time.time - OutScreenDate > 0.5f) GameManager.Instance.Death();
         }
+
+        if (GameManager.Instance.isDead >= 0)
+        {
+            _rb.velocity = Vector2.zero;
+            _sr.color = Color.white;
+            if (TryGetComponent(out BoxCollider2D box)) box.enabled = false;
+            if(_rb.gravityScale != 0) _rb.gravityScale = 0;
+        }
     }
     private void Jump()
     {
@@ -196,7 +208,7 @@ public class Controls : Mob
     }
     public void Hit()
     {
-        if (!invulnerability && !invulnerabilityItem)
+        if (!invulnerability && !invulnerabilityItem && GameManager.Instance.isDead == -1)
         {
             if (GameManager.Instance.data.shields > 0 && shieldUsed < 3)
             {

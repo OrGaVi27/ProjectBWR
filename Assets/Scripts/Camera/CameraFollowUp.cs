@@ -5,15 +5,15 @@ using UnityEngine;
 public class CameraFollowUp : Entity
 {
     [SerializeField] GameObject focus;
+    private void Start()
+    {
+        GameManager.Instance.Player = focus;
+    }
     void Update()
     {
         Controls cont = focus.GetComponent<Controls>();
 
-        _rb.velocity = new Vector3(cont.baseSpeed, 0, 0);
-
-        if (!focus.activeSelf)
-        {
-            _rb.velocity = new Vector3(0, 0, 0);
-        }
+        if(GameManager.Instance.isDead == -1) _rb.velocity = new Vector3(cont.baseSpeed, 0, 0);
+        else _rb.velocity = new Vector3(0, 0, 0);
     }
 }

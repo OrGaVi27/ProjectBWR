@@ -2479,6 +2479,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 626473011}
     - target: {fileID: 5783416351804100817, guid: 5cee5f2ffa8e8494da5966a5fc330d27, type: 3}
+      propertyPath: Player
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5783416351804100817, guid: 5cee5f2ffa8e8494da5966a5fc330d27, type: 3}
       propertyPath: bioma_1
       value: 
       objectReference: {fileID: 7596906321398164749, guid: 7fbd3724212d6e94fb58d4a6b8deadeb, type: 3}

@@ -7,10 +7,12 @@ using UnityEngine;
 public class CollisionManager : MonoBehaviour
 {
     Controls player;
+    private float startTime;
 
     private void Start()
     {
         player = GetComponent<Controls>();
+        startTime = Time.time;
     }
 
     private void OnCollisionEnter2D(Collision2D col)
@@ -53,12 +55,8 @@ public class CollisionManager : MonoBehaviour
                 GameManager.Instance.SumCoin(player.doubleCoins);
                 break;
             case "ChangeLevel":
-                GameObject camara = GameObject.Find("Camera");
-                Vector3 posicionCamara = GameObject.Find("LevelStart").transform.position;
-                gameObject.transform.position = new Vector3(posicionCamara.x - 7f, gameObject.transform.position.y, gameObject.transform.position.z);
-                camara.transform.position = new Vector3(posicionCamara.x, camara.transform.position.y, camara.transform.position.z);
-                BiomeManager.Instance.RandomBiome();
-                if(player.baseSpeed < 20) player.baseSpeed += 0.1f;
+                col.GetComponent<Animator>().SetBool("transition", true);
+                Debug.Log(col.GetComponent<Animator>().GetBool("transition"));
                 break;
             case "MainCamera":
                 player.OnScreen(true);
@@ -102,6 +100,15 @@ public class CollisionManager : MonoBehaviour
                 break;
             case "MCRelativePosition":
                 player.delayed = true;
+                break;
+            case "ChangeLevel":
+                GameObject camara = GameObject.Find("Camera");
+                Vector3 posicionCamara = GameObject.Find("LevelStart").transform.position;
+                gameObject.transform.position = new Vector3(posicionCamara.x - 7f, gameObject.transform.position.y, gameObject.transform.position.z);
+                camara.transform.position = new Vector3(posicionCamara.x, camara.transform.position.y, camara.transform.position.z);
+                BiomeManager.Instance.RandomBiome();
+                if (player.baseSpeed < 20) player.baseSpeed += 0.1f;
+                col.GetComponent<Animator>().SetBool("transition", false);
                 break;
         }
     }
