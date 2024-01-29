@@ -17,6 +17,7 @@ public class Controls : Mob
 
     // Objetos que tiene el jugador para mostrar el escudo y el duplicador de monedas (gafas) respectivamente.
     [SerializeField] private GameObject shield;
+    [SerializeField] private GameObject shieldUI;
     [SerializeField] private GameObject shieldText;
     [SerializeField] private GameObject glasses;
 
@@ -65,7 +66,10 @@ public class Controls : Mob
 
         // Otros
         doubleCoins = false;
+
         shieldUsed = 0;
+        if (GameManager.Instance.data.shields < 4) shieldUsed = 3 - GameManager.Instance.data.shields;
+
         delayed = true;
         availableJumps = maxJumps;
         invulnerability = false;
@@ -100,14 +104,26 @@ public class Controls : Mob
                     _sr.color = Color.blue;
                     break;
                 case "Untagged":
+                case "Player":
                     _sr.color = Color.white;
                     break;
             }
         }
 
-        if (GameManager.Instance.data.shields > 0 && shieldUsed < 3) shield.SetActive(true); 
-        else shield.SetActive(false);
-        shieldText.GetComponent<TextMeshPro>().text = $"{3 - shieldUsed}";
+
+        if (GameManager.Instance.data.shields > 0 && shieldUsed < 3)
+        {
+            shield.SetActive(true);
+            shieldUI.SetActive(true);
+            shieldText.SetActive(true);
+            shieldText.GetComponent<TextMeshProUGUI>().text = $"{3 - shieldUsed}";
+        }
+        else
+        {
+            shield.SetActive(false);
+            shieldUI.SetActive(false);
+            shieldText.SetActive(false);
+        }
 
 
         // Velocidad constante
@@ -214,9 +230,9 @@ public class Controls : Mob
             {
                 GameManager.Instance.data.shields--;
                 shieldUsed++;
+                lastHitDate = Time.time;
             }
             else GameManager.Instance.Death();
-            lastHitDate = Time.time;
             invulnerability = true;
         }
     }

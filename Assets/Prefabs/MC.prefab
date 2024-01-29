@@ -65,8 +65,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 378}
-  m_SizeDelta: {x: 54.0459, y: 77.3664}
+  m_AnchoredPosition: {x: -9, y: 150}
+  m_SizeDelta: {x: 30, y: 30}
   m_Pivot: {x: 0.5000001, y: 0.4999999}
 --- !u!222 &1445932392302765982
 CanvasRenderer:
@@ -548,6 +548,7 @@ MonoBehaviour:
   delayed: 0
   marioStarColor: {r: 0.6, g: 0, b: 0.6, a: 1}
   shield: {fileID: 7236414570649473764}
+  shieldUI: {fileID: 8732025178044342850}
   shieldText: {fileID: 228177355677553076}
   glasses: {fileID: 8071881763844645568}
   doubleCoins: 0
@@ -680,7 +681,7 @@ GameObject:
   - component: {fileID: 5860439599419606302}
   - component: {fileID: 3775484019120079542}
   m_Layer: 5
-  m_Name: Image
+  m_Name: ShieldUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -695,16 +696,16 @@ RectTransform:
   m_GameObject: {fileID: 8732025178044342850}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.2, y: 1.2, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3582309925681423196}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 388}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -9, y: 155}
+  m_SizeDelta: {x: 90, y: 90}
+  m_Pivot: {x: 0.5000001, y: 0.4999999}
 --- !u!222 &5860439599419606302
 CanvasRenderer:
   m_ObjectHideFlags: 0

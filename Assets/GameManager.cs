@@ -104,7 +104,7 @@ public class GameManager : MonoBehaviour
                     maxScore = score;
                 }
             }
-            else if (isDead == 0)
+            else if (isDead == 0 && Player != null)
             {
                 Player.GetComponent<SpriteRenderer>().enabled = false;
                 Player.transform.position = new Vector3(-19, -3.5f, 0);
