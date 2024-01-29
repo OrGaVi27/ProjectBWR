@@ -20,6 +20,7 @@ public class Controls : Mob
     [SerializeField] private GameObject shieldUI;
     [SerializeField] private GameObject shieldText;
     [SerializeField] private GameObject glasses;
+    [SerializeField] private GameObject statusPrefab;
 
     // Variables para invulnerabilidad por golpe.
     private bool invulnerability;
@@ -80,6 +81,9 @@ public class Controls : Mob
 
     private void Update()
     {
+        GameManager.Instance.SetStatus(doubleCoinsDuration - (Time.time - doubleCoinsActivationDate), "bonus", doubleCoins);
+        GameManager.Instance.SetStatus(invulnerabilityItemDuration - (Time.time - invulnerabilityItemStart), "inv", invulnerabilityItem);
+
         if (Time.time - lastHitDate > invulnerabilityDuration && Time.time - invulnerabilityItemStart > invulnerabilityItemDuration)
         {
             invulnerability = false;

@@ -31,6 +31,8 @@ public class GameManager : MonoBehaviour
     public GameObject mainMenu;
     public GameObject shop;
     public GameObject achievements;
+    public GameObject statusBonus;
+    public GameObject statusInv;
     private float clock;
 
     [HideInInspector]
@@ -291,5 +293,55 @@ public class GameManager : MonoBehaviour
     public void SetRefreshRate(float maxFPS)
     {
         Application.targetFrameRate = (int)maxFPS;
+    }
+    public void SetStatus(float time, string status, bool active)
+    {
+        if(Player == null || !active)
+        {
+            switch (status)
+            {
+                case "bonus":
+                    statusBonus.SetActive(false);
+                    break;
+                case "inv":
+                    statusInv.SetActive(false);
+                    break;
+            }
+            return;
+        }
+        switch (status)
+        {
+            case "bonus":
+                if (time <= 0) statusBonus.SetActive(false);
+                else
+                {
+                    statusBonus.SetActive(true);
+                    statusBonus.GetComponent<TextMeshProUGUI>().text = Timer(time);
+                }
+                break;
+            case "inv":
+                if (time <= 0) statusInv.SetActive(false);
+                else
+                {
+                    statusInv.SetActive(true);
+                    statusInv.GetComponent<TextMeshProUGUI>().text = Timer(time);
+                }
+                break;
+        }
+    }
+    private string Timer(float time)
+    {
+        string min = "00", sec;
+
+        if (time >= 60)
+        {
+            min = Math.Round(time / 60).ToString();
+            if (time / 60 < 10) min = "0" + min;
+        }
+
+        sec = Math.Round(time % 60).ToString();
+        if (time % 60 < 10) sec = "0" + sec;
+
+        return $"{min}:{sec}"; 
     }
 }
