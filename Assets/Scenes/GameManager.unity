@@ -139,6 +139,10 @@ PrefabInstance:
       propertyPath: m_ScrollSensitivity
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 1293705053295021226, guid: e65a05f6957c69f40b46fb43acac7761, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1445345801942091585, guid: e65a05f6957c69f40b46fb43acac7761, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -249,7 +253,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7968282372377220590, guid: e65a05f6957c69f40b46fb43acac7761, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.000030517578
+      value: 0.000015258789
       objectReference: {fileID: 0}
     - target: {fileID: 8348122702091832736, guid: e65a05f6957c69f40b46fb43acac7761, type: 3}
       propertyPath: m_AnchorMax.y
