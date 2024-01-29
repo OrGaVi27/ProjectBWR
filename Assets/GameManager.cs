@@ -223,14 +223,14 @@ public class GameManager : MonoBehaviour
     public void Purchase(string element)
     {
         int shieldPrice = 5;
-        int extraJumpPrice = 5;
-        int lessColorCooldownPrice = 5;
-        int dontLoseColorPrice = 5;
-        int piercingBulletsPrice = 5;
-        int longerInvulnerabilityPrice = 5;
-        int biggerBulletsPrice = 5;
-        int doubleCoinsAtCollectPrice = 5;
-        int invulnerabilityPrice = 5;
+        int extraJumpPrice = 100;
+        int lessColorCooldownPrice = 50;
+        int dontLoseColorPrice = 125;
+        int piercingBulletsPrice = 50;
+        int longerInvulnerabilityPrice = 50;
+        int biggerBulletsPrice = 75;
+        int doubleCoinsAtCollectPrice = 12;
+        int invulnerabilityPrice = 15;
 
         switch (element)
         {
@@ -315,7 +315,8 @@ public class GameManager : MonoBehaviour
     }
     public void SetStatus(float time, string status, bool active)
     {
-        if(Player == null || !active)
+        Player.TryGetComponent(out SpriteRenderer spr);
+        if (Player == null || !active || !spr.enabled)
         {
             switch (status)
             {
