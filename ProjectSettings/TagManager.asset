@@ -3,19 +3,30 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Blue
+  - Red
+  - White
+  - Lethal
+  - Enemy
+  - Coin
+  - Projectile
+  - ChangeLevel
+  - Obstacle
+  - MCRelativePosition
+  - ProjectileEnemy
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Floor
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Blue
+  - Red
+  - Enemies
+  - Obstacles
+  - Ceiling
   - 
   - 
   - 
