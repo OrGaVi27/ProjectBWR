@@ -114,7 +114,6 @@ public class Controls : Mob
             }
         }
 
-
         if (GameManager.Instance.data.shields > 0 && shieldUsed < 3)
         {
             shield.SetActive(true);

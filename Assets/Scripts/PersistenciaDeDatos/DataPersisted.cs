@@ -54,6 +54,10 @@ public class DataPersisted
         lessCooldownColorChange = 0;
         biggerBullets = false;
         marioStar = 0;
+        achieCoins = 0;
+        achieEnemies = 0;
+        achieWalls = 0;
+        achieDeaths = 0;
     }
     public int AchieShop(bool all)
     {

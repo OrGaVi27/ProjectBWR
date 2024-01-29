@@ -59,10 +59,19 @@ public class GameManager : MonoBehaviour
     }
     public void Start()
     {
-        GetComponent<FPSCounter>().enabled = Convert.ToBoolean(PlayerPrefs.GetFloat("FPSCounter"));
-        QualitySettings.vSyncCount = Convert.ToInt32(Convert.ToBoolean(PlayerPrefs.GetFloat("vsync")));
-        Screen.fullScreen = Convert.ToBoolean(PlayerPrefs.GetFloat("fullscreen"));
-        AudioListener.volume = PlayerPrefs.GetFloat("musicVolume");
+        if (PlayerPrefs.HasKey("FPSCounter")) GetComponent<FPSCounter>().enabled = Convert.ToBoolean(PlayerPrefs.GetFloat("FPSCounter"));
+        else GetComponent<FPSCounter>().enabled = false;
+
+        if (PlayerPrefs.HasKey("vsync")) QualitySettings.vSyncCount = Convert.ToInt32(Convert.ToBoolean(PlayerPrefs.GetFloat("vsync")));
+        else QualitySettings.vSyncCount = 60;
+
+        if (PlayerPrefs.HasKey("fullscreen")) Screen.fullScreen = Convert.ToBoolean(PlayerPrefs.GetFloat("fullscreen"));
+        else Screen.fullScreen = true;
+
+        if (PlayerPrefs.HasKey("musicVolume")) AudioListener.volume = PlayerPrefs.GetFloat("musicVolume");
+        else AudioListener.volume = 1;
+
+        
 
         clock = Time.time;
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Enemies"), LayerMask.NameToLayer("Red"), true);
@@ -72,6 +81,7 @@ public class GameManager : MonoBehaviour
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Enemies"), LayerMask.NameToLayer("Ceiling"), true);
 
         data = DataChanges.LoadData();
+        if (data == null) data = new();
 
         Resolution resolution = ResolutionControl.GetFilteredResolutions()[PlayerPrefs.GetInt("resolution")];
         if (PlayerPrefs.HasKey("resolution"))
@@ -81,13 +91,10 @@ public class GameManager : MonoBehaviour
 
         SetRefreshRate(PlayerPrefs.GetFloat("frameRate"));
 
-        if (data != null)
-        {
-            coins = data.coins;
-            maxScore = data.maxScore;
-            UpdateScore();
-            UpdateCoins();
-        }
+        coins = data.coins;
+        maxScore = data.maxScore;
+        UpdateScore();
+        UpdateCoins();
 
         isDead = -1;
     }
