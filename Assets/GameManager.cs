@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
     public GameObject statusBonus;
     public GameObject statusInv;
     private float clock;
+    private float startDate;
 
     [HideInInspector]
     public GameObject Player;
@@ -134,6 +135,7 @@ public class GameManager : MonoBehaviour
             coinsObt = 0;
             SoundManager.instance.Stop("gameOver");
             UpdateScore();
+            startDate = Time.time;
 
             SoundManager.instance.Stop("mainMenu");
             SoundManager.instance.Play("music");
@@ -148,19 +150,22 @@ public class GameManager : MonoBehaviour
     }
     public void Death()
     {
-        data.achieDeaths++;
+        if(isDead == -1 && Time.time - startDate > 1)
+        {
+            data.achieDeaths++;
 
-        SoundManager.instance.Play("death");
-        SoundManager.instance.Play("gameOver");
-        SoundManager.instance.Stop("slide");
-        SoundManager.instance.Stop("music");
+            SoundManager.instance.Play("death");
+            SoundManager.instance.Play("gameOver");
+            SoundManager.instance.Stop("slide");
+            SoundManager.instance.Stop("music");
 
-        gameOver.SetActive(true);
-        coinsObtText.GetComponent<TextMeshProUGUI>().text = $"Coins: +{coinsObt}";
-        data.coins = coins;
-        data.maxScore = maxScore;
-        DataChanges.WriteData(data);
-        isDead = 10f;
+            gameOver.SetActive(true);
+            coinsObtText.GetComponent<TextMeshProUGUI>().text = $"Coins: +{coinsObt}";
+            data.coins = coins;
+            data.maxScore = maxScore;
+            DataChanges.WriteData(data);
+            isDead = 10f;
+        }
     }
     public void ResetData()
     {
