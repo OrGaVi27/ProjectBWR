@@ -59,6 +59,11 @@ public class GameManager : MonoBehaviour
     }
     public void Start()
     {
+        GetComponent<FPSCounter>().enabled = Convert.ToBoolean(PlayerPrefs.GetFloat("FPSCounter"));
+        QualitySettings.vSyncCount = Convert.ToInt32(Convert.ToBoolean(PlayerPrefs.GetFloat("vsync")));
+        Screen.fullScreen = Convert.ToBoolean(PlayerPrefs.GetFloat("fullscreen"));
+        AudioListener.volume = PlayerPrefs.GetFloat("musicVolume");
+
         clock = Time.time;
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Enemies"), LayerMask.NameToLayer("Red"), true);
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Enemies"), LayerMask.NameToLayer("Blue"), true);
@@ -71,7 +76,7 @@ public class GameManager : MonoBehaviour
         Resolution resolution = ResolutionControl.GetFilteredResolutions()[PlayerPrefs.GetInt("resolution")];
         if (PlayerPrefs.HasKey("resolution"))
         {
-            Screen.SetResolution( resolution.width, resolution.height, Convert.ToBoolean(PlayerPrefs.GetFloat("fullscreen"))); 
+            Screen.SetResolution( resolution.width, resolution.height, Convert.ToBoolean(PlayerPrefs.GetFloat("fullscreen")));
         }
 
         SetRefreshRate(PlayerPrefs.GetFloat("frameRate"));
@@ -120,6 +125,7 @@ public class GameManager : MonoBehaviour
         if(SceneManager.GetActiveScene().buildIndex != 1 && !cont)
         {
             Destroy(Player);
+            SoundManager.instance.Stop("gameOver");
             SoundManager.instance.Play("mainMenu");
             mainMenu.SetActive(true);
             gameOver.SetActive(false);
@@ -159,6 +165,7 @@ public class GameManager : MonoBehaviour
             SoundManager.instance.Stop("slide");
             SoundManager.instance.Stop("music");
 
+            Player.GetComponent<Animator>().SetBool("isDead", true);
             gameOver.SetActive(true);
             coinsObtText.GetComponent<TextMeshProUGUI>().text = $"Coins: +{coinsObt}";
             data.coins = coins;
