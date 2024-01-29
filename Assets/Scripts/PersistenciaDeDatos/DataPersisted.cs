@@ -58,6 +58,6 @@ public class DataPersisted
     public int AchieShop(bool all)
     {
         if (all) return 10;
-        return extraJumps + lessCooldownColorChange + System.Convert.ToInt32(bulletPenetration) + longerInvulnerability + System.Convert.ToInt32(biggerBullets);
+        return extraJumps + lessCooldownColorChange + System.Convert.ToInt32(dontLoseColorAtShoot) + System.Convert.ToInt32(bulletPenetration) + longerInvulnerability + System.Convert.ToInt32(biggerBullets);
     }
 }

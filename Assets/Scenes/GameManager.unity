@@ -147,6 +147,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 3573609807165125229, guid: e65a05f6957c69f40b46fb43acac7761, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
+    - target: {fileID: 3573609807165125229, guid: e65a05f6957c69f40b46fb43acac7761, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3620129550259040675, guid: e65a05f6957c69f40b46fb43acac7761, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -182,6 +190,14 @@ PrefabInstance:
     - target: {fileID: 5573807647965055962, guid: e65a05f6957c69f40b46fb43acac7761, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6826162636242155163, guid: e65a05f6957c69f40b46fb43acac7761, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1014399513}
+    - target: {fileID: 6826162636242155163, guid: e65a05f6957c69f40b46fb43acac7761, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ResetData
       objectReference: {fileID: 0}
     - target: {fileID: 6937627001638020243, guid: e65a05f6957c69f40b46fb43acac7761, type: 3}
       propertyPath: m_AnchorMax.y
@@ -272,6 +288,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e65a05f6957c69f40b46fb43acac7761, type: 3}
+--- !u!114 &1014399513 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5783416351804100817, guid: e65a05f6957c69f40b46fb43acac7761, type: 3}
+  m_PrefabInstance: {fileID: 668833255}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05a2831931dd5f146aa5804a4ba567bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

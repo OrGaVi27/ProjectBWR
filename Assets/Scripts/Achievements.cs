@@ -11,10 +11,10 @@ public class Achievements : MonoBehaviour
     private void Update()
     {
         AchievementUI("AchiCoins", "Coge 200 monedas:", GameManager.Instance.data.achieCoins, 200);
-        AchievementUI("AchiEnemies", "Elimina 100 enemigos:", GameManager.Instance.data.achieEnemies, 10);
+        AchievementUI("AchiEnemies", "Elimina 100 enemigos:", GameManager.Instance.data.achieEnemies, 100);
         AchievementUI("AchiScore", "Llega a 1.000 de Score:", GameManager.Instance.maxScore, 1000);
-        AchievementUI("AchiWalls", "Atraviesa 200 muros:", GameManager.Instance.data.achieWalls, 10);
-        AchievementUI("AchiDeaths", "Muere 69 veces:", GameManager.Instance.data.achieDeaths, 10);
+        AchievementUI("AchiWalls", "Atraviesa 200 muros:", GameManager.Instance.data.achieWalls, 200);
+        AchievementUI("AchiDeaths", "Muere 69 veces:", GameManager.Instance.data.achieDeaths, 69);
         AchievementUI("AchiShop", "Compra todas las mejoras:", GameManager.Instance.data.AchieShop(false), GameManager.Instance.data.AchieShop(true));
     }
     private void AchievementUI(string name, string text, float quantity, float maxQuantity)
