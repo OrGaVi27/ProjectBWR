@@ -213,7 +213,7 @@ public class Controls : Mob
     }
     private void Jump()
     {
-        _rb.velocity = Vector2.up * jumpForce;
+        _rb.velocity = new Vector3(_rb.velocity.x, jumpForce, 0);
         if (_anim.GetBool("isJumping")) availableJumps--;
     }
     public void OnScreen(bool estado)
